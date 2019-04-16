@@ -48,6 +48,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+
+  void doTheThing(){
+    permissionContact();
+    _incrementCounter();
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -60,30 +66,55 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void permissionContact() async {
-    Map<PermissionGroup, //REQUEST PERMISSION
-        PermissionStatus> permissionsRequestLocationAlways;
-    Map<PermissionGroup, //REQUEST PERMISSION
-        PermissionStatus> permissionsRequestCalendar;
-    Map<PermissionGroup, //REQUEST PERMISSION
-        PermissionStatus> permissionsRequestCamera;
-    Map<PermissionGroup, //REQUEST PERMISSION
-        PermissionStatus> permissionsRequestMicrophone;
-    Map<PermissionGroup, //REQUEST PERMISSION
-        PermissionStatus> permissionsRequestLocation;
+    //REQUEST PERMISSION
+    dynamic permissionsRequestLocationAlways;
+    dynamic permissionsRequestCalendar;
+    dynamic permissionsRequestCamera;
+    dynamic permissionsRequestMicrophone;
+    dynamic permissionsRequestLocation;
 
-    permissionsRequestCalendar   = requestPermissionFor("CALENDAR");
-    permissionsRequestCamera     = requestPermissionFor("CAMERA");
-    permissionsRequestLocation   = requestPermissionFor("LOCATION");
-    permissionsRequestMicrophone = requestPermissionFor("MICROPHONE");
+    //print('============ def permission ============');
+    PermissionGroup locationPermission       = PermissionGroup.location;
+    PermissionGroup locationAlwaysPermission = PermissionGroup.locationAlways;
+    PermissionGroup calendarPermission       = PermissionGroup.calendar;
+    PermissionGroup cameraPermission         = PermissionGroup.camera;
+    PermissionGroup microphonePermission     = PermissionGroup.microphone;
 
+    //    A request followed by a rationale will
+    permissionsRequestCalendar   = requestPermissionFor([cameraPermission, calendarPermission]);                            //    give the user a dialogue
+    bool cameraShow          = await PermissionHandler()                                              //    with the allow/deny choice
+        .shouldShowRequestPermissionRationale(cameraPermission);
+    bool calendarShow          = await PermissionHandler()                                              //    with the allow/deny choice
+        .shouldShowRequestPermissionRationale(calendarPermission);
+    //REQUEST STATUS
+    /*
+    print('============== requesting ==============');
+    permissionsRequestCalendar   = requestPermissionFor(calendarPermission);
+    permissionsRequestCamera     = requestPermissionFor(cameraPermission);
+    permissionsRequestLocation   = requestPermissionFor(locationPermission);
+    permissionsRequestMicrophone = requestPermissionFor(microphonePermission);
+    */
+    /*                     //CHECK STATUS
+    Future permissionsCheckLocation       = checkPermissionStatus(locationPermission);
+    Future permissionsCheckLocationAlways = checkPermissionStatus(locationAlwaysPermission);
+    Future permissionsCheckCalendar       = checkPermissionStatus(calendarPermission);
+    Future permissionsCheckCamera         = checkPermissionStatus(cameraPermission);
+    Future permissionsCheckMicrophone     = checkPermissionStatus(microphonePermission);
+    */
+    /*
+    print("STATUSES OF PERMISSIONS"
+        "\nlocation:        $permissionsCheckLocation. "
+        "\nlocation always: $permissionsCheckLocationAlways"
+        "\ncalendar:        $permissionsCheckCalendar"
+        "\ncamera:          $permissionsCheckCamera"
+        "\nmicrophone:      $permissionsCheckMicrophone");
+    */
 
-                         //CHECK STATUS
-    PermissionStatus permissionsCheckLocation = await PermissionHandler()
-                         .checkPermissionStatus(PermissionGroup.location);
-    PermissionStatus permissionsCheckLocationAlways = await PermissionHandler()
-        .checkPermissionStatus(PermissionGroup.locationAlways);
+    //bool isOpened = await PermissionHandler().openAppSettings();
+
+    /*
     ServiceStatus serviceStatus = await PermissionHandler()
-                         .checkServiceStatus(PermissionGroup.location);
+                         .checkServiceStatus(locationPermission);
     //bool isOpened = await PermissionHandler().openAppSettings();
     bool isShownCalendar = await PermissionHandler()
               .shouldShowRequestPermissionRationale(PermissionGroup.calendar);
@@ -97,11 +128,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         "\n Check locationAlways: $permissionsCheckLocationAlways"
                         "\n Service: $serviceStatus "
                         "\n isShown: $isShownCalendar");
+     */
   }
 
-  requestPermissionFor(String group) async{
-    return await PermissionHandler().requestPermissions([PermissionGroup.group]);
+  Future<Map> requestPermissionFor(List<PermissionGroup> group) async{
+    return await PermissionHandler().requestPermissions(group);
   }
+
+  checkPermissionStatus(PermissionGroup group) async{
+    return await PermissionHandler().checkPermissionStatus(group);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -148,8 +186,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: permissionContact,
-        tooltip: 'Increment',
+        onPressed: doTheThing,
+        tooltip: 'Does both the permissions and increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
