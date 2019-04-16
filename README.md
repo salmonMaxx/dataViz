@@ -2,6 +2,8 @@
 
 Testar en tisdag förmiddag
 
+Använd denna handler för permissions: https://github.com/BaseflowIT/flutter-permission-handler/blob/develop/README.md
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
