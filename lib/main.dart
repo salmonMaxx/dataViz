@@ -20,19 +20,17 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomePage(title: 'flutter home'),
+        '/': (context) => MyHomePage(),
         'first': (context) => FirstRoute(),
         'second': (context) => SecondRoute(),
       },
-      home: FirstRoute(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
 
-  final String title;
+  final String title = "home";
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -59,6 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
     dynamic permissionsRequestCamera;
     dynamic permissionsRequestMicrophone;
     dynamic permissionsRequestLocation;
+
+    //Hej emma
 
     //print('============ def permission ============');
     PermissionGroup locationPermission       = PermissionGroup.location;
@@ -139,12 +139,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Please give us permissions!',
             ),
             RaisedButton(
-              onPressed: _incrementCounter,
+              onPressed: permissionContact,
               child:
-                Text("increment")
+                Text("Give permissions")
             ),
             Text(
               '$_counter',
@@ -154,9 +154,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: doTheThing,
-        tooltip: 'Does both the permissions and increment',
-        child: Icon(Icons.add),
+        onPressed: (){
+          Navigator.pushNamed(context, 'first');
+        },
+        child: Icon(Icons.arrow_forward),
       ),
     );
 
@@ -174,10 +175,7 @@ class FirstRoute extends StatelessWidget {
         child: RaisedButton(
           child: Text('Go away'),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondRoute())
-            );
+            Navigator.pushNamed(context, 'second');
           },
         ),
       ),
