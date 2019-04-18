@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:location/location.dart';
+import 'package:flutter/services.dart';
+import './pages/LocationTest.dart';
+import './pages/Home.dart';
 import 'dart:async';
 
 void main() => runApp(MyApp());
@@ -21,6 +25,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(),
+        'home': (context) => Home(),
+        'location': (context) => LocationTest(),
         'first': (context) => FirstRoute(),
         'second': (context) => SecondRoute(),
       },
@@ -150,6 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            RaisedButton(
+              child: Text('>Go to home<'),
+              onPressed: (){
+                Navigator.pushNamed(context, 'home');
+              },
+            )
           ],
         ),
       ),
