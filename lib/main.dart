@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import './routes/login.dart';
+
 //import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
@@ -95,6 +97,17 @@ class _MyHomePageState extends State<MyHomePage> {
               shape: SuperellipseShape(
                   borderRadius: BorderRadius.circular(28.0)),
             ),
+
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+              tooltip: 'To Login-Page',
+              child: Icon(Icons.arrow_forward),
+            )
           ],
         ),
       ),

@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  #the two below are only temporary
+  firebase_auth:
+  google_sign_in:
+
   cupertino_icons: ^0.1.2
   location: ^2.3.5
 
@@ -19,3 +24,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+assets:
+  - Pictures/nobel1.jpg
+  - Pitcures/nobel2.jpg
