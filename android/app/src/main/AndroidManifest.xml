@@ -1,30 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tisdags_test">
+    package="com.example.torsdags_test">
 
-    <!-- io.flutter.app.FlutterApplication is an android.app.Application that
-         calls FlutterMain.startInitialization(this); in its onCreate method.
-         In most cases you can leave this as-is, but you if you want to provide
-         additional functionality it is fine to subclass or reimplement
-         FlutterApplication and put your custom class here. -->
-<!--
-    <uses-permission android:name="android.permission-group.LOCATION"/>
-    <uses-permission android:name="android.permission-group.CALENDAR"/>
-    <uses-permission android:name="android.permission-group.CONTACTS"/>
-    <uses-permission android:name="android.permission-group.CAMERA"/>
-    <uses-permission android:name="android.permission-group.MICROPHONE"/>
-    <uses-permission android:name="android.permission-group.PHONE"/>
-    <uses-permission android:name="android.permission-group.SENSORS"/>
-    <uses-permission android:name="android.permission-group.SMS"/>
-    <uses-permission android:name="android.permission-group.STORAGE"/>
-    <uses-permission android:name="android.permission-group.CALL_LOG"/>
--->
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="tisdags_test"
+        android:label="torsdags_test"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

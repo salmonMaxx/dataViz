@@ -1,8 +1,6 @@
-# tisdags_test
+# torsdags_test
 
-Testar en tisdag förmiddag
-
-Använd denna handler för permissions: https://github.com/BaseflowIT/flutter-permission-handler/blob/develop/README.md
+Denna gång är det torsdag och testerna pågår!
 
 ## Getting Started
 

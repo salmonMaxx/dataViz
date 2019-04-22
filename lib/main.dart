@@ -1,61 +1,114 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:location/location.dart';
-import 'package:flutter/services.dart';
-import './pages/LocationTest.dart';
-import './pages/Home.dart';
-import 'dart:async';
+//import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'flutter home',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-
-      // ===============================
-      // ========== ROUTES =============
-      // ===============================
-
-      initialRoute: '/',
-      routes: {
-        '/': (context) => MyHomePage(),
-        'home': (context) => Home(),
-        'location': (context) => LocationTest(),
-        'first': (context) => FirstRoute(),
-        'second': (context) => SecondRoute(),
-      },
+      home: MyHomePage(title: 'Location Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-  final String title = "home";
+  final String title;
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+    @override
+    _MyHomePageState createState() => _MyHomePageState();
+  }
+
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  LocationData loc;
+  var location = new Location();
+  LocationData theLocation;
+  bool update = true;
 
-  void doTheThing(){
-    permissionContact();
-    _incrementCounter();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  void _getLocation() async {
+    //if(update) {
+    setState(() {});
+    // Changes to a State needs to be made inside the setState(() { *changes* });
+    // body to include the changes in that states build method
+    // setState SHOULD only have actual changes in it, not computation
+    theLocation = await location.getLocation();
+    location.onLocationChanged().listen((LocationData currentLocation) {
+      /*
+          print('lat/lon:, ${theLocation
+                .latitude}, ${theLocation.longitude}');*/
+      loc = theLocation;
     });
+    //}
   }
 
+  void _toggleUpdate() {
+    update = !update;
+    print("update: $update");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Location',
+            ),
+            Text( // the ?.method() operator checks
+              '${loc?.latitude}', //  if the getter (lat/lon) is null,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .display1, // if it is then
+              //don't get value
+            ),
+            Text(
+              '${loc?.longitude}',
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .display1,
+            ),
+            FloatingActionButton(
+              onPressed: _getLocation,
+              tooltip: 'location',
+              child: Icon(Icons.location_on),
+            ),
+            FloatingActionButton(
+              onPressed: _toggleUpdate,
+              tooltip: 'reset',
+              child: Icon(Icons.radio_button_checked),
+              shape: SuperellipseShape(
+                  borderRadius: BorderRadius.circular(28.0)),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+  // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
+  // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
+/*
   void permissionContact() async {
     //REQUEST PERMISSION
     dynamic permissionsRequestLocationAlways;
@@ -64,8 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
     dynamic permissionsRequestMicrophone;
     dynamic permissionsRequestLocation;
 
-    //Hej emma
-
     //print('============ def permission ============');
     PermissionGroup locationPermission       = PermissionGroup.location;
     PermissionGroup locationAlwaysPermission = PermissionGroup.locationAlways;
@@ -73,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
     PermissionGroup cameraPermission         = PermissionGroup.camera;
     PermissionGroup microphonePermission     = PermissionGroup.microphone;
 
-                                                                                                      //    A request followed by a rationale will
+    //    A request followed by a rationale will
     permissionsRequestCalendar   = requestPermissionFor([cameraPermission, calendarPermission]);      //    give the user a dialogue (alert-box)
     bool cameraShow          = await PermissionHandler()                                              //    with the allow/deny choice
         .shouldShowRequestPermissionRationale(cameraPermission);
@@ -132,105 +183,5 @@ class _MyHomePageState extends State<MyHomePage> {
     return await PermissionHandler().checkPermissionStatus(group);
   }
 
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Please give us permissions!',
-            ),
-            RaisedButton(
-              onPressed: permissionContact,
-              child:
-                Text("Give permissions")
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-            RaisedButton(
-              child: Text('>Go to home<'),
-              onPressed: (){
-                Navigator.pushNamed(context, 'home');
-              },
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context, 'first');
-        },
-        child: Icon(Icons.arrow_forward),
-      ),
-    );
-
-  }
 }
-
-class FirstRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('back'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Go away'),
-          onPressed: () {
-            Navigator.pushNamed(context, 'second');
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Away"),
-      ),
-      body: Center(
-        child: Container(
-          height: 100.0,
-          child: RaisedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            child: Row( mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.attach_money),
-                Icon(Icons.attach_money),
-                Icon(Icons.attach_money),
-                Text(
-                    'Go back!'
-                ),
-                Icon(Icons.attach_money),
-                Icon(Icons.attach_money),
-                Icon(Icons.attach_money),
-                IconButton(
-                  icon: Icon(Icons.attach_money),
-                  onPressed: () {
-                    print ('dollar dollar bill y`all');
-                  }
-                ),
-              ]),
-              color: Colors.blue,
-          ),
-        ),
-      ),
-    );
-  }
-}
+*/

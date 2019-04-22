@@ -2,7 +2,7 @@
 # See https://www.dartlang.org/tools/pub/glossary#lockfile
 packages:
   async:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: async
       url: "https://pub.dartlang.org"
@@ -81,13 +81,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
-  permission_handler:
-    dependency: "direct main"
-    description:
-      name: permission_handler
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   quiver:
     dependency: transitive
     description:

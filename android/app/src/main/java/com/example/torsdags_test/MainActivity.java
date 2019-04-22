@@ -1,4 +1,4 @@
-package com.example.tisdags_test;
+package com.example.torsdags_test;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
