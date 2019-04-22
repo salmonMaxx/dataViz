@@ -88,20 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'location',
               child: Icon(Icons.location_on),
             ),
-            FloatingActionButton(
-              onPressed: _toggleUpdate,
-              tooltip: 'reset',
-              child: Icon(Icons.radio_button_checked),
-              shape: SuperellipseShape(
-                  borderRadius: BorderRadius.circular(28.0)),
-            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
