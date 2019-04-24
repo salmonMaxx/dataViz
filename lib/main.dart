@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'To Other Apps Page',
             ),
             IconButton(
-              icon: Icon(Icons.arrow_forward)
+              icon: Icon(Icons.arrow_forward),
               onPressed: () {
                 Navigator.pushNamed(
                   context, 'forgetMe',

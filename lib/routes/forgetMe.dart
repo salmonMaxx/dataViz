@@ -50,8 +50,13 @@ class _ForgetMeState extends State<ForgetMe> {
                 child: ListView(shrinkWrap: true, children: <Widget>[
               SizedBox(
                 width: 20,
-                height: 100,
-                child: Card(child: Text('Are you really sure?')),
+                height: 180,
+                child: Card(child: Text('FANTASTIC! \n \n'
+                    'We really encourage our users to delete their accounts to protect their data.'
+                    'Remember that you have the right to delete your data on other apps and plattforms as well. '
+                    '\n\nTake back controll of your data! ',
+                  style: TextStyle(fontSize: 18),
+                ),),
               ),
               new Padding(
                 padding: EdgeInsets.all(8),
