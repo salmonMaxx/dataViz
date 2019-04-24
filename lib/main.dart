@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import './routes/login.dart';
+import './routes/forgetMe.dart';
 
 //import 'package:permission_handler/permission_handler.dart';
 
@@ -102,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => ForgetMe()),
                 );
               },
               tooltip: 'To Login-Page',
