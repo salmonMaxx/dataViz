@@ -16,6 +16,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Location Page'),
+      initialRoute: '/',
+      routes: {
+        //'login': (context) => LoginPage(),
+        //'otherApps': (context) => OtherAppsPage(),
+        'forgetMe': (context) => ForgetMe(),
+      },
     );
   }
 }
