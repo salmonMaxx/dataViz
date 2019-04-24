@@ -1,6 +1,7 @@
 // routes
 import './routes/LoginPage.dart';
 import  './routes/OtherAppsPage.dart';
+import './routes/forgetMe.dart';
 
 //packages
 import  'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => LoginPage(),
         'otherApps': (context) => OtherAppsPage(),
+        'forgetMe': (context) => ForgetMe(),
       },
     );
   }
@@ -116,6 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context, 'otherApps');
               },
               tooltip: 'To Other Apps Page',
+            ),
+            IconButton(
+              icon: Icon(Icons.arrow_forward)
+              onPressed: () {
+                Navigator.pushNamed(
+                  context, 'forgetMe',
+                );
+              },
+              tooltip: 'To Login-Page',
             )
           ],
         ),
