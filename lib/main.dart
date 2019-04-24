@@ -96,24 +96,27 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: _getLocation,
               tooltip: 'location',
               child: Icon(Icons.location_on),
+              heroTag: 'buttonLocation',
             ),
             FloatingActionButton(
               onPressed: _toggleUpdate,
               tooltip: 'reset',
+              heroTag: 'buttonUpdate',
               child: Icon(Icons.radio_button_checked),
               shape: SuperellipseShape(
                   borderRadius: BorderRadius.circular(28.0)),
             ),
 
             FloatingActionButton(
+              heroTag: 'buttonForgetMe',
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ForgetMe()),
+                Navigator.pushNamed(
+                  context, 'forgetMe',
                 );
               },
               tooltip: 'To Login-Page',
               child: Icon(Icons.arrow_forward),
+
             )
           ],
         ),
