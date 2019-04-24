@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:location/location.dart';
+// routes
+import './routes/LoginPage.dart';
+import  './routes/OtherAppsPage.dart';
+
+//packages
+import  'package:flutter/material.dart';
+import  'package:location/location.dart';
 //import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
@@ -13,6 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Location Page'),
+      initialRoute: '/',
+      routes: {
+        'login': (context) => LoginPage(),
+        'otherApps': (context) => OtherAppsPage(),
+      },
     );
   }
 }
@@ -34,24 +44,27 @@ class _MyHomePageState extends State<MyHomePage> {
   bool update = true;
 
   void _getLocation() async {
-    //if(update) {
-    setState(() {});
-    // Changes to a State needs to be made inside the setState(() { *changes* });
-    // body to include the changes in that states build method
-    // setState SHOULD only have actual changes in it, not computation
-    theLocation = await location.getLocation();
-    location.onLocationChanged().listen((LocationData currentLocation) {
-      /*
-          print('lat/lon:, ${theLocation
-                .latitude}, ${theLocation.longitude}');*/
-      loc = theLocation;
-    });
-    //}
-  }
+      // Changes to a State needs to be made inside the setState(() { *changes* });
+      // body to include the changes in that states build method
+      // setState SHOULD only have actual changes in it, not computation
+      theLocation = await location.getLocation();
+      setState(() {
+        location.onLocationChanged().listen((LocationData currentLocation) {
+          /*
+            print('lat/lon:, ${theLocation.latitude},
+                             ${theLocation.longitude}');*/
+          loc = currentLocation;
+        });
+      });
+      setState(() {
 
-  void _toggleUpdate() {
-    update = !update;
-    print("update: $update");
+      });
+      //}
+    }
+
+        void _toggleUpdate() {
+      update = !update;
+        print("update: $update");
   }
 
   @override
@@ -67,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'Location',
+                style: Theme
+                    .of(context).textTheme.display2,
             ),
             Text( // the ?.method() operator checks
               '${loc?.latitude}', //  if the getter (lat/lon) is null,
@@ -83,11 +98,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   .textTheme
                   .display1,
             ),
-            FloatingActionButton(
+            IconButton(
+              icon: Icon(Icons.location_on, color: Colors.red),
               onPressed: _getLocation,
               tooltip: 'location',
-              child: Icon(Icons.location_on),
             ),
+            IconButton(
+              icon: Icon(Icons.arrow_forward, color: Colors.deepPurple),
+              onPressed: () {
+                Navigator.pushNamed(context, 'login');
+              },
+              tooltip: 'To Login-Page',
+            ),
+            IconButton(
+              icon: Icon(Icons.apps, color: Colors.deepPurple),
+              onPressed: () {
+                Navigator.pushNamed(context, 'otherApps');
+              },
+              tooltip: 'To Other Apps Page',
+            )
           ],
         ),
       ),
