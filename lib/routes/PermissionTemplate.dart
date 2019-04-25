@@ -10,6 +10,19 @@ class _PermissionTemplateState extends State<PermissionTemplate>{
 
  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+   return new Scaffold(
+     appBar: AppBar(
+       title: Text('Permission Template'),
+     ),
+     body: ListView(
+       shrinkWrap: true,
+       children: <Widget>[
+         Container(
+           color: Colors.blueAccent,
+         )
+       ],
+     )
+
+   );
+
   }}

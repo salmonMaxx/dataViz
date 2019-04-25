@@ -1,12 +1,12 @@
 // routes
 import './routes/LoginPage.dart';
-import  './routes/OtherAppsPage.dart';
+import './routes/OtherAppsPage.dart';
 import './routes/forgetMe.dart';
 import './routes/PermissionTemplate.dart';
 
 //packages
-import  'package:flutter/material.dart';
-import  'package:location/location.dart';
+import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 //import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
@@ -36,10 +36,9 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-    @override
-    _MyHomePageState createState() => _MyHomePageState();
-  }
-
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
 class _MyHomePageState extends State<MyHomePage> {
   LocationData loc;
@@ -48,34 +47,31 @@ class _MyHomePageState extends State<MyHomePage> {
   bool update = true;
 
   void _getLocation() async {
-      // Changes to a State needs to be made inside the setState(() { *changes* });
-      // body to include the changes in that states build method
-      // setState SHOULD only have actual changes in it, not computation
-      theLocation = await location.getLocation();
-      setState(() {
-        location.onLocationChanged().listen((LocationData currentLocation) {
-          /*
+    // Changes to a State needs to be made inside the setState(() { *changes* });
+    // body to include the changes in that states build method
+    // setState SHOULD only have actual changes in it, not computation
+    theLocation = await location.getLocation();
+    setState(() {
+      location.onLocationChanged().listen((LocationData currentLocation) {
+        /*
             print('lat/lon:, ${theLocation.latitude},
                              ${theLocation.longitude}');*/
-          loc = currentLocation;
-        });
+        loc = currentLocation;
       });
-      setState(() {
+    });
+    setState(() {});
+    //}
+  }
 
-      });
-      //}
-    }
-
-        void _toggleUpdate() {
-      update = !update;
-        print("update: $update");
+  void _toggleUpdate() {
+    update = !update;
+    print("update: $update");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
@@ -84,23 +80,17 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'Location',
-                style: Theme
-                    .of(context).textTheme.display2,
+              style: Theme.of(context).textTheme.display2,
             ),
-            Text( // the ?.method() operator checks
+            Text(
+              // the ?.method() operator checks
               '${loc?.latitude}', //  if the getter (lat/lon) is null,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .display1, // if it is then
+              style: Theme.of(context).textTheme.display1, // if it is then
               //don't get value
             ),
             Text(
               '${loc?.longitude}',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .display1,
+              style: Theme.of(context).textTheme.display1,
             ),
             IconButton(
               icon: Icon(Icons.location_on, color: Colors.red),
@@ -125,10 +115,20 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.arrow_forward),
               onPressed: () {
                 Navigator.pushNamed(
-                  context, 'forgetMe',
+                  context,
+                  'forgetMe',
                 );
               },
               tooltip: 'To Login-Page',
+            ),
+            IconButton(
+              icon: Icon(Icons.accessible_forward),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  'permissions',
+                );
+              },
             )
           ],
         ),
@@ -136,8 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-  // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
-  // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
+// CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
+// IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
 /*
   void permissionContact() async {
     //REQUEST PERMISSION
