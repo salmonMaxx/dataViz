@@ -1,5 +1,6 @@
 // routes
 import './routes/LoginPage.dart';
+import './routes/SignupPage.dart';
 import  './routes/OtherAppsPage.dart';
 
 //packages
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         'login': (context) => LoginPage(),
+        '/signup': (context) => SignupPage(),
         'otherApps': (context) => OtherAppsPage(),
       },
     );
