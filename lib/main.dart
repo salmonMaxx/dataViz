@@ -2,6 +2,7 @@
 import './routes/LoginPage.dart';
 import  './routes/OtherAppsPage.dart';
 import './routes/forgetMe.dart';
+import './routes/PermissionTemplate.dart';
 
 //packages
 import  'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         'login': (context) => LoginPage(),
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
+        'permissions': (context) => PermissionTemplate(),
       },
     );
   }
