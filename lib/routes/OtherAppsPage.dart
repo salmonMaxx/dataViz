@@ -20,29 +20,38 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
   }
 
    _getAppListInfo(String key){
-    installedApps.forEach((mapInList) => theList.add(mapInList[key]));
+      installedApps.forEach((mapInList) => theList.add(mapInList[key]));
     return theList;
   }
 
   Widget _getAppList(){
-    var listView = ListView.builder(
-        itemBuilder: (context, index){
-          return ListTile(
-            title: Text(theList[index]),
-          );
-        }
+    return ListView.builder(
+        shrinkWrap: true,
+        itemExtent: 10.0,
+        itemCount: 10,
+        padding: EdgeInsets.all(8.0),
+        itemBuilder: (context, i){
+          _buildRow(theList[i]);
+        },
+        //itemCount: theList.length,
+    );
+  }
+
+  Widget _buildRow(String appName){
+    return ListTile(
+      title: Text(appName),
     );
   }
 
   @override
   initState() {
     super.initState();
-
     // Get all apps
     LauncherAssist.getAllApps().then((apps) {
       setState(() {
         appCount = apps.length;
         installedApps = apps;
+        _getAppListInfo("label");
       });
     });
   }
@@ -51,7 +60,9 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Apps installed: '),
       ),
-      body: _getAppList(),
-    );
+      body: Container(
+        child: Text(_getAppListInfo("label").toString()),
+      ),
+      );
   }
 }
