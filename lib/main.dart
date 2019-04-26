@@ -1,5 +1,6 @@
 // routes
 import './routes/LoginPage.dart';
+import './routes/SignupPage.dart';
 import  './routes/OtherAppsPage.dart';
 import './routes/forgetMe.dart';
 import './routes/PermissionTemplate.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         'login': (context) => LoginPage(),
+        '/signup': (context) => SignupPage(),
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),

@@ -30,3 +30,4 @@ assets:
   # These are local on a computer, need to add to project
   - Pictures/nobel1.jpg
   - Pitcures/nobel2.jpg
+  - lib/assets/logo_dataviz_1.png

@@ -5,15 +5,16 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 //THIS WHOLE SITE IS FROM GITHUB, NEEDS SOME CHANGES //CJ
 
-class LoginPage extends StatefulWidget{
+class SignupPage extends StatefulWidget{
   @override
-  _LoginPageSate createState()=>_LoginPageSate();
+  SignupPageSate createState() => SignupPageSate();
 }
-class _LoginPageSate extends State<LoginPage>{
+class SignupPageSate extends State<SignupPage>{
   String _email;
-  String   _password;
- /* //google sign
-  GoogleSignIn googleauth = new GoogleSignIn();*/
+  String _password;
+  String _password_same;
+  //google sign
+  GoogleSignIn googleauth = new GoogleSignIn();
   final formkey=new GlobalKey<FormState>();
   checkFields(){
     final form=formkey.currentState;
@@ -26,23 +27,28 @@ class _LoginPageSate extends State<LoginPage>{
 
 
 
-  loginUser(){
-    if (checkFields()){
-      FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password)
-          .then((user){
-        print("signed in as ${user.uid}");
-        Navigator.of(context).pushReplacementNamed('/userpage');
-      }).catchError((e){
-        print(e);
-      });
+  createUser(){
+    if (checkFields()) {
+      if (_password == _password_same) {
+        FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: _email, password: _password)
+            .then((user) {
+          print("Registered user: ${user.uid}");
+          Navigator.of(context).pushReplacementNamed('/userpage');
+        }).catchError((e) {
+          print(e);
+        });
+      }
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      backgroundColor: Colors.indigo[900],
+      backgroundColor: Colors.pink[300],
       appBar: AppBar(
         /*title: Image(image:AssetImage("Pictures/nobel2.jpg"), height: 30.0,fit: BoxFit.fitHeight,),*/
 
@@ -57,11 +63,11 @@ class _LoginPageSate extends State<LoginPage>{
         shrinkWrap: true,
         children: <Widget>[
           Container(
-            height: 200.0,
-            width: 200.0,
+            height: 20.0,
+            width: 20.0,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("lib/assets/logo_dataviz_1.png"),
+                  image: AssetImage("Pictures/nobel1.jpg"),
                   fit: BoxFit.cover),
               borderRadius: BorderRadius.only
                 (
@@ -74,27 +80,14 @@ class _LoginPageSate extends State<LoginPage>{
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: new Container(
-                    alignment: Alignment.center,
-                    height: 60.0,
-                    child: new Text("LOGIN",
-                      style: new TextStyle(
-                          fontSize: 25.0, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(right: 8.0 , left: 8.0, top: 8.0 ),
                   child: new OutlineButton(
                       color: Colors.transparent,
                       borderSide: const BorderSide (style: BorderStyle.none),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/signup');
+                        Navigator.of(context).pushNamed('login');
                       },
-                      child: new Text("SIGN UP",
+                      child: new Text("LOGIN",
                           style: new TextStyle(
                               fontSize: 25.0, color: Colors.white30))),
                   /*child: new Container(
@@ -103,6 +96,19 @@ class _LoginPageSate extends State<LoginPage>{
                       child: new Text("SIGNUP",
                           style: new TextStyle(
                               fontSize: 25.0, color: Colors.white30))),*/
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Container(
+                    alignment: Alignment.center,
+                    height: 60.0,
+                    child: new Text("SIGN UP",
+                      style: new TextStyle(
+                          fontSize: 25.0, color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -120,42 +126,41 @@ class _LoginPageSate extends State<LoginPage>{
                           _input("required email",false,"EMAIL",'Enter your Email',(value) => _email = value),
                           SizedBox(width: 20.0,height: 20.0,),
                           _input("required password",true,"PASSWORD",'Password',(value) => _password = value),
-                          new Padding(padding: EdgeInsets.all(0.0),
+                          SizedBox(width: 20.0,height: 20.0,),
+                          _input("required password",true,"PASSWORD",'Password',(value) => _password_same = value),
+                          new Padding(padding: EdgeInsets.all(8.0),
 
                             child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: <Widget>[
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 80.0, right: 80.0, top: 20.0),
-                                          child: OutlineButton(
-                                              borderSide: const BorderSide (style: BorderStyle.none),
-                                              child: new Container(
-                                                  alignment: Alignment.center,
-                                                  height: 60.0,
-                                                  decoration: new BoxDecoration(
-                                                    color: Color(0xFF2E7D32),
-                                                    borderRadius: new BorderRadius.circular(25.0),
-                                                    boxShadow: <BoxShadow>[
-                                                      BoxShadow(
-                                                        color: Colors.indigo[300],
-                                                        offset: Offset(1.0, 1.0),
-                                                        blurRadius: 10.0,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  child: new Text("OK!",
-                                                      style: new TextStyle(
-                                                          fontSize: 30.0, color: Colors.white))),
-                                              /*child: Text("OK! "),*/
-                                              onPressed:loginUser
-                                          ),
+                                            child: OutlineButton(
+                                                borderSide: const BorderSide (style: BorderStyle.none),
+                                                child: new Container(
+                                                    alignment: Alignment.center,
+                                                    height: 60.0,
+                                                    decoration: new BoxDecoration(
+                                                      color: Color(0xFF2E7D32),
+                                                      borderRadius: new BorderRadius.circular(25.0),
+                                                      boxShadow: <BoxShadow>[
+                                                        BoxShadow(
+                                                          color: Colors.indigo[300],
+                                                          offset: Offset(1.0, 1.0),
+                                                          blurRadius: 10.0,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    child: new Text("Create new account",
+                                                        style: new TextStyle(
+                                                            fontSize: 20.0, color: Colors.white))),
+                                                /*child: Text("OK! "),*/
+                                                onPressed: createUser
+                                            ),
                                         ),
-                          ),
                                         SizedBox(height: 18.0,width: 18.0,),
 
                                         SizedBox(height: 18.0,width: 18.0,),
@@ -185,40 +190,38 @@ class _LoginPageSate extends State<LoginPage>{
                                       ],
                                     ),
                                     SizedBox(height: 15.0),
-                                    new Row(
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
-                                        Expanded(
-                                            child: OutlineButton(
-                                              borderSide: const BorderSide (style: BorderStyle.none),
-                                            child: new Container(
-                                                alignment: Alignment.center,
-                                                height: 60.0,
-                                                /*child: new Checkbox(value: _isChecked, onChanged: (bool value){onChanged(value);}),*/
-                                                child: new Text("REMEMBER ME",
-                                                    style: new TextStyle(
-                                                        fontSize: 15.0, color: Colors.white))),
+                                        SizedBox(width: 5.0),
+                                        InkWell(
+                                          child: Text(
+                                            'create new account',
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.bold,
+                                                decoration: TextDecoration.underline),
                                           ),
-                                        ),
-
-                                        Expanded(
-                                            child: OutlineButton(
-                                              borderSide: const BorderSide (style: BorderStyle.none),
-                                            child: new Container(
-                                                alignment: Alignment.center,
-                                                height: 60.0,
-                                                child: new Text("FORGOT PASSWORD",
-                                                    style: new TextStyle(
-                                                        fontSize: 15.0, color: Colors.white))),
-                                          ),
-                                        ),
+                                        )
                                       ],
                                     ),
-                                    SizedBox(height: 15.0),
+                                    OutlineButton(
+                                        child: Text("signup"),
+                                        onPressed: (){
+                                          Navigator.of(context).pushNamed('/signup');
+                                        }),
+                                    OutlineButton(
+                                        child: Text("ui"),
+                                        onPressed: (){
+                                          Navigator.of(context).pushNamed('/userpage');
+                                        })
                                   ],
 
                                 ),
 
                               ),
+                            ),
                           ),
 
                         ],
