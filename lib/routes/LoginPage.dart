@@ -57,11 +57,11 @@ class _LoginPageSate extends State<LoginPage>{
         shrinkWrap: true,
         children: <Widget>[
           Container(
-            height: 200.0,
-            width: 200.0,
+            height: 300.0,
+            width: 300.0,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("lib/assets/logo_dataviz_1.png"),
+                  image: AssetImage("assets/logo_dataviz_1.png"),
                   fit: BoxFit.cover),
               borderRadius: BorderRadius.only
                 (
