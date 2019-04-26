@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
-        'menu':(context) => HomePage(),
+        'menu': (context) => HomePage(),
       },
     );
   }
@@ -134,7 +134,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-
             IconButton(
               icon: Icon(Icons.home, color: Colors.red),
               onPressed: () {
@@ -142,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               tooltip: 'To Other Apps Page',
             ),
-      )],
+          ],
         ),
       ),
     );
