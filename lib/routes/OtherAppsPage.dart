@@ -25,21 +25,21 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
   }
 
   Widget _getAppList(){
-    return ListView.builder(
-        shrinkWrap: true,
-        itemExtent: 10.0,
-        itemCount: 10,
-        padding: EdgeInsets.all(8.0),
-        itemBuilder: (context, i){
-          _buildRow(theList[i]);
-        },
+    return ListView.separated(
+      separatorBuilder:
+        (context, i) => Divider(
+          color: Colors.black,
+        ),
+      padding: EdgeInsets.all(15.0),
+      itemCount: theList.length,
+      itemBuilder: (context, i){
+        return new ListTile(
+          title: Text(theList[i]),
+          leading: Icon(Icons.thumb_up),
+          trailing: Icon(Icons.thumb_up),
+        );
+      },
         //itemCount: theList.length,
-    );
-  }
-
-  Widget _buildRow(String appName){
-    return ListTile(
-      title: Text(appName),
     );
   }
 
@@ -61,8 +61,8 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
       appBar: AppBar(title: Text('Apps installed: $appCount'),
       ),
       body: Container(
-        child: Text(_getAppListInfo("label").toString()),
+        child: _getAppList(),
       ),
-      );
+    );
   }
 }
