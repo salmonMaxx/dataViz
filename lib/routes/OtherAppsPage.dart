@@ -58,7 +58,7 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Apps installed: '),
+      appBar: AppBar(title: Text('Apps installed: $appCount'),
       ),
       body: Container(
         child: Text(_getAppListInfo("label").toString()),

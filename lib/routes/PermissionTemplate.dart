@@ -19,6 +19,22 @@ class _PermissionTemplateState extends State<PermissionTemplate>{
        children: <Widget>[
          Container(
            color: Colors.blueAccent,
+           margin: EdgeInsets.all(8),
+
+         ),
+         Row(
+          children: <Widget>[
+            Expanded(child: Text('test')),
+            Expanded(child: Text('Test2')),
+            Expanded(child: Text('Test 3')),
+          ],
+         ),
+         Row(
+           children: <Widget>[
+             Expanded(child: Text('test')),
+             Expanded(child: Text('Test2')),
+             Expanded(child: Text('Test 3')),
+           ],
          )
        ],
      )
