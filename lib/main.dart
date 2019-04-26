@@ -4,6 +4,7 @@ import './routes/OtherAppsPage.dart';
 import './routes/SignupPage.dart';
 import './routes/forgetMe.dart';
 import './routes/PermissionTemplate.dart';
+import './routes/menuPage.dart';
 
 //packages
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
+        'menu':(context) => HomePage(),
       },
     );
   }
@@ -131,8 +133,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   'permissions',
                 );
               },
-            )
-          ],
+            ),
+
+            IconButton(
+              icon: Icon(Icons.home, color: Colors.red),
+              onPressed: () {
+                Navigator.pushNamed(context, 'menu');
+              },
+              tooltip: 'To Other Apps Page',
+            ),
+      )],
         ),
       ),
     );
