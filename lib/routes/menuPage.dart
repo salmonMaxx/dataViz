@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class MenuPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _MenuPageState createState() => _MenuPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
-    Widget image = new DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/pic/logo_dataviz_1'),
-        ),
-      ),
-    );
     Widget bigCircle = new Container(
       width: 310.0,
       height: 310.0,
       decoration: new BoxDecoration(
-          color: Colors.indigo[700],
+          color: Colors.transparent,
           shape: BoxShape.circle,
           border: new Border.all(color: Colors.indigo[300], width: 20.0)
       ),
     );
-
-    return new Material(
-      color: Colors.indigo[900],
-      child: new Center(
+    return Scaffold(
+      backgroundColor: Colors.indigo[900],
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text('dataViz', textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
+      ),
+      body: Center(
         child: new Stack(
           children: <Widget>[
             bigCircle,
@@ -104,9 +100,39 @@ class _HomePageState extends State<HomePage> {
               left: 130.0,
             ),
             new Positioned(
-              child: image,
-              top: 130,
-              left: 130,
+              child: new CircleButton(
+                  onTap: () => print("12"), iconData: Icons.lightbulb_outline),
+              top: 130.0,
+              left: 130.0,
+            ),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('dataViz', textAlign: TextAlign.center, style: new TextStyle(fontSize: 50.0, color: Colors.white)),
+              decoration: BoxDecoration(
+                color: Colors.indigo[900],
+              ),
+            ),
+            ListTile(
+              title: Text('BLACKLIST', style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('BIG PICTURE',style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
@@ -142,3 +168,4 @@ class CircleButton extends StatelessWidget {
     );
   }
 }
+

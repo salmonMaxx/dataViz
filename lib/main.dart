@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
-        'menu':(context) => HomePage(),
+        'menu':(context) => MenuPage(),
       },
     );
   }
@@ -147,6 +147,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
   // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
   // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
 /*
