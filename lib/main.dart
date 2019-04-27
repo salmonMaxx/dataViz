@@ -5,6 +5,8 @@ import  './routes/OtherAppsPage.dart';
 import './routes/forgetMe.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionLocationScreen.dart';
+import './routes/menuPage.dart';
+
 //packages
 import  'package:flutter/material.dart';
 
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'location': (context) => PermissionLocationScreen(),
+        'menu':(context) => HomePage(),
       },
     );
   }
@@ -84,6 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.pushNamed(
                       context, 'location',
+                  );
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home, color: Colors.red),
+                onPressed: () {
+                  Navigator.pushNamed(
+                         context, 'menu',
                   );
                 },
                 tooltip: 'location',
