@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'location': (context) => PermissionLocationScreen(),
-        'menu':(context) => HomePage(),
+        'menu':(context) => MenuPage(),
       },
     );
   }
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.home, color: Colors.red),
+                icon: Icon(Icons.home, color: Colors.blueGrey),
                 onPressed: () {
                   Navigator.pushNamed(
                          context, 'menu',
@@ -106,6 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
   // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
   // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
 
