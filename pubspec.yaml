@@ -25,6 +25,14 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+
+  assets:
+  - assets/logo_dataviz_1.png
+  - assets/dataViz_logo2.png
+  - assets/mabu-lightbulb.png
+  - assets/Light_pic.png
+  - assets/light.png
+
   fonts:
   - family: Modak-Regular
     fonts:
@@ -38,8 +46,3 @@ flutter:
 
   uses-material-design: true
 
-assets:
-  # These are local on a computer, need to add to project
-  - Pictures/nobel1.jpg
-  - Pitcures/nobel2.jpg
-  - assets/logo_dataviz_1.png

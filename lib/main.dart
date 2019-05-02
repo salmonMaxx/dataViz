@@ -54,10 +54,7 @@ class MyApp extends StatelessWidget {
         'call_log' : (context) => CallLog(),
         'camera' : (context) => Camera(),
         'contacts' : (context) => Contacts(),
-<<<<<<< HEAD
-=======
         'location' : (context) => PermissionLocationScreen(),
->>>>>>> 0205566ca2ed951df34f675cffaab2ae67bc0d97
         'mic' : (context) => Mic(),
         'phone' : (context) => Phone(),
         'sensors' : (context) => Sensors(),
