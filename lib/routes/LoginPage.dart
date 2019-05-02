@@ -1,17 +1,23 @@
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
+import 'package:http/http.dart' as http;
+//important with as mongo to avoid state conflict /CJ
+
+import 'package:mongo_dart_query/mongo_dart_query.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
-
-//THIS WHOLE SITE IS FROM GITHUB, NEEDS SOME CHANGES //CJ
 
 class LoginPage extends StatefulWidget{
   @override
-  _LoginPageSate createState()=>_LoginPageSate();
+  _LoginPageState createState()=>_LoginPageState();
 }
-class _LoginPageSate extends State<LoginPage>{
+class _LoginPageState extends State<LoginPage>{
   String _email;
   String   _password;
+  List<Name> _names = new List();
+
+
  /* //google sign
   GoogleSignIn googleauth = new GoogleSignIn();*/
   final formkey=new GlobalKey<FormState>();
@@ -24,9 +30,42 @@ class _LoginPageSate extends State<LoginPage>{
     return false;
   }
 
+  openDB() async{
+    //mongo.Db db = new mongo.Db("mongodb://192.168.56.101:27017/dataviz");
+    mongo.Db db = new mongo.Db("mongodb://10.0.2.2:27017/mongotest"); //localhost på dator
+    print('db1');
+    try {
+      await db.open();
+    }
+    catch(e){
+      print('In catch');
+      print('failed ${e.toString()}');
+    }
+    print('between awaits');
+    var ourUsers = db.collection('Users');
+    print('in openDB');
+    try{
+      await ourUsers.find().forEach((map) {
+        Name name = new Name()
+          ..firstName = map['firstName']
+          ..lastName = map['lastName'];
+        _names.add(name);
+        print('in here');
+        print(_names);
+      });}
+      catch(e){
+      print('failed ${e.toString()}');}
+            print('openDB2');
+      var coll = db.collection('user');
+      print('openDB3');
+      print('function has ran');
+      print(coll);
+    }
+
 
 
   loginUser(){
+    print('login');
     if (checkFields()){
       FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password)
           .then((user){
@@ -60,9 +99,9 @@ class _LoginPageSate extends State<LoginPage>{
             height: 300.0,
             width: 300.0,
             decoration: BoxDecoration(
-              image: DecorationImage(
+              /*image: DecorationImage(
                   image: AssetImage("assets/logo_dataviz_1.png"),
-                  fit: BoxFit.cover),
+                  fit: BoxFit.cover),*/
               borderRadius: BorderRadius.only
                 (
                   bottomLeft: Radius.circular(500.0),
@@ -152,7 +191,7 @@ class _LoginPageSate extends State<LoginPage>{
                                                       style: new TextStyle(
                                                           fontSize: 30.0, color: Colors.white))),
                                               /*child: Text("OK! "),*/
-                                              onPressed:loginUser
+                                              onPressed:openDB
                                           ),
                                         ),
                           ),
@@ -254,3 +293,15 @@ class _LoginPageSate extends State<LoginPage>{
 
   }
 }
+
+  class Name {
+  String firstName;
+  String lastName;
+
+  @override
+  String toString() {
+  // TODO: implement toString
+  return "$firstName $lastName";
+  }
+  }
+
