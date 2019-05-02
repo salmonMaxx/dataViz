@@ -21,6 +21,7 @@ class _MenuPageState extends State<MenuPage> {
       backgroundColor: Colors.indigo[900],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        centerTitle: true,
         title: Text('dataViz', textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
       ),
       body: Center(
@@ -29,73 +30,73 @@ class _MenuPageState extends State<MenuPage> {
             bigCircle,
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("Cool"), iconData: Icons.camera_alt),
+                  onTap: () => Navigator.of(context).pushNamed('camera'), iconData: Icons.camera_alt),
               top: 0.0,
               left: 130.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("1"), iconData: Icons.calendar_today),
+                  onTap: () => Navigator.of(context).pushNamed('calender'), iconData: Icons.calendar_today),
               top: 17.42,
               left: 65.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("2"), iconData: Icons.phone_forwarded),
+                  onTap: () => Navigator.of(context).pushNamed('phone'), iconData: Icons.phone_forwarded),
               top: 17.42,
               left: 195.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("3"), iconData: Icons.email),
+                  onTap: () => Navigator.of(context).pushNamed('sms'), iconData: Icons.email),
               top: 65.0,
               left: 242.58,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("4"), iconData: Icons.contacts),
+                  onTap: () => Navigator.of(context).pushNamed('contacts'), iconData: Icons.contacts),
               top: 65.0,
               left: 17.42,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("5"), iconData: Icons.personal_video),
+                  onTap: () => Navigator.of(context).pushNamed('video_pics'), iconData: Icons.personal_video),
               top: 130.0,
               left: 260.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("6"), iconData: Icons.directions_bike),
+                  onTap: () => Navigator.of(context).pushNamed('activity_log'), iconData: Icons.directions_bike),
               top: 130.0,
               left: 0.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("7"), iconData: Icons.group_add),
+                  onTap: () => Navigator.of(context).pushNamed('call_log'), iconData: Icons.group_add),
               top: 195.0,
               left: 242.58,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("8"), iconData: Icons.insert_emoticon),
+                  onTap: () => Navigator.of(context).pushNamed('audio_files'), iconData: Icons.insert_emoticon),
               top: 195.0,
               left: 17.42,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("9"), iconData: Icons.keyboard_voice),
+                  onTap: () => Navigator.of(context).pushNamed('mic'), iconData: Icons.keyboard_voice),
               top: 242.58,
               left: 65.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("10"), iconData: Icons.local_florist),
+                  onTap: () => Navigator.of(context).pushNamed('sensors'), iconData: Icons.local_florist),
               top: 242.58,
               left: 195.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => print("11"), iconData: Icons.location_on),
+                  onTap: () => Navigator.of(context).pushNamed('location'), iconData: Icons.location_on),
               top: 260.0,
               left: 130.0,
             ),

@@ -7,6 +7,20 @@ import './routes/PermissionTemplate.dart';
 import './routes/PermissionLocationScreen.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/menuPage.dart';
+//routes --> permissions
+import './routes/permissions/activity_log.dart';
+import './routes/permissions/audio_files.dart';
+import './routes/permissions/calender.dart';
+import './routes/permissions/call_log.dart';
+import './routes/permissions/camera.dart';
+import './routes/permissions/contacts.dart';
+import './routes/permissions/location.dart';
+import './routes/permissions/mic.dart';
+import './routes/permissions/phone.dart';
+import './routes/permissions/sensors.dart';
+import './routes/permissions/sms.dart';
+import './routes/permissions/video_pics.dart';
+
 
 //packages
 import  'package:flutter/material.dart';
@@ -34,6 +48,19 @@ class MyApp extends StatelessWidget {
         'location': (context) => PermissionLocationScreen(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
+        //PERMISSIONS
+        'activity_log' : (context) => ActivityLog(),
+        'audio_files' : (context) => AudioFiles(),
+        'calender' : (context) => Calender(),
+        'call_log' : (context) => CallLog(),
+        'camera' : (context) => Camera(),
+        'contacts' : (context) => Contacts(),
+        'location' : (context) => LocationPermission(),
+        'mic' : (context) => Mic(),
+        'phone' : (context) => Phone(),
+        'sensors' : (context) => Sensors(),
+        'sms' : (context) => SMS(),
+        'video_pics' : (context) => VideoPics(),
       },
     );
   }
