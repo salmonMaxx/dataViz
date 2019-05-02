@@ -24,6 +24,17 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  fonts:
+  - family: Modak-Regular
+    fonts:
+    - asset: assets/Modak-Regular.ttf
+
+  - family: Abel-Regular
+    fonts:
+    - asset: assets/Abel-Regular.ttf
+      weight: 900
+
+
   uses-material-design: true
 
 assets:

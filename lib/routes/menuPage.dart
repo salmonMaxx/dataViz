@@ -111,7 +111,6 @@ class _MenuPageState extends State<MenuPage> {
       ),
       drawer: Drawer(
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
@@ -121,17 +120,32 @@ class _MenuPageState extends State<MenuPage> {
               ),
             ),
             ListTile(
+              title: Text('BIG PICTURE',style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               title: Text('BLACKLIST', style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('BIG PICTURE',style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
+              title: Text('SETTINGS',style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('ABOUT US',style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('FEEDBACK',style: new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
+              onTap: () {
                 Navigator.pop(context);
               },
             ),
