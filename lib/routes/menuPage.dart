@@ -1,19 +1,5 @@
 import 'package:flutter/material.dart';
 
-//routes --> Permissions
-import './permissions/activity_log.dart';
-import './permissions/audio_files.dart';
-import './permissions/calender.dart';
-import './permissions/call_log.dart';
-import './permissions/camera.dart';
-import './permissions/contacts.dart';
-import './permissions/location.dart';
-import './permissions/mic.dart';
-import './permissions/phone.dart';
-import './permissions/sensors.dart';
-import './permissions/sms.dart';
-import './permissions/video_pics.dart';
-
 class MenuPage extends StatefulWidget {
   @override
   _MenuPageState createState() => _MenuPageState();
