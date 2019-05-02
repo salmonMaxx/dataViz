@@ -1,30 +1,30 @@
 // routes
 import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
-import  './routes/OtherAppsPage.dart';
-import './routes/forgetMe.dart';
+import './routes/OtherApps.dart';
+import './routes/ForgetMe.dart';
 import './routes/PermissionTemplate.dart';
-import './routes/PermissionLocationScreen.dart';
 import './routes/PermissionMicrophoneScreen.dart';
-import './routes/menuPage.dart';
+import './routes/MenuPage.dart';
+
 //routes --> permissions
-import './routes/permissions/activity_log.dart';
-import './routes/permissions/audio_files.dart';
-import './routes/permissions/calender.dart';
-import './routes/permissions/call_log.dart';
-import './routes/permissions/camera.dart';
-import './routes/permissions/contacts.dart';
-import './routes/permissions/location.dart';
-import './routes/permissions/mic.dart';
-import './routes/permissions/phone.dart';
-import './routes/permissions/sensors.dart';
-import './routes/permissions/sms.dart';
-import './routes/permissions/video_pics.dart';
+
+import './routes/permissions/ActivityLog.dart';
+import './routes/permissions/AudioFiles.dart';
+import './routes/permissions/Calendar.dart';
+import './routes/permissions/CallLog.dart';
+import './routes/permissions/Camera.dart';
+import './routes/permissions/Contacts.dart';
+import './routes/permissions/Location.dart';
+import './routes/permissions/Mic.dart';
+import './routes/permissions/Phone.dart';
+import './routes/permissions/Sensors.dart';
+import './routes/permissions/Sms.dart';
+import './routes/permissions/VideoPics.dart';
 
 
 //packages
 import  'package:flutter/material.dart';
-
 //import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
@@ -45,17 +45,16 @@ class MyApp extends StatelessWidget {
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
-        'location': (context) => PermissionLocationScreen(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
         //PERMISSIONS
         'activity_log' : (context) => ActivityLog(),
         'audio_files' : (context) => AudioFiles(),
-        'calender' : (context) => Calender(),
+        'calender' : (context) => Calendar(),
         'call_log' : (context) => CallLog(),
         'camera' : (context) => Camera(),
         'contacts' : (context) => Contacts(),
-        'location' : (context) => LocationPermission(),
+        'location' : (context) => PermissionLocationScreen(),
         'mic' : (context) => Mic(),
         'phone' : (context) => Phone(),
         'sensors' : (context) => Sensors(),
