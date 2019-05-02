@@ -60,8 +60,10 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Apps installed: $appCount'),
       ),
-      body: Container(
-        child: _getAppList(),
+      body: Column(
+        children: <Widget>[
+          _getAppList(),
+        ],
       ),
     );
   }

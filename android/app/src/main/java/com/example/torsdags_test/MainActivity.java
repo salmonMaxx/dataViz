@@ -42,7 +42,7 @@ public class MainActivity extends FlutterActivity {
           final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
           mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
           final List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0);
-          PackageInfo packageInfo = null; 
+          PackageInfo packageInfo = null;
           for (Object obj : pkgAppsList) {
                  ResolveInfo resolveInfo = (ResolveInfo) obj;
 
