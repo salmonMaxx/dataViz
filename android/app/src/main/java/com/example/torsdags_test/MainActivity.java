@@ -17,7 +17,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "samples.flutter.io/permissions";
+    private static final String CHANNEL = "dataViz.defentry/OtherApps/channel";
         @Override
         public void onCreate(Bundle savedInstanceState) {
 
@@ -29,7 +29,7 @@ public class MainActivity extends FlutterActivity {
               @Override
               public void onMethodCall(MethodCall call, MethodChannel.Result result) {
                   if (call.method.equals("getPermissions")){
-                      String[] permissionList = getPermissions();
+                      String[] permissionList = _getPermissions();
                       result.success(permissionList);
                   } else {
                     result.notImplemented();
@@ -38,21 +38,26 @@ public class MainActivity extends FlutterActivity {
             }
         );
       }
-      public String[] getPermissions(){
+      public String[] _getPermissions(){
           final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
           mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
           final List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0);
           PackageInfo packageInfo = null;
+                                // System.out.println("size of pkgAppsList: " + pkgAppsList.size());
           for (Object obj : pkgAppsList) {
-                 ResolveInfo resolveInfo = (ResolveInfo) obj;
-
-                try {
+              System.out.println("obj: "+obj);
+              ResolveInfo resolveInfo = (ResolveInfo) obj;
+              try {
+                                                 //System.out.println("===========================================\ntrying ln 50 in getPermission\n===========================================\n");
                   packageInfo = getPackageManager().getPackageInfo(resolveInfo.activityInfo.packageName, PackageManager.GET_PERMISSIONS);
-                } catch (PackageManager.NameNotFoundException e) {
-                  // TODO Auto-generated catch block
-                  e.printStackTrace();
-                }
-            }
+                  //System.out.println("packageInfo: " +packageInfo);
+                  //System.out.println("\nline 54\n");
+                  } catch (PackageManager.NameNotFoundException e) {
+                      // TODO Auto-generated catch block
+                  System.out.println("::::::Name not found exception::::::\n");
+                    e.printStackTrace();
+                  }
+          }
           return packageInfo.requestedPermissions;
       }
 }
