@@ -5,6 +5,7 @@ import  './routes/OtherAppsPage.dart';
 import './routes/forgetMe.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionLocationScreen.dart';
+import './routes/PermissionMicrophoneScreen.dart';
 import './routes/menuPage.dart';
 
 //packages
@@ -26,11 +27,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         'login': (context) => LoginPage(),
-        '/signup': (context) => SignupPage(),
+        'signup': (context) => SignupPage(),
         'otherApps': (context) => OtherAppsPage(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'location': (context) => PermissionLocationScreen(),
+        'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
       },
     );
@@ -59,45 +61,68 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Column( mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.arrow_forward, color: Colors.deepPurple),
-                onPressed: () {
-                  Navigator.pushNamed(context, 'login');
-                },
-                tooltip: 'To Login-Page',
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.person_pin, color: Colors.deepPurple),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'login');
+                    },
+                    tooltip: 'To Login-Page',
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.apps, color: Colors.deepPurple),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'otherApps');
+                    },
+                    tooltip: 'To Other Apps Page',
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle, color: Colors.red),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context, 'forgetMe',
+                      );
+                    },
+                    tooltip: 'To Login-Page',
+                  ),
+                ],
               ),
-              IconButton(
-                icon: Icon(Icons.apps, color: Colors.deepPurple),
-                onPressed: () {
-                  Navigator.pushNamed(context, 'otherApps');
-                },
-                tooltip: 'To Other Apps Page',
-              ),
-              IconButton(
-                icon: Icon(Icons.arrow_forward),
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context, 'forgetMe',
-                  );
-                },
-                tooltip: 'To Login-Page',
-              ),
-              IconButton(
-                icon: Icon(Icons.location_on, color: Colors.red),
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, 'location',
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.home, color: Colors.blueGrey),
-                onPressed: () {
-                  Navigator.pushNamed(
-                         context, 'menu',
-                  );
-                },
-                tooltip: 'location',
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.location_on, color: Colors.red),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, 'location',
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.home, color: Colors.blueGrey),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                             context, 'menu',
+                      );
+                    },
+                    tooltip: 'location',
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.mic, color: Colors.blueGrey),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context, 'microphone',
+                      );
+                    },
+                    tooltip: 'microphone',
+                  ),
+                ],
               ),
             ],
           ),

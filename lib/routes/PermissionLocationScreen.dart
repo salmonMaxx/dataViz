@@ -42,29 +42,43 @@ class _PermissionLocationScreenState extends State<PermissionLocationScreen> {
                   style: Theme
                       .of(context).textTheme.display2,
                 ),
-                Text( // the ?.method() operator checks
+                Center(
+                  child: loc?.latitude == null?
+                  Text('getting location...',
+                      style: Theme
+                      .of(context)
+                      .textTheme
+                      .display1,)
+                  :
+                  Text(// the ?.method() operator checks
                   '${loc?.latitude}', //  if the getter (lat/lon) is null,
                   style: Theme
                       .of(context)
                       .textTheme
                       .display1, // if it is then
                   //don't get value, print null
+                  ),
                 ),
-                Text(
-                  '${loc?.longitude}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .display1,
+                Center(
+                  child: loc?.longitude == null?
+                  Text('getting location...',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .display1,)
+                  :
+                  Text(// the ?.method() operator checks
+                    '${loc?.longitude}', //  if the getter (lat/lon) is null,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .display1, // if it is then
+                    //don't get value, print null
+                  ),
                 ),
-                /*IconButton(
-                  icon: Icon(Icons.location_on, color: Colors.red),
-                  onPressed: _getLocation,
-                  tooltip: 'location',
-                ),*/
               ],
             ),
-            Row(
+            /*Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
@@ -72,7 +86,7 @@ class _PermissionLocationScreenState extends State<PermissionLocationScreen> {
                   onPressed: _getLocation,
                 ),
               ],
-            ),
+            ),*/
           ],
         ),
       ),
