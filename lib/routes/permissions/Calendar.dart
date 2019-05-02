@@ -17,6 +17,17 @@ class _CalendarState extends State<Calendar> {
         backgroundColor: Colors.transparent,
 
       ),
+        body: new Center(
+          child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/dataViz_logo2.png'),
+            ),
+          ),
+        ),
+        ),
     );
   }
 }
