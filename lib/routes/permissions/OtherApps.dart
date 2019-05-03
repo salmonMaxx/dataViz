@@ -14,6 +14,7 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
   var installedApps;
   var installedAppsList;
   var theList = [];     // change this name it sucks, and also consider other stuff than the name
+  List<String> blackList = ['Drive', 'Facebook', 'Twitter', 'Snapchat', 'Chrome', 'Instagram'];
 
   void _testTheLauncher(){
     installedApps.forEach( (element) =>
@@ -27,7 +28,7 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
   }
 
   _openSettings() async {
-    bool isOpened = await PermissionHandler().openAppSettings();
+    //bool isOpened = await PermissionHandler().openAppSettings();
   }
 
   Widget _getAppList(){
@@ -39,11 +40,12 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
       padding: EdgeInsets.all(15.0),
       itemCount: theList.length,
       itemBuilder: (context, i){
+      final blacklisted = (blackList.contains('${theList[i]}'));
         return new ListTile(
-          title: Text(theList[i]),
-          leading: Icon(Icons.thumb_up),
-          trailing: Icon(Icons.thumb_up),
-            onLongPress: _openSettings,
+          title: Text(theList[i], style: TextStyle(fontWeight: FontWeight.w800),),
+          trailing: Icon( blacklisted ? Icons.cancel : Icons.check_box,
+                  color: (blacklisted ? Colors.red : Colors.green)),
+
         );
       },
         //itemCount: theList.length,
@@ -59,10 +61,12 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
       permissionsList = await platform.invokeMethod('getPermissions');
       print("invoke method");
 
-    } on PlatformException catch (e) {
+    }
+    /*on PlatformException catch (e) {
       print('::::::::Platform exception:::::::::\n${e.message}');
-    } catch(e){
-      print(e.toString());
+    } */
+    catch(e){
+      print(e);
     }
     return permissionsList;
   }
