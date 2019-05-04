@@ -1,7 +1,6 @@
 // routes
 import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
-import './routes/OtherApps.dart';
 import './routes/ForgetMe.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
@@ -21,6 +20,7 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
+import './routes/permissions/OtherApps.dart';
 
 
 //packages
