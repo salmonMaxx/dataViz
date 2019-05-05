@@ -9,27 +9,18 @@ class OtherAppsPage extends StatefulWidget {
 }
 
 class _OtherAppsPageState extends State<OtherAppsPage> {
-  static const platform = const MethodChannel("dataViz.defentry/OtherApps/channel");
+  static const platform = const MethodChannel("dataViz/OtherApps/channel");
   var appCount;
   var installedApps;
   var installedAppsList;
+  bool setUpLoading;
   var theList = [];     // change this name it sucks, and also consider other stuff than the name
   List<String> blackList = ['Drive', 'Facebook', 'Twitter', 'Snapchat', 'Chrome', 'Instagram'];
-
-  void _testTheLauncher(){
-    installedApps.forEach( (element) =>
-      print('label =  ${element["label"]} \npackage =  ${element["package"]}\n\n')
-    );
-  }
 
    _getAppListInfo(String key){
       installedApps.forEach((mapInList) => theList.add(mapInList[key]));
     return theList;
-  }
-
-  _openSettings() async {
-    //bool isOpened = await PermissionHandler().openAppSettings();
-  }
+    }
 
   Widget _getAppList(){
     return ListView.separated(
@@ -59,23 +50,22 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
         "===========================================\n");
     try{
       permissionsList = await platform.invokeMethod('getPermissions');
-      print("invoke method");
+      print("===========================================\n"
+        "             invoke method done                \n"
+          "===========================================\n");
 
     }
     /*on PlatformException catch (e) {
       print('::::::::Platform exception:::::::::\n${e.message}');
     } */
     catch(e){
-      print(e);
+      print("in blacklist: \n$e");
     }
     return permissionsList;
   }
 
-  @override
-  initState() {
-    super.initState();
-    // Get all apps
-    LauncherAssist.getAllApps().then((apps) {
+  Future _loadApps() async{
+    await LauncherAssist.getAllApps().then((apps) {
       setState(() {
         appCount = apps.length;
         installedApps = apps;
@@ -83,6 +73,31 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
         _getPermissions();
       });
     });
+      setState(() {
+        setUpLoading = false;
+      });
+
+  }
+
+  Widget _loadThenBuild(){
+    if(setUpLoading){
+      return new Container(
+          child: new CircularProgressIndicator()
+      );
+    }
+    else {
+      return _getAppList();
+    }
+
+  }
+
+  @override
+  initState() {
+    super.initState();
+    setUpLoading = true;
+    _loadApps();
+    // Get all apps
+
 
   }
   @override
@@ -92,7 +107,7 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
       ),
       body: Container(
         child:
-          _getAppList(),
+          _loadThenBuild(),
           //Text('${_getPermissions?.toString()}'),
       ),
     );

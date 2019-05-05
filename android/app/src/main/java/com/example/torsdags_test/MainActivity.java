@@ -17,7 +17,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "dataViz.defentry/OtherApps/channel";
+    private static final String CHANNEL = "dataViz/OtherApps/channel";
         @Override
         public void onCreate(Bundle savedInstanceState) {
 
@@ -29,8 +29,7 @@ public class MainActivity extends FlutterActivity {
               @Override
               public void onMethodCall(MethodCall call, MethodChannel.Result result) {
                   if (call.method.equals("getPermissions")){
-                      String[] permissionList = _getPermissions();
-                      result.success(permissionList);
+                      result.success(_getPermissionList());
                   } else {
                     result.notImplemented();
                   }
@@ -38,25 +37,37 @@ public class MainActivity extends FlutterActivity {
             }
         );
       }
+
+      public String[] _getPermissionList(){
+            String[] permissionList;
+            permissionList = _getPermissions();
+            return permissionList;
+      }
+
       public String[] _getPermissions(){
           final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
           mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
           final List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0);
           PackageInfo packageInfo = null;
                                 // System.out.println("size of pkgAppsList: " + pkgAppsList.size());
+          int indexx = 0;
           for (Object obj : pkgAppsList) {
               System.out.println("obj: "+obj);
               ResolveInfo resolveInfo = (ResolveInfo) obj;
+              indexx++;
+              System.out.println("index: " + indexx);
               try {
-                                                 //System.out.println("===========================================\ntrying ln 50 in getPermission\n===========================================\n");
+                  //System.out.println("===========================================\ntrying ln 50 in getPermission\n===========================================\n");
                   packageInfo = getPackageManager().getPackageInfo(resolveInfo.activityInfo.packageName, PackageManager.GET_PERMISSIONS);
+
+                  System.out.println(pkgAppsList);
                   //System.out.println("packageInfo: " +packageInfo);
                   //System.out.println("\nline 54\n");
-                  } catch (PackageManager.NameNotFoundException e) {
-                      // TODO Auto-generated catch block
-                  System.out.println("::::::Name not found exception::::::\n");
+              } catch (Exception e) { //PackageManager.NameNotFoundException e
+                  // TODO Auto-generated catch block
+                    System.out.println("::::::Name not found exception::::::\n");
                     e.printStackTrace();
-                  }
+              }
           }
           return packageInfo.requestedPermissions;
       }

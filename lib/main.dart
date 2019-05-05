@@ -25,6 +25,7 @@ import './routes/permissions/OtherApps.dart';
 
 //packages
 import  'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 //import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
@@ -70,6 +71,7 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+
     @override
     _MyHomePageState createState() => _MyHomePageState();
   }
@@ -80,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
 
       ),
@@ -100,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   IconButton(
                     icon: Icon(Icons.apps, color: Colors.deepPurple),
                     iconSize: 48.0,
-                    onPressed: () {
+                    onPressed: (){
                       Navigator.pushNamed(context, 'otherApps');
                     },
                     tooltip: 'To Other Apps Page',
