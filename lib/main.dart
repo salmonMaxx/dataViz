@@ -151,6 +151,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     tooltip: 'microphone',
                   ),
+                  IconButton(
+                    icon: Icon(Icons.local_florist, color: Colors.green),
+                    iconSize: 48.0,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context, 'permissions',
+                      );
+                    },
+                    tooltip: 'To permissionTemplate',
+                  ),
                 ],
               ),
             ],

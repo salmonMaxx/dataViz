@@ -22,6 +22,8 @@ dependencies:
   location: ^2.3.5
   #geolocation: ^4.0.1
 
+  call_log: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -34,6 +36,8 @@ flutter:
   - assets/mabu-lightbulb.png
   - assets/Light_pic.png
   - assets/light.png
+  - assets/blomma_test.jpg
+  - assets/test1.jpg
 
   fonts:
   - family: Modak-Regular

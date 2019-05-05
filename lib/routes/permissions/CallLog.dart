@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:call_log/call_log.dart';
 
 class CallLog extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class CallLog extends StatefulWidget {
 class _CallLogState extends State<CallLog> {
   @override
   Widget build(BuildContext context) {
+
+    getCallLog() {
+    }
+
     return Scaffold(
       backgroundColor: Colors.indigo[500],
       appBar: AppBar(
@@ -17,6 +22,27 @@ class _CallLogState extends State<CallLog> {
         backgroundColor: Colors.transparent,
 
       ),
+      body: Center(
+      )
     );
   }
 }
+
+
+/*
+// GET WHOLE CALL LOG
+Iterable<CallLogEntry> entries = await CallLog.get();
+
+// QUERY CALL LOG (ALL PARAMS ARE OPTIONAL)
+var now = DateTime.now();
+int from = now.subtract(Duration(days: 60)).millisecondsSinceEpoch;
+int to = now.subtract(Duration(days: 30)).millisecondsSinceEpoch;
+Iterable<CallLogEntry> entries = await CallLog.query(
+dateFrom: from,
+dateTo: to,
+durationFrom: 0,
+durationTo: 60,
+name: 'John Doe',
+number: '901700000',
+type: CallType.incoming,
+);*/
