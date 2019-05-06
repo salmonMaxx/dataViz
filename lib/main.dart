@@ -171,7 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
   // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
   // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
 

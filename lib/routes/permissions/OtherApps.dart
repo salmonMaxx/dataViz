@@ -1,7 +1,10 @@
+import '../PermissionTemplate.dart';
+
 import 'package:flutter/material.dart';
 import 'package:launcher_assist/launcher_assist.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:torsdags_test/routes/PermissionTemplate.dart';
 
 class OtherAppsPage extends StatefulWidget {
   @override
@@ -16,6 +19,7 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
   bool setUpLoading;
   var theList = [];     // change this name it sucks, and also consider other stuff than the name
   List<String> blackList = ['Drive', 'Facebook', 'Twitter', 'Snapchat', 'Chrome', 'Instagram'];
+  BlackList theBlackList = new BlackList();
 
    _getAppListInfo(String key){
       installedApps.forEach((mapInList) => theList.add(mapInList[key]));
@@ -97,19 +101,33 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
     setUpLoading = true;
     _loadApps();
     // Get all apps
-
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Apps installed: $appCount'),
       ),
-      body: Container(
-        child:
+      body: Row(
+        children: <Widget>[
           _loadThenBuild(),
+          theBlackList.boxLeft(null, "Hello", "hello"),
+        ],
+
           //Text('${_getPermissions?.toString()}'),
       ),
     );
+  }
+}
+
+class BlackList extends PermissionTemplate{
+
+  BlackList(){
+    super.createState();
+  };
+
+  boxLeft(String myImage, String myHeader, String myText){
+    super.boxLeft(myImage, myHeader, myText);
+
   }
 }
