@@ -39,10 +39,9 @@ flutter:
   - assets/mabu-lightbulb.png
   - assets/Light_pic.png
   - assets/light.png
+  - assets/Data-Science-vs.-Big-Data-vs.jpg
   - assets/blomma_test.jpg
   - assets/test1.jpg
-
-  - assets/TEST.mp4
 
   fonts:
   - family: Modak-Regular

@@ -8,75 +8,10 @@ class PermissionTemplate extends StatefulWidget {
   _PermissionTemplateState createState() => _PermissionTemplateState();
 }
 
-boxRight(String myImage, String myHeader, String myText) {
-  return new Container(
-    height: 150,
-    decoration: BoxDecoration(
-        color: Colors.indigo[900],
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.indigo[300],
-            offset: Offset(1.0, 1.0),
-            blurRadius: 10.0,
-          ),
-        ],
-        borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
-    margin: EdgeInsets.all(10),
-    child: Row(
-      children: <Widget>[
-        Flexible(
-          child: Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
-            width: 130,
-            height: 130,
-            alignment: Alignment.center,
-            decoration: new BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.indigo[500], width: 2),
-              image: new DecorationImage(
-                image: new AssetImage(myImage),
-                alignment: Alignment.center,
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
-        ),
-        Flexible(
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new Container(
-                margin: const EdgeInsets.only(left: 5, top: 7.5),
-                child: new Text(
-                  myHeader,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              new Container(
-                margin: const EdgeInsets.only(left: 5),
-                child: new Text(
-                  myText,
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-}
 
 
-yourApps() {
 
-}
-
-
-//VIDEO CLIP
+//VIDEO CLIP, CHECK IT UP
 
 
 class ChewieListItem extends StatefulWidget {
@@ -143,19 +78,66 @@ class _ChewieListItemState extends State<ChewieListItem> {
 
 class _PermissionTemplateState extends State<PermissionTemplate> {
 
+  boxRight(String myImage, String myHeader, String myText) {
+    return new Container(
+      height: 150,
+      decoration: BoxDecoration(
+          color: Colors.indigo[900],
+          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
+      margin: EdgeInsets.all(10),
+      child: Row(
+        children: <Widget>[
+          Flexible(
+            child: Container(
+              margin: EdgeInsets.only(left: 10, right: 10),
+              width: 130,
+              height: 130,
+              alignment: Alignment.center,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                image: new DecorationImage(
+                  image: new AssetImage(myImage),
+                  alignment: Alignment.center,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Container(
+                  margin: const EdgeInsets.only(left: 5, top: 7.5),
+                  child: new Text(
+                    myHeader,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                new Container(
+                  margin: const EdgeInsets.only(left: 5),
+                  child: new Text(
+                    myText,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   boxLeft(String myImage, String myHeader, String myText) {
     return new Container(
       height: 150,
       decoration: BoxDecoration(
           color: Colors.indigo[900],
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.indigo[300],
-              offset: Offset(1.0, 1.0),
-              blurRadius: 10.0,
-            ),
-          ],
-          borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
+          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
       margin: EdgeInsets.all(10),
       child: Row(
         children: <Widget>[
@@ -191,7 +173,6 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
               alignment: Alignment.centerRight,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.indigo[500], width: 2),
                 image: new DecorationImage(
                   image: new AssetImage(myImage),
                   fit: BoxFit.fill,
@@ -248,14 +229,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     return new Container(
       decoration: BoxDecoration(
           color: Colors.indigo[900],
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.indigo[300],
-              offset: Offset(1.0, 1.0),
-              blurRadius: 10.0,
-            ),
-          ],
-          borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
+          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
       margin: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
@@ -268,8 +242,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 margin: EdgeInsets.all(10.0),
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
-                  border: Border.all(color: Colors.indigo[500], width: 2),
-                  borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+                  borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
                   image: new DecorationImage(
                     image: new AssetImage(myImage),
                     fit: BoxFit.cover,
@@ -316,14 +289,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     return new Container(
       decoration: BoxDecoration(
           color: Colors.indigo[900],
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.indigo[300],
-              offset: Offset(1.0, 1.0),
-              blurRadius: 10.0,
-            ),
-          ],
-          borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
+          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
       margin: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
@@ -337,8 +303,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    border: Border.all(color: Colors.indigo[500], width: 2),
-                    borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
                     image: new DecorationImage(
                       image: new AssetImage(myImage1),
                       fit: BoxFit.cover,
@@ -353,8 +318,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    border: Border.all(color: Colors.indigo[500], width: 2),
-                    borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
                     image: new DecorationImage(
                       image: new AssetImage(myImage2),
                       fit: BoxFit.cover,
@@ -403,14 +367,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     return new Container(
       decoration: BoxDecoration(
           color: Colors.indigo[900],
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.indigo[300],
-              offset: Offset(1.0, 1.0),
-              blurRadius: 10.0,
-            ),
-          ],
-          borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
+          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
       margin: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
@@ -424,8 +381,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    border: Border.all(color: Colors.indigo[500], width: 2),
-                    borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
                     image: new DecorationImage(
                       image: new AssetImage(myImage1),
                       fit: BoxFit.cover,
@@ -440,8 +396,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    border: Border.all(color: Colors.indigo[500], width: 2),
-                    borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
                     image: new DecorationImage(
                       image: new AssetImage(myImage2),
                       fit: BoxFit.cover,
@@ -456,8 +411,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    border: Border.all(color: Colors.indigo[500], width: 2),
-                    borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
                     image: new DecorationImage(
                       image: new AssetImage(myImage3),
                       fit: BoxFit.cover,
@@ -505,13 +459,13 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo[500],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
         title: Text('Permissions <3',
             textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.indigo[900],
       ),
       body: new ListView(
         children: <Widget>[
@@ -520,25 +474,25 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
               children: <Widget>[
                 new Container(
                   child: textBoxWithPic(
-                      'assets/test1.jpg',
+                      'assets/Data-Science-vs.-Big-Data-vs.jpg',
                       "YOUR DATA",
                       "How much data do u u u u u u u u send out every day?",150.0),
                 ),
                 new Container(
                   child: textBoxWith2Pics(
-                      'assets/test1.jpg', 'assets/test1.jpg',
+                      'assets/Data-Science-vs.-Big-Data-vs.jpg', 'assets/Data-Science-vs.-Big-Data-vs.jpg',
                       "YOUR DATA",
                       "How much data do u u u u u u u u send out every day? ",150.0),
                 ),
                 new Container(
                   child: textBoxWith3Pics(
-                      'assets/test1.jpg', 'assets/test1.jpg', 'assets/test1.jpg',
+                      'assets/Data-Science-vs.-Big-Data-vs.jpg', 'assets/test1.jpg', 'assets/Data-Science-vs.-Big-Data-vs.jpg',
                       "YOUR DATA",
                       "How much data do u u u u u u u u send out every day?", 150.0),
                 ),
                 new Container(
                   child: boxRight(
-                      'assets/test1.jpg',
+                      'assets/Data-Science-vs.-Big-Data-vs.jpg',
                       "YOUR DATA",
                       "How much data do u u u u u u u u send out every day?"),
                 ),
@@ -547,12 +501,6 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                       'assets/test1.jpg',
                       "YOUR DATA",
                       "How much data do u u u u u u u u send out every day?"),
-                ),
-                ChewieListItem(
-                  videoPlayerController: VideoPlayerController.asset(
-                    'assets/TEST.mp4',
-                  ),
-                  looping: true,
                 ),
               ]),
         ],
