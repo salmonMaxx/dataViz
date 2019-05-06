@@ -23,6 +23,8 @@ dependencies:
 
   call_log: ^2.0.0
 
+   #VIDEO
+  chewie: ^0.9.7
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +33,7 @@ dev_dependencies:
 flutter:
 
   assets:
+
   - assets/logo_dataviz_1.png
   - assets/dataViz_logo2.png
   - assets/mabu-lightbulb.png
@@ -38,6 +41,8 @@ flutter:
   - assets/light.png
   - assets/blomma_test.jpg
   - assets/test1.jpg
+
+  - assets/TEST.mp4
 
   fonts:
   - family: Modak-Regular
