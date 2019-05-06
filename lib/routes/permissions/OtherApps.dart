@@ -122,12 +122,9 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
 
 class BlackList extends PermissionTemplate{
 
-  BlackList(){
-    super.createState();
-  };
 
   boxLeft(String myImage, String myHeader, String myText){
-    super.boxLeft(myImage, myHeader, myText);
+    //super.boxLeft(myImage, myHeader, myText);
 
   }
 }
