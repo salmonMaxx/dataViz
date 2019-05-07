@@ -1,5 +1,26 @@
 import 'package:flutter/material.dart';
 
+Future<void> _ackAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Discover what info your apps have about you!', textAlign: TextAlign.center, style:  TextStyle(color: Colors.indigo[900],fontSize: 25)),
+        content: Text('Go through the icons in the menu to see the importance of different permissions and how your apps uses them.',
+            style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('OK!', textAlign: TextAlign.center, style: new TextStyle(color: Colors.indigo[900])),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 class MenuPage extends StatefulWidget {
   @override
   _MenuPageState createState() => _MenuPageState();
@@ -23,14 +44,21 @@ class _MenuPageState extends State<MenuPage> {
           shape: BoxShape.circle,
           border: new Border.all(color: Colors.indigo[300], width: 20.0)),
     );
+
+
     return Scaffold(
       backgroundColor: Colors.indigo[900],
       appBar: AppBar(
+        actions: <Widget>[
+          new IconButton( icon: new Icon(Icons.info), tooltip: 'INFO', onPressed: () {
+            _ackAlert(context);
+          }, ),],
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text('dataViz',
             textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
       ),
+
       body: Center(
         child: new Stack(
           children: <Widget>[
@@ -58,7 +86,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 150,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/mabu-lightbulb.png'),
+                      image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
                     ),
                   ),
                 ),

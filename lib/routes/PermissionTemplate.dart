@@ -6,85 +6,15 @@ import 'package:video_player/video_player.dart';
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
-}
-
-
-
-
-//VIDEO CLIP, CHECK IT UP
-
-
-class ChewieListItem extends StatefulWidget {
-  // This will contain the URL/asset path which we want to play
-  final VideoPlayerController videoPlayerController;
-  final bool looping;
-
-  ChewieListItem({
-    @required this.videoPlayerController,
-    this.looping,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _ChewieListItemState createState() => _ChewieListItemState();
-}
-
-class _ChewieListItemState extends State<ChewieListItem> {
-  ChewieController _chewieController;
-
-  @override
-  void initState() {
-    super.initState();
-    // Wrapper on top of the videoPlayerController
-    _chewieController = ChewieController(
-      videoPlayerController: widget.videoPlayerController,
-      aspectRatio: 16 / 9,
-      // Prepare the video to be played and display the first frame
-      autoInitialize: true,
-      looping: widget.looping,
-      // Errors can occur for example when trying to play a video
-      // from a non-existent URL
-      errorBuilder: (context, errorMessage) {
-        return Center(
-          child: Text(
-            errorMessage,
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Chewie(
-        controller: _chewieController,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    // IMPORTANT to dispose of all the used resources
-    widget.videoPlayerController.dispose();
-    _chewieController.dispose();
-  }
-}
-
-
-
-class _PermissionTemplateState extends State<PermissionTemplate> {
 
   boxRight(String myImage, String myHeader, String myText) {
+    Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       height: 150,
       decoration: BoxDecoration(
           color: Colors.indigo[900],
-          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
-      margin: EdgeInsets.all(10),
+          borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Row(
         children: <Widget>[
           Flexible(
@@ -133,12 +63,13 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
   }
 
   boxLeft(String myImage, String myHeader, String myText) {
+    Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       height: 150,
       decoration: BoxDecoration(
           color: Colors.indigo[900],
-          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
-      margin: EdgeInsets.all(10),
+          borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Row(
         children: <Widget>[
           Flexible(
@@ -226,11 +157,12 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
 // if more than one pic is used, the width of every pic can be inserted, the tot width should be 370
 
   textBoxWithPic(String myImage, String myHeader, String myText, double myHeightPic) {
+    Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       decoration: BoxDecoration(
-          color: Colors.indigo[900],
-          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
-      margin: EdgeInsets.all(10),
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -242,7 +174,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 margin: EdgeInsets.all(10.0),
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
+                  borderRadius: new BorderRadius.all(borderRadius),
                   image: new DecorationImage(
                     image: new AssetImage(myImage),
                     fit: BoxFit.cover,
@@ -286,11 +218,12 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
   }
 
   textBoxWith2Pics(String myImage1, String myImage2, String myHeader, String myText, double myHeightPic) {
+    Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       decoration: BoxDecoration(
-          color: Colors.indigo[900],
-          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
-      margin: EdgeInsets.all(10),
+          gradient: colorGradient(Alignment.bottomLeft, Alignment.topRight),
+          borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -303,7 +236,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
+                    borderRadius: new BorderRadius.all(borderRadius),
                     image: new DecorationImage(
                       image: new AssetImage(myImage1),
                       fit: BoxFit.cover,
@@ -318,7 +251,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
+                    borderRadius: new BorderRadius.all(borderRadius),
                     image: new DecorationImage(
                       image: new AssetImage(myImage2),
                       fit: BoxFit.cover,
@@ -364,11 +297,13 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
 
   textBoxWith3Pics(String myImage1, String myImage2, String myImage3, String myHeader, String myText,
       double myHeightPic) {
+    Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       decoration: BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
           color: Colors.indigo[900],
-          borderRadius: new BorderRadius.all(const Radius.circular(20.0))),
-      margin: EdgeInsets.all(10),
+          borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -381,7 +316,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
+                    borderRadius: new BorderRadius.all(borderRadius),
                     image: new DecorationImage(
                       image: new AssetImage(myImage1),
                       fit: BoxFit.cover,
@@ -396,7 +331,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
+                    borderRadius: new BorderRadius.all(borderRadius),
                     image: new DecorationImage(
                       image: new AssetImage(myImage2),
                       fit: BoxFit.cover,
@@ -411,7 +346,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
-                    borderRadius: new BorderRadius.all(const Radius.circular(20.0)),
+                    borderRadius: new BorderRadius.all(borderRadius),
                     image: new DecorationImage(
                       image: new AssetImage(myImage3),
                       fit: BoxFit.cover,
@@ -455,23 +390,255 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     );
   }
 
+  highlightNumbers(String bigText1, String smallText1, String bigText2, String smallText2, String bigText3, String smallText3){
+    Radius borderRadius = const Radius.circular(10.0);
+    double myHeight = 100;
+    return new Container(
+      decoration: BoxDecoration(
+          borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      child: Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  height: myHeight,
+                  margin: EdgeInsets.only(right: 2.5),
+                  decoration: BoxDecoration(
+                      color: Colors.indigo[400],
+                      borderRadius: new BorderRadius.all(borderRadius)),
+                  child: Column(
+                    children: <Widget>[
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          new Container(
+                            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                            child: new Text(bigText1, textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            child: new Container(
+                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                              child: new Text(smallText1, textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  height: myHeight,
+                  margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                  decoration: BoxDecoration(
+                      color: Colors.indigo[600],
+                      borderRadius: new BorderRadius.all(borderRadius)),
+                  child: Column(
+                    children: <Widget>[
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          new Container(
+                            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                            child: new Text(bigText2, textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            child: new Container(
+                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                              child: new Text(smallText2, textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  height: myHeight,
+                  margin: EdgeInsets.only(left: 2.5),
+                  decoration: BoxDecoration(
+                      color: Colors.indigo[900],
+                      borderRadius: new BorderRadius.all(borderRadius)),
+                  child: Column(
+                    children: <Widget>[
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          new Container(
+                            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                            child: new Text(bigText3, textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            child: new Container(
+                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                              child: new Text(smallText3, textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  colorGradient(Alignment myStart, Alignment myEnd){
+    return LinearGradient(
+      // Where the linear gradient begins and ends
+      begin: myStart,
+      end: myEnd,
+      // Add one stop for each color. Stops should increase from 0 to 1
+      stops: [0.1, 0.5, 0.7, 0.9],
+      colors: [
+        // Colors are easy thanks to Flutter's Colors class.
+        Colors.indigo[900],
+        Colors.indigo[700],
+        Colors.indigo[600],
+        Colors.indigo[400],
+      ],
+    );
+  }
+
+}
+
+
+//VIDEO CLIP, CHECK IT UP
+
+
+class ChewieListItem extends StatefulWidget {
+  // This will contain the URL/asset path which we want to play
+  final VideoPlayerController videoPlayerController;
+  final bool looping;
+
+  ChewieListItem({
+    @required this.videoPlayerController,
+    this.looping,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _ChewieListItemState createState() => _ChewieListItemState();
+}
+
+class _ChewieListItemState extends State<ChewieListItem> {
+  ChewieController _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+    // Wrapper on top of the videoPlayerController
+    _chewieController = ChewieController(
+      videoPlayerController: widget.videoPlayerController,
+      aspectRatio: 16 / 9,
+      // Prepare the video to be played and display the first frame
+      autoInitialize: true,
+      looping: widget.looping,
+      // Errors can occur for example when trying to play a video
+      // from a non-existent URL
+      errorBuilder: (context, errorMessage) {
+        return Center(
+          child: Text(
+            errorMessage,
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Chewie(
+        controller: _chewieController,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // IMPORTANT to dispose of all the used resources
+    widget.videoPlayerController.dispose();
+    _chewieController.dispose();
+  }
+}
+
+// functions
+
+
+
+class _PermissionTemplateState extends State<PermissionTemplate> {
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white70,
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
-        title: Text('Permissions <3',
+        title: Text('PERMISSIONS',
             textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
         backgroundColor: Colors.indigo[900],
       ),
-      body: new ListView(
+      body: Container(),
+      /*new ListView(
         children: <Widget>[
           new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                new Container(
+                  child: highlightNumbers('123', 'Num of apps', '123', 'Num of apps','123', 'Num of apps')
+                ),
                 new Container(
                   child: textBoxWithPic(
                       'assets/Data-Science-vs.-Big-Data-vs.jpg',
@@ -504,7 +671,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 ),
               ]),
         ],
-      ),
+      ),*/
     );
   }
 }

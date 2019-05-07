@@ -21,6 +21,7 @@ import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
 import './routes/permissions/OtherApps.dart';
+import './routes/permissions/testPermissions.dart';
 
 
 //packages
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
         'sensors' : (context) => Sensors(),
         'sms' : (context) => SMS(),
         'video_pics' : (context) => VideoPics(),
+        'testestest' : (context) => testPermissions(),
       },
     );
   }
@@ -153,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(
-                        context, 'permissions',
+                        context, 'testestest',
                       );
                     },
                     tooltip: 'To permissionTemplate',
