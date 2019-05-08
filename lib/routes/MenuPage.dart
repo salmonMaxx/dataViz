@@ -201,6 +201,7 @@ class _MenuPageState extends State<MenuPage> {
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushNamed('big_picture');
               },
             ),
             ListTile(
@@ -217,6 +218,7 @@ class _MenuPageState extends State<MenuPage> {
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushNamed('settings');
               },
             ),
             ListTile(
@@ -225,6 +227,7 @@ class _MenuPageState extends State<MenuPage> {
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushNamed('about_us');
               },
             ),
             ListTile(
@@ -233,6 +236,24 @@ class _MenuPageState extends State<MenuPage> {
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushNamed('feedback');
+              },
+            ),
+            ListTile(
+              title: Text('')
+            ),
+            ListTile(
+
+              title: Text('FORGET ME!',
+                  style: new TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,),
+                      textAlign: TextAlign.center),
+
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).pushNamed('forgetMe');
               },
             ),
           ],

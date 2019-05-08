@@ -6,6 +6,13 @@ import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
 
+//drawer --> sidebar menu
+
+import './routes/drawer/AboutUs.dart';
+import './routes/drawer/BigPicture.dart';
+import './routes/drawer/FeedBack.dart';
+import './routes/drawer/Settings.dart';
+
 //routes --> permissions
 
 import './routes/permissions/ActivityLog.dart';
@@ -22,6 +29,7 @@ import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
 import './routes/permissions/OtherApps.dart';
 import './routes/permissions/testPermissions.dart';
+
 
 
 //packages
@@ -48,6 +56,13 @@ class MyApp extends StatelessWidget {
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
+
+        //drawer
+        'big_picture': (context) => BigPicture(),
+        'settings': (context) => Settings(),
+        'about_us': (context) => AboutUs(),
+        'feedback': (context) => FeedBack(),
+
         //PERMISSIONS
         'activity_log' : (context) => ActivityLog(),
         'audio_files' : (context) => AudioFiles(),
@@ -155,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(
-                        context, 'testestest',
+                        context, 'permissions',
                       );
                     },
                     tooltip: 'To permissionTemplate',
