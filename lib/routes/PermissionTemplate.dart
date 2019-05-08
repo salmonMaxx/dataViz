@@ -6,142 +6,68 @@ import 'package:video_player/video_player.dart';
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
-}
 
-boxRight(String myImage, String myHeader, String myText) {
-  return new Container(
-    height: 150,
-    decoration: BoxDecoration(
-        color: Colors.indigo[900],
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.indigo[300],
-            offset: Offset(1.0, 1.0),
-            blurRadius: 10.0,
-          ),
-        ],
-        borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
-    margin: EdgeInsets.all(10),
-    child: Row(
-      children: <Widget>[
-        Flexible(
-          child: Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
-            width: 130,
-            height: 130,
-            alignment: Alignment.center,
-            decoration: new BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.indigo[500], width: 2),
-              image: new DecorationImage(
-                image: new AssetImage(myImage),
-                alignment: Alignment.center,
-                fit: BoxFit.fill,
+  boxRight(String myImage, String myHeader, String myText) {
+    return new Container(
+      height: 150,
+      decoration: BoxDecoration(
+          color: Colors.indigo[900],
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.indigo[300],
+              offset: Offset(1.0, 1.0),
+              blurRadius: 10.0,
+            ),
+          ],
+          borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
+      margin: EdgeInsets.all(10),
+      child: Row(
+        children: <Widget>[
+          Flexible(
+            child: Container(
+              margin: EdgeInsets.only(left: 10, right: 10),
+              width: 130,
+              height: 130,
+              alignment: Alignment.center,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.indigo[500], width: 2),
+                image: new DecorationImage(
+                  image: new AssetImage(myImage),
+                  alignment: Alignment.center,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
-        ),
-        Flexible(
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new Container(
-                margin: const EdgeInsets.only(left: 5, top: 7.5),
-                child: new Text(
-                  myHeader,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+          Flexible(
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Container(
+                  margin: const EdgeInsets.only(left: 5, top: 7.5),
+                  child: new Text(
+                    myHeader,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              new Container(
-                margin: const EdgeInsets.only(left: 5),
-                child: new Text(
-                  myText,
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                new Container(
+                  margin: const EdgeInsets.only(left: 5),
+                  child: new Text(
+                    myText,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
-}
-
-
-yourApps() {
-
-}
-
-
-//VIDEO CLIP
-
-
-class ChewieListItem extends StatefulWidget {
-  // This will contain the URL/asset path which we want to play
-  final VideoPlayerController videoPlayerController;
-  final bool looping;
-
-  ChewieListItem({
-    @required this.videoPlayerController,
-    this.looping,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _ChewieListItemState createState() => _ChewieListItemState();
-}
-
-class _ChewieListItemState extends State<ChewieListItem> {
-  ChewieController _chewieController;
-
-  @override
-  void initState() {
-    super.initState();
-    // Wrapper on top of the videoPlayerController
-    _chewieController = ChewieController(
-      videoPlayerController: widget.videoPlayerController,
-      aspectRatio: 16 / 9,
-      // Prepare the video to be played and display the first frame
-      autoInitialize: true,
-      looping: widget.looping,
-      // Errors can occur for example when trying to play a video
-      // from a non-existent URL
-      errorBuilder: (context, errorMessage) {
-        return Center(
-          child: Text(
-            errorMessage,
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Chewie(
-        controller: _chewieController,
+        ],
       ),
     );
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-    // IMPORTANT to dispose of all the used resources
-    widget.videoPlayerController.dispose();
-    _chewieController.dispose();
-  }
-}
-
-
-
-class _PermissionTemplateState extends State<PermissionTemplate> {
 
   boxLeft(String myImage, String myHeader, String myText) {
     return new Container(
@@ -501,10 +427,81 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     );
   }
 
+  yourApps() {
+
+  }
+
+
+//VIDEO CLIP
+
+}
+class ChewieListItem extends StatefulWidget {
+  // This will contain the URL/asset path which we want to play
+  final VideoPlayerController videoPlayerController;
+  final bool looping;
+
+  ChewieListItem({
+    @required this.videoPlayerController,
+    this.looping,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _ChewieListItemState createState() => _ChewieListItemState();
+}
+
+class _ChewieListItemState extends State<ChewieListItem> {
+  ChewieController _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+    // Wrapper on top of the videoPlayerController
+    _chewieController = ChewieController(
+      videoPlayerController: widget.videoPlayerController,
+      aspectRatio: 16 / 9,
+      // Prepare the video to be played and display the first frame
+      autoInitialize: true,
+      looping: widget.looping,
+      // Errors can occur for example when trying to play a video
+      // from a non-existent URL
+      errorBuilder: (context, errorMessage) {
+        return Center(
+          child: Text(
+            errorMessage,
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Chewie(
+        controller: _chewieController,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // IMPORTANT to dispose of all the used resources
+    widget.videoPlayerController.dispose();
+    _chewieController.dispose();
+  }
+}
+
+
+
+class _PermissionTemplateState extends State<PermissionTemplate> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();/*
       backgroundColor: Colors.indigo[500],
       appBar: AppBar(
         elevation: 0.0,
@@ -557,6 +554,6 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
               ]),
         ],
       ),
-    );
+    );*/
   }
 }

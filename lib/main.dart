@@ -20,7 +20,7 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
-import './routes/permissions/OtherApps.dart';
+import './routes/BlackList.dart';
 
 
 //packages

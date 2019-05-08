@@ -1,4 +1,4 @@
-import '../PermissionTemplate.dart';
+import './PermissionTemplate.dart';
 
 import 'package:flutter/material.dart';
 import 'package:launcher_assist/launcher_assist.dart';
@@ -12,14 +12,14 @@ class OtherAppsPage extends StatefulWidget {
 }
 
 class _OtherAppsPageState extends State<OtherAppsPage> {
-  static const platform = const MethodChannel("dataViz/OtherApps/channel");
+  static const platform = const MethodChannel("kalle");
   var appCount;
   var installedApps;
   var installedAppsList;
   bool setUpLoading;
   var theList = [];     // change this name it sucks, and also consider other stuff than the name
   List<String> blackList = ['Drive', 'Facebook', 'Twitter', 'Snapchat', 'Chrome', 'Instagram'];
-  BlackList theBlackList = new BlackList();
+  PermissionTemplate template = new PermissionTemplate();
 
    _getAppListInfo(String key){
       installedApps.forEach((mapInList) => theList.add(mapInList[key]));
@@ -40,32 +40,30 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
           title: Text(theList[i], style: TextStyle(fontWeight: FontWeight.w800),),
           trailing: Icon( blacklisted ? Icons.cancel : Icons.check_box,
                   color: (blacklisted ? Colors.red : Colors.green)),
+          onTap: _getPermissions,
 
         );
       },
-        //itemCount: theList.length,
     );
   }
 
-  Future<List<String>> _getPermissions() async{
-    List<String> permissionsList;
+  Future<Map<String,String>> _getPermissions() async {
+    //Add support for checking if any "extra permissions" are given here, to rinse them out before they can get in!!
+
+    Map<String, String> permissionMap;
     print("===========================================\n"
-        "             get permissions                \n"
+        "             get permissions 4each              \n"
         "===========================================\n");
     try{
-      permissionsList = await platform.invokeMethod('getPermissions');
-      print("===========================================\n"
-        "             invoke method done                \n"
-          "===========================================\n");
+      permissionMap = await platform.invokeMapMethod('getPermissions');
+      //print("===========================================\n""             invoke method done                \n""===========================================\n");
+      //print("length of permissionsList: ${permissionMap.length}");
 
+    } catch(e){
+        print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
     }
-    /*on PlatformException catch (e) {
-      print('::::::::Platform exception:::::::::\n${e.message}');
-    } */
-    catch(e){
-      print("in blacklist: \n$e");
-    }
-    return permissionsList;
+    //print(permissionMap);
+    return permissionMap;
   }
 
   Future _loadApps() async{
@@ -108,23 +106,9 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Apps installed: $appCount'),
       ),
-      body: Row(
-        children: <Widget>[
-          _loadThenBuild(),
-          theBlackList.boxLeft(null, "Hello", "hello"),
-        ],
-
-          //Text('${_getPermissions?.toString()}'),
+      body: Container(
+          child: _loadThenBuild(),
       ),
     );
-  }
-}
-
-class BlackList extends PermissionTemplate{
-
-
-  boxLeft(String myImage, String myHeader, String myText){
-    //super.boxLeft(myImage, myHeader, myText);
-
   }
 }

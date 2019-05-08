@@ -1,12 +1,18 @@
 package com.example.torsdags_test;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
@@ -17,7 +23,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "dataViz/OtherApps/channel";
+    private static final String CHANNEL = "kalle";
         @Override
         public void onCreate(Bundle savedInstanceState) {
 
@@ -25,50 +31,46 @@ public class MainActivity extends FlutterActivity {
         GeneratedPluginRegistrant.registerWith(this);
 
         new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
-            new MethodChannel.MethodCallHandler() {
-              @Override
-              public void onMethodCall(MethodCall call, MethodChannel.Result result) {
-                  if (call.method.equals("getPermissions")){
-                      result.success(_getPermissionList());
-                  } else {
-                    result.notImplemented();
-                  }
-              }
-            }
-        );
+                new MethodCallHandler() {
+                    @Override
+                    public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+                        if (call.method.equals("getPermissions")){
+                            //TODO make it so that the result.success returns one string at a time in some way.
+                            // ALSO tidy up the code in methods, they are now shitty
+                            HashMap<String, String> permissionList = getPermissions();
+                            result.success(permissionList);
+                        } else {
+                            result.notImplemented();
+                        }
+                    }
+                });
       }
 
-      public String[] _getPermissionList(){
-            String[] permissionList;
-            permissionList = _getPermissions();
-            return permissionList;
-      }
-
-      public String[] _getPermissions(){
+      @SuppressLint("NewApi")
+      public HashMap<String,String> getPermissions(){
+          //make variables
           final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+          final List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0); // gives a List<ResolveInfo>
           mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-          final List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0);
-          PackageInfo packageInfo = null;
-                                // System.out.println("size of pkgAppsList: " + pkgAppsList.size());
-          int indexx = 0;
-          for (Object obj : pkgAppsList) {
-              System.out.println("obj: "+obj);
-              ResolveInfo resolveInfo = (ResolveInfo) obj;
-              indexx++;
-              System.out.println("index: " + indexx);
-              try {
-                  //System.out.println("===========================================\ntrying ln 50 in getPermission\n===========================================\n");
-                  packageInfo = getPackageManager().getPackageInfo(resolveInfo.activityInfo.packageName, PackageManager.GET_PERMISSIONS);
+          PackageInfo packageInfo;
+          PackageManager thePackageManager = getPackageManager();
+          HashMap<String, String> permissionNameMap = new HashMap<>();
+          String joinedPermissions = "";
 
-                  System.out.println(pkgAppsList);
-                  //System.out.println("packageInfo: " +packageInfo);
-                  //System.out.println("\nline 54\n");
+          //resolve every element in pkgAppsList
+          for (Object obj : pkgAppsList) {
+              ResolveInfo resolveInfo = (ResolveInfo) obj;
+              thePackageManager = getPackageManager();
+              try {
+                  //resolve package info
+                  packageInfo = thePackageManager.getPackageInfo(resolveInfo.activityInfo.packageName, PackageManager.GET_PERMISSIONS);
+                  joinedPermissions = String.join(",", packageInfo.requestedPermissions);
+                  permissionNameMap.put(resolveInfo.activityInfo.packageName, joinedPermissions);
               } catch (Exception e) { //PackageManager.NameNotFoundException e
-                  // TODO Auto-generated catch block
-                    System.out.println("::::::Name not found exception::::::\n");
+                //   TODO Auto-generated catch block
                     e.printStackTrace();
               }
           }
-          return packageInfo.requestedPermissions;
+          return permissionNameMap;
       }
 }
