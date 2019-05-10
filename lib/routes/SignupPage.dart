@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-
-//THIS WHOLE SITE IS FROM GITHUB, NEEDS SOME CHANGES //CJ
 
 class SignupPage extends StatefulWidget{
   @override
-  SignupPageSate createState() => SignupPageSate();
+  SignupPageState createState() => SignupPageState();
 }
-class SignupPageSate extends State<SignupPage>{
-  String _email;
+class SignupPageState extends State<SignupPage>{
+  String _email ;
   String _password;
-  String _password_same;
-  //google sign
-  GoogleSignIn googleauth = new GoogleSignIn();
+  String _displayName;
+  String _securityQuestion;
+  String _securityAnswer;
+  String url = 'http://192.168.43.25:3000/register'; //change to server later
+
   final formkey=new GlobalKey<FormState>();
   checkFields(){
     final form=formkey.currentState;
@@ -25,24 +25,25 @@ class SignupPageSate extends State<SignupPage>{
     return false;
   }
 
-
-
-  createUser(){
-    if (checkFields()) {
-      if (_password == _password_same) {
-        FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: _email, password: _password)
-            .then((user) {
-          print("Registered user: ${user.uid}");
-          Navigator.of(context).pushReplacementNamed('/userpage');
-        }).catchError((e) {
-          print(e);
-        });
-      }
-    }
+  Future<String> signUp() async {
+    print('makeRequest is running');
+    checkFields();
+    print(_email);
+    print(_displayName);
+    print(_password);
+    print(_securityAnswer);
+    print(_securityQuestion);
+    var response = await http
+        .post(url, body: json.encode({
+      'username': _email,
+      'displayname': _displayName,
+      'password': _password,
+      'securityQuestion': _securityQuestion,
+      'securityAnswer': _securityAnswer
+    }), headers: {"Content-Type": "application/json",
+      "Accept": "application/json",});
+    print(response.body);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +67,7 @@ class SignupPageSate extends State<SignupPage>{
             height: 20.0,
             width: 20.0,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("Pictures/nobel1.jpg"),
-                  fit: BoxFit.cover),
+
               borderRadius: BorderRadius.only
                 (
                   bottomLeft: Radius.circular(500.0),
@@ -90,12 +89,6 @@ class SignupPageSate extends State<SignupPage>{
                       child: new Text("LOGIN",
                           style: new TextStyle(
                               fontSize: 25.0, color: Colors.white30))),
-                  /*child: new Container(
-                      alignment: Alignment.center,
-                      height: 60.0,
-                      child: new Text("SIGNUP",
-                          style: new TextStyle(
-                              fontSize: 25.0, color: Colors.white30))),*/
                 ),
               ),
               Expanded(
@@ -112,7 +105,7 @@ class SignupPageSate extends State<SignupPage>{
                 ),
               ),
             ],
-          ), //login and sign in menu button
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(28.0),
@@ -123,11 +116,15 @@ class SignupPageSate extends State<SignupPage>{
                       child: ListView(
                         shrinkWrap: true,
                         children: <Widget>[
-                          _input("required email",false,"EMAIL",'Enter your Email',(value) => _email = value),
+                          _input("required email",false,"EMAIL",'Enter your Email', (value) => _email = value),
                           SizedBox(width: 20.0,height: 20.0,),
-                          _input("required password",true,"PASSWORD",'Password',(value) => _password = value),
+                          _input("required password",true,"PASSWORD",'Password', (value) => _password = value),
                           SizedBox(width: 20.0,height: 20.0,),
-                          _input("required password",true,"PASSWORD",'Password',(value) => _password_same = value),
+                          _input("required displayName", false, "USERNAME",'Enter a username', (value) => _displayName = value),
+                          SizedBox(width: 20.0,height: 20.0,),
+                          _input('required securityQuestion', false, "SECURITY QUESTION", "If you need to reser password", (value) => _securityQuestion = value),
+                          SizedBox(width: 20.0,height: 20.0,),
+                          _input('required securityAnswer', true, "SECURE ANSWER", "Answer your question", (value) => _securityAnswer = value),
                           new Padding(padding: EdgeInsets.all(8.0),
 
                             child: Center(
@@ -158,64 +155,21 @@ class SignupPageSate extends State<SignupPage>{
                                                         style: new TextStyle(
                                                             fontSize: 20.0, color: Colors.white))),
                                                 /*child: Text("OK! "),*/
-                                                onPressed: createUser
+                                                onPressed: signUp
                                             ),
                                         ),
                                         SizedBox(height: 18.0,width: 18.0,),
 
                                         SizedBox(height: 18.0,width: 18.0,),
-                                        /*Expanded(      //GOOGLE SIGNUP
-                                          flex: 1,
-                                          child: OutlineButton(
-                                            //child: Text("login with google"),
-                                            // child: ImageIcon(AssetImage("images/google1.png"),semanticLabel: "login",),
-                                              child: Image(image: AssetImage("Pictures/nobel2.jpg"), height:28.0,fit: BoxFit.fitHeight),
-                                              onPressed: (){
-
-                                                googleauth.signIn().then((result){result.authentication.then((googleuser){
-                                                  FirebaseAuth.instance.signInWithCustomToken(token: googleuser.idToken).then((user){
-                                                    print("Signedin user ${user.displayName}");
-                                                    Navigator.of(context).pushReplacementNamed("/userpage");
-                                                  }).catchError((e){
-                                                    print(e);
-                                                  });
-                                                }).catchError((e){
-                                                  print(e);
-                                                });}).catchError((e){
-                                                  print(e);
-                                                });
-                                              }),
-                                        )*/
 
                                       ],
                                     ),
                                     SizedBox(height: 15.0),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        SizedBox(width: 5.0),
-                                        InkWell(
-                                          child: Text(
-                                            'create new account',
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontFamily: 'Montserrat',
-                                                fontWeight: FontWeight.bold,
-                                                decoration: TextDecoration.underline),
-                                          ),
-                                        )
-                                      ],
+
                                     ),
-                                    OutlineButton(
-                                        child: Text("signup"),
-                                        onPressed: (){
-                                          Navigator.of(context).pushNamed('/signup');
-                                        }),
-                                    OutlineButton(
-                                        child: Text("ui"),
-                                        onPressed: (){
-                                          Navigator.of(context).pushNamed('/userpage');
-                                        })
+
                                   ],
 
                                 ),
@@ -236,7 +190,7 @@ class SignupPageSate extends State<SignupPage>{
       ) ,
     );
   }
-  Widget _input(String validation,bool ,String label,String hint, save ){
+  Widget _input(String validation,bool ,String label,String hint, save){
 
     return new TextFormField(
       decoration: InputDecoration(
@@ -251,8 +205,7 @@ class SignupPageSate extends State<SignupPage>{
       obscureText: bool,
       validator: (value)=>
       value.isEmpty ? validation: null,
-      onSaved: save ,
-
+      onSaved: save,
     );
 
   }
