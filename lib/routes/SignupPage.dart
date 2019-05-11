@@ -51,6 +51,7 @@ class SignupPageState extends State<SignupPage> {
           "Accept": "application/json",
         });
     print(response.body);
+    _showDialog(context);
   }
 
   @override
@@ -273,4 +274,27 @@ class SignupPageState extends State<SignupPage> {
       );
     }
   }
+}
+
+void _showDialog(BuildContext context) {
+  // flutter defined function
+  showDialog(
+    context:  context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text("Registered succesfully"),
+        content: new Text("Welcome to the app!"),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed('menu');
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

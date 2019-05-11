@@ -34,7 +34,6 @@ class _LoginPageState extends State<LoginPage> {
     }), headers: {"Content-Type": "application/json",
     "Accept": "application/json",});
     print(response.body);
-
     Navigator.of(context).pushReplacementNamed('menu');
   }
 
