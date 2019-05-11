@@ -10,6 +10,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email;
   String _password;
+  final focusPass = FocusNode();
+  final focusUser = FocusNode();
   String url = 'http://192.168.43.25:3000/login'; //change to server later
   final formkey = new GlobalKey<FormState>();
   checkFields() {
@@ -106,13 +108,13 @@ class _LoginPageState extends State<LoginPage> {
                     shrinkWrap: true,
                     children: <Widget>[
                       _input("required email", false, "EMAIL",
-                          'Enter your Email', (value) => _email = value),
+                          'Enter your Email', (value) => _email = value, focusUser, focusPass),
                       SizedBox(
                         width: 20.0,
                         height: 20.0,
                       ),
                       _input("required password", true, "PASSWORD", 'Password',
-                          (value) => _password = value),
+                          (value) => _password = value, focusPass, focusPass),
                       new Padding(
                         padding: EdgeInsets.all(0.0),
                         child: Center(
@@ -210,19 +212,40 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _input(String validation, bool, String label, String hint, save) {
-    return new TextFormField(
-      decoration: InputDecoration(
-        hintText: hint,
-        labelText: label,
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-      ),
-      obscureText: bool,
-      style: new TextStyle(color: Colors.white),
-      validator: (value) => value.isEmpty ? validation : null,
-      onSaved: save,
-      
-    );
+  Widget _input(String validation, bool, String label, String hint, save, FocusNode currentFocus, FocusNode nextFocus) {
+    if (nextFocus != currentFocus){
+      return new TextFormField(
+        decoration: InputDecoration(
+          hintText: hint,
+          labelText: label,
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+        ),
+        obscureText: bool,
+        style: new TextStyle(color: Colors.white),
+        validator: (value) => value.isEmpty ? validation : null,
+        onSaved: save,
+        onFieldSubmitted: (term){
+          FocusScope.of(context).requestFocus(nextFocus);
+        },
+      );
+    }
+    else{
+      return new TextFormField(
+        decoration: InputDecoration(
+          hintText: hint,
+          labelText: label,
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+        ),
+        obscureText: bool,
+        validator: (value) => value.isEmpty ? validation : null,
+        onSaved: save,
+        focusNode: currentFocus,
+        onFieldSubmitted: (term){
+          currentFocus.unfocus();
+        },
+      );
+    }
   }
 }
