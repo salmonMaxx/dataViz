@@ -51,7 +51,18 @@ class SignupPageState extends State<SignupPage> {
           "Accept": "application/json",
         });
     print(response.body);
-    _showDialog(context);
+    if (response.statusCode == 200) {
+      _showDialog(context, "Registration succesfull", "Welcome to the app!");
+    }
+    else if(response.body.contains('response.statusCode == 422')){
+      _showDialog(context, "Couldn't create account", "You have to use a correct email.");
+    }
+    else if(response.statusCode == 409){
+      _showDialog(context, "Couldn't create acount", "User exists already.");
+    }
+    else if(response.statusCode == 400){
+      _showDialog(context, "Couldn't create account", "You have to fill in all fields.");
+    }
   }
 
   @override
@@ -276,21 +287,25 @@ class SignupPageState extends State<SignupPage> {
   }
 }
 
-void _showDialog(BuildContext context) {
+void _showDialog(BuildContext context, String title, String body) {
   // flutter defined function
   showDialog(
     context:  context,
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: new Text("Registered succesfully"),
-        content: new Text("Welcome to the app!"),
+        title: new Text(title),
+        content: new Text(body),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           new FlatButton(
             child: new Text("Close"),
             onPressed: () {
+              if(title == "Registration succesfull")
               Navigator.of(context).pushReplacementNamed('menu');
+              else{
+                Navigator.of(context).pop();
+              }
             },
           ),
         ],
