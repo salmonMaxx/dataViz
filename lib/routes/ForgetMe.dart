@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ForgetMe extends StatefulWidget {
   @override
@@ -7,6 +9,9 @@ class ForgetMe extends StatefulWidget {
 
 class _ForgetMeState extends State<ForgetMe> {
   TextEditingController statusText = TextEditingController();
+  String _email;
+  String _password;
+  String url = 'http://192.168.43.25:3000/delete'; //change to server later
 
   changeText(String msg) {
     setState(() {
@@ -18,8 +23,17 @@ class _ForgetMeState extends State<ForgetMe> {
     });
   }
 
-  deleteFromDB() {
+  Future<String> deleteFromDB() async{
     print('Now you are forgotten');
+    var response = await http.post(url, body: json.encode({
+      'username': _email,
+      'password': _password,
+    }),
+    headers: {"Content-Type": "application/json", "Accept": "application/json",});
+    print(response.body);
+    if (response.statusCode == 200) {
+      _showDialog(context, "Account deleted", "Nice job! Continue to protect your data. You will be redirected to the startpage!");
+    }
   }
 
   Widget build(BuildContext context) {
@@ -104,4 +118,31 @@ class _ForgetMeState extends State<ForgetMe> {
       ),
     );
   }
+}
+
+void _showDialog(BuildContext context, String title, String body) {
+  // flutter defined function
+  showDialog(
+    context:  context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text(title),
+        content: new Text(body),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Close"),
+            onPressed: () {
+              if(title == "Registration succesfull")
+                Navigator.of(context).pushReplacementNamed('menu');
+              else{
+                Navigator.of(context).pop();
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

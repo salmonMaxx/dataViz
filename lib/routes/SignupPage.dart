@@ -13,6 +13,7 @@ class SignupPageState extends State<SignupPage> {
   String _displayName;
   String _securityQuestion;
   String _securityAnswer;
+  String userID;
   final focusEmail = FocusNode();
   final focusPass = FocusNode();
   final focusUser = FocusNode();
@@ -33,11 +34,6 @@ class SignupPageState extends State<SignupPage> {
   Future<String> signUp() async {
     print('makeRequest is running');
     checkFields();
-    print(_email);
-    print(_displayName);
-    print(_password);
-    print(_securityAnswer);
-    print(_securityQuestion);
     var response = await http.post(url,
         body: json.encode({
           'username': _email,
@@ -52,6 +48,8 @@ class SignupPageState extends State<SignupPage> {
         });
     print(response.body);
     if (response.statusCode == 200) {
+      var user = json.decode(response.body);
+      userID = (user['user']['_id']);
       _showDialog(context, "Registration succesfull", "Welcome to the app!");
     }
     else if(response.body.contains('response.statusCode == 422')){

@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email;
   String _password;
+  String userID;
   final focusPass = FocusNode();
   final focusUser = FocusNode();
   String url = 'http://192.168.43.25:3000/login'; //change to server later
@@ -24,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<String> logIn() async {
-    print('makeRequest is running');
     checkFields();
       var response = await http
         .post(url, body: json.encode({
@@ -33,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
       'password': _password,
     }), headers: {"Content-Type": "application/json",
     "Accept": "application/json",});
-    print(response.body);
     Navigator.of(context).pushReplacementNamed('menu');
+    var user = json.decode(response.body);
+    userID = (user['user']['_id']);
   }
 
 
