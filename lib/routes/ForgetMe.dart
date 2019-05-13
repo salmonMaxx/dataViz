@@ -49,13 +49,8 @@ class _ForgetMeState extends State<ForgetMe> {
     return new Scaffold(
       appBar: AppBar(
         title: Text('Forget Me!'),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.indigo[900],
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.done_outline),
-            tooltip: 'Press to be forgotten',
-            //onPressed: deleteFromDB(),
-          )
         ],
       ),
       body: ListView(

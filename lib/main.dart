@@ -12,6 +12,7 @@ import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
 import './routes/drawer/Settings.dart';
+import './routes/drawer/ForgetMe1.dart';
 
 //routes --> permissions
 
@@ -27,8 +28,8 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
-import './routes/permissions/OtherApps.dart';
 import './routes/permissions/testPermissions.dart';
+import './routes/BlackList.dart';
 
 
 
@@ -44,14 +45,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue, fontFamily: 'Abel-Regular'
+        primarySwatch: Colors.blue, fontFamily: 'Abel-bold', backgroundColor: Colors.white70
       ),
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
       routes: {
         'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
-        'otherApps': (context) => OtherAppsPage(),
+        'blackList': (context) => BlackList(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
         'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
+        'blacklist': (context) => BlackList(),
 
         //PERMISSIONS
         'activity_log' : (context) => ActivityLog(),
@@ -76,7 +78,7 @@ class MyApp extends StatelessWidget {
         'sensors' : (context) => Sensors(),
         'sms' : (context) => SMS(),
         'video_pics' : (context) => VideoPics(),
-        'testestest' : (context) => testPermissions(),
+        //'testestest' : (context) => testPermissions(),
       },
     );
   }

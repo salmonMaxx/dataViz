@@ -35,16 +35,21 @@ flutter:
   - assets/logo_dataviz_1.png
   - assets/dataViz_logo2.png
   - assets/mabu-lightbulb.png
-  - assets/Light_pic.png
   - assets/light.png
   - assets/Data-Science-vs.-Big-Data-vs.jpg
   - assets/blomma_test.jpg
   - assets/test1.jpg
+  - assets/lamp1.png
+  - assets/forgetmepic.jpg
 
   fonts:
   - family: Modak-Regular
     fonts:
     - asset: assets/Modak-Regular.ttf
+
+  - family: Roboto_Condensed
+    fonts:
+      - asset: assets/Roboto_Condensed/RobotoCondensed-Bold.ttf
 
   - family: Abel-Regular
     fonts:

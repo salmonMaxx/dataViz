@@ -5,7 +5,7 @@ Future<void> _ackAlert(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Discover what info your apps have about you!', textAlign: TextAlign.center, style:  TextStyle(color: Colors.indigo[900],fontSize: 25)),
+        title: Text('Discover all Permissions!', textAlign: TextAlign.center, style:  TextStyle(color: Colors.indigo[900],fontSize: 25)),
         content: Text('Go through the icons in the menu to see the importance of different permissions and how your apps uses them.',
             style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
         actions: <Widget>[
@@ -71,7 +71,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 600,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/light.png'),
+                        image: AssetImage('assets/light.png'),
                     ),
                   ),
                 ),
@@ -86,7 +86,8 @@ class _MenuPageState extends State<MenuPage> {
                   height: 150,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
+                      //image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
+                      image: AssetImage('assets/lamp1.png'),
                     ),
                   ),
                 ),
@@ -210,6 +211,7 @@ class _MenuPageState extends State<MenuPage> {
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushNamed('blacklist');
               },
             ),
             ListTile(

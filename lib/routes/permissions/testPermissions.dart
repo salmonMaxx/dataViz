@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../PermissionTemplate.dart';
 
-
+/*
 // Example of how to extend and use the PermissionTemplate
 
 class testPermissions extends StatefulWidget {
@@ -42,4 +42,4 @@ class PermissionTemplateChild extends PermissionTemplate{
       },
     );
   }
-}
+}*/
