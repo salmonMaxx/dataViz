@@ -6,13 +6,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
@@ -55,7 +50,7 @@ public class MainActivity extends FlutterActivity {
           PackageInfo packageInfo;
           PackageManager thePackageManager = getPackageManager();
           HashMap<String, String> permissionNameMap = new HashMap<>();
-          String joinedPermissions = "";
+          String joinedPermissions;
 
           //resolve every element in pkgAppsList
           for (Object obj : pkgAppsList) {
@@ -64,8 +59,11 @@ public class MainActivity extends FlutterActivity {
               try {
                   //resolve package info
                   packageInfo = thePackageManager.getPackageInfo(resolveInfo.activityInfo.packageName, PackageManager.GET_PERMISSIONS);
-                  joinedPermissions = String.join(",", packageInfo.requestedPermissions);
-                  permissionNameMap.put(resolveInfo.activityInfo.packageName, joinedPermissions);
+                  if(packageInfo.requestedPermissions != null){
+                      joinedPermissions = String.join(",", packageInfo.requestedPermissions);
+                      permissionNameMap.put(resolveInfo.activityInfo.packageName, joinedPermissions);
+                      //System.out.println("package name: "+resolveInfo.activityInfo.packageName);
+                  }
               } catch (Exception e) { //PackageManager.NameNotFoundException e
                 //   TODO Auto-generated catch block
                     e.printStackTrace();

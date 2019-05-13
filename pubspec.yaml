@@ -19,7 +19,10 @@ dependencies:
   permission_handler: ^3.0.0
   modal_progress_hud: ^0.1.3
   location: ^2.3.5
-  #geolocation: ^4.0.1
+  mongo_dart: ^0.3.5
+  csv: ^4.0.3
+  open_file: ^2.0.1
+  path_provider: ^1.0.0
 
   call_log: ^2.0.0
 
@@ -39,8 +42,10 @@ flutter:
   - assets/mabu-lightbulb.png
   - assets/Light_pic.png
   - assets/light.png
+  - assets/Data-Science-vs.-Big-Data-vs.jpg
   - assets/blomma_test.jpg
   - assets/test1.jpg
+  - assets/blackListCsv.csv
 
   fonts:
   - family: Modak-Regular

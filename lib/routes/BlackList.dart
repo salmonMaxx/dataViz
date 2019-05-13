@@ -1,10 +1,12 @@
 import './PermissionTemplate.dart';
+//import '../assets/blackListCsv.csv';
 
 import 'package:flutter/material.dart';
 import 'package:launcher_assist/launcher_assist.dart';
 import 'package:flutter/services.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'dart:io';
 import 'package:torsdags_test/routes/PermissionTemplate.dart';
+import 'package:path_provider/path_provider.dart';
 
 class OtherAppsPage extends StatefulWidget {
   @override
@@ -12,18 +14,32 @@ class OtherAppsPage extends StatefulWidget {
 }
 
 class _OtherAppsPageState extends State<OtherAppsPage> {
-  static const platform = const MethodChannel("kalle");
+  static const platform = const MethodChannel("kalle"); //change channel string
   var appCount;
   var installedApps;
   var installedAppsList;
   bool setUpLoading;
-  var theList = [];     // change this name it sucks, and also consider other stuff than the name
-  List<String> blackList = ['Drive', 'Facebook', 'Twitter', 'Snapchat', 'Chrome', 'Instagram'];
+  var appLabels = [];     // change this name it sucks, and also consider other stuff than the name
+  var appPackages = [];
+  Map<String, String> labelPackageMap;
+  List<String> blackList = ["Drive"];
+  String blackListDir = "assets/blackListCsv.csv";
   PermissionTemplate template = new PermissionTemplate();
+  List<String> packageNames;
+  Future<Map<String,String>> permissionsNamePermission;
 
-   _getAppListInfo(String key){
-      installedApps.forEach((mapInList) => theList.add(mapInList[key]));
-    return theList;
+
+   void _getAppListInfo(){
+      //installedApps.forEach((mapInList) =>
+      for(Map app in installedApps) {
+
+        labelPackageMap[app["label"]].put(app["package"]);
+        print("label: ${app["label"]}\nhas package ${labelPackageMap[app["label"]]}");
+        /*appLabels.add(app["label"]);
+        print(app["label"]);
+        appPackages.add(app["package"]);
+        print("${app["package"]}\n");*/
+      }
     }
 
   Widget _getAppList(){
@@ -33,14 +49,14 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
           color: Colors.black,
         ),
       padding: EdgeInsets.all(15.0),
-      itemCount: theList.length,
+      itemCount: appLabels.length,
       itemBuilder: (context, i){
-      final blacklisted = (blackList.contains('${theList[i]}'));
+      final blacklisted = (blackList.contains('${appLabels[i]}'));
         return new ListTile(
-          title: Text(theList[i], style: TextStyle(fontWeight: FontWeight.w800),),
+          title: Text(appLabels[i], style: TextStyle(fontWeight: FontWeight.w800),),
           trailing: Icon( blacklisted ? Icons.cancel : Icons.check_box,
                   color: (blacklisted ? Colors.red : Colors.green)),
-          onTap: _getPermissions,
+          onTap: null, //(_nameToPackage(appLabels[i]))
 
         );
       },
@@ -51,13 +67,12 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
     //Add support for checking if any "extra permissions" are given here, to rinse them out before they can get in!!
 
     Map<String, String> permissionMap;
-    print("===========================================\n"
-        "             get permissions 4each              \n"
-        "===========================================\n");
+//    print("===========================================\n"
+//        "             get permissions 4each              \n"
+//        "===========================================\n");
     try{
       permissionMap = await platform.invokeMapMethod('getPermissions');
-      //print("===========================================\n""             invoke method done                \n""===========================================\n");
-      //print("length of permissionsList: ${permissionMap.length}");
+      //permissionMap.forEach((k, v) => print("app: $k \n\n\n\n\n permissions: $v \n\n\n\n"));
 
     } catch(e){
         print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
@@ -71,8 +86,9 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
       setState(() {
         appCount = apps.length;
         installedApps = apps;
-        _getAppListInfo("label");
-        _getPermissions();
+        _getAppListInfo();
+        permissionsNamePermission = _getPermissions();
+        print("loadApps done ... ");
       });
     });
       setState(() {
@@ -100,6 +116,33 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
     _loadApps();
     // Get all apps
   }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/blackListCsv.csv');
+  }
+
+
+  /*
+  _nameToPackage(String appName){
+     //take resolved name (drive) and find it's
+    // package (google.com.drive)
+    installedApps.forEach((mapInList) =>
+        appName == mapInList["label"] ? print("$appName") : print("")
+    );
+  }
+  */
+
+
+  _permissionsForPackage(String appName){
+  }
+
 
   @override
   Widget build(BuildContext context) {

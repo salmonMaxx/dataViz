@@ -7,7 +7,6 @@ import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
 
 //routes --> permissions
-
 import './routes/permissions/ActivityLog.dart';
 import './routes/permissions/AudioFiles.dart';
 import './routes/permissions/Calendar.dart';
@@ -21,12 +20,16 @@ import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
 import './routes/BlackList.dart';
-
+import './routes/permissions/testPermissions.dart';
 
 //packages
 import  'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 //import 'package:permission_handler/permission_handler.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo; //maybe remove
+
+
+
 
 void main() => runApp(MyApp());
 
@@ -61,6 +64,7 @@ class MyApp extends StatelessWidget {
         'sensors' : (context) => Sensors(),
         'sms' : (context) => SMS(),
         'video_pics' : (context) => VideoPics(),
+        'testestest' : (context) => testPermissions(),
       },
     );
   }
@@ -70,8 +74,6 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-
-
     @override
     _MyHomePageState createState() => _MyHomePageState();
   }
@@ -156,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(
-                        context, 'permissions',
+                        context, 'testestest',
                       );
                     },
                     tooltip: 'To permissionTemplate',
