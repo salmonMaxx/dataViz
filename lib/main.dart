@@ -7,6 +7,7 @@ import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
 
 //routes --> permissions
+
 import './routes/permissions/ActivityLog.dart';
 import './routes/permissions/AudioFiles.dart';
 import './routes/permissions/Calendar.dart';
@@ -22,14 +23,11 @@ import './routes/permissions/VideoPics.dart';
 import './routes/BlackList.dart';
 import './routes/permissions/testPermissions.dart';
 
+
+
 //packages
 import  'package:flutter/material.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 //import 'package:permission_handler/permission_handler.dart';
-import 'package:mongo_dart/mongo_dart.dart' as mongo; //maybe remove
-
-
-
 
 void main() => runApp(MyApp());
 
@@ -74,6 +72,7 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
+
     @override
     _MyHomePageState createState() => _MyHomePageState();
   }
@@ -84,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
 
       ),
@@ -105,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   IconButton(
                     icon: Icon(Icons.apps, color: Colors.deepPurple),
                     iconSize: 48.0,
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pushNamed(context, 'otherApps');
                     },
                     tooltip: 'To Other Apps Page',
@@ -172,6 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 
   // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
   // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
