@@ -1,157 +1,226 @@
-import './PermissionTemplate.dart';
-//import '../assets/blackListCsv.csv';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:launcher_assist/launcher_assist.dart';
 import 'package:flutter/services.dart';
-import 'dart:io';
-import 'package:torsdags_test/routes/PermissionTemplate.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:launcher_assist/launcher_assist.dart';
 
-class OtherAppsPage extends StatefulWidget {
+class BlackList extends StatefulWidget {
   @override
-  _OtherAppsPageState createState() => _OtherAppsPageState();
+  _BlackListState createState() => _BlackListState();
 }
 
-class _OtherAppsPageState extends State<OtherAppsPage> {
-  static const platform = const MethodChannel("kalle"); //change channel string
-  var appCount;
+class _BlackListState extends State<BlackList> {
+
+  Map<String,String> permissionMap;
+  int appCount;
   var installedApps;
-  var installedAppsList;
-  bool setUpLoading;
-  var appLabels = [];     // change this name it sucks, and also consider other stuff than the name
-  var appPackages = [];
-  Map<String, String> labelPackageMap;
-  List<String> blackList = ["Drive"];
-  String blackListDir = "assets/blackListCsv.csv";
-  PermissionTemplate template = new PermissionTemplate();
-  List<String> packageNames;
-  Future<Map<String,String>> permissionsNamePermission;
+  var installedPackages;
+  var installedLabels;
+  var installedAppIcons;
+  List<String> installedAppLabels;
+  static const platform = const MethodChannel("kalle"); //change channel string
+  List<String> blackList = _getBlackList();
 
+  static _getBlackList() {
+    return ["3 In 1 Diamond Slots + Bonus",
+      "777 Jackpot Slots-Free Casino",
+      "Arranger Keyboard",
+      "Audiosdroid Audio Studio DAW",
+      "Aux-Direct",
+      "Aux-Direct Pro",
+      "CALCULATEUR DE CREDIT",
+      "Christmas Slots Free",
+      "Classic Slot Machine Free",
+      "Creepypasta",
+      "Diamond 777 Slot Machine",
+      "Diamond Vault Slots – Vegas",
+      "DigiHUD Pro Speedometer",
+      "DigiHUD Speedometer",
+      "Double Diamond 777 Slots-Vegas",
+      "Double Gold Slots",
+      "En Fuego 777 Slot Machine",
+      "Fit 360 Fitness & Bodybuilding",
+      "Flashlight Gallery",
+      "Flashlight Gallery Lite",
+      "Flashlight Gallery Pro",
+      "Flygstatus & Schemalägga – FlightHero Free",
+      "Flygstatus & Schemalägga – FlightHero Pro",
+      "Free Adblocker Browser – Adblock & Popup Blocker",
+      "Free Triple Star Slot Machine",
+      "FX Music Karaoke Player",
+      "Geo Quiz",
+      "Geo Quiz Pro",
+      "GLOB ANOK",
+      "Halloween Corner",
+      "Halloween Slots Free",
+      "Irish Money Wheel Slots",
+      "Jokes",
+      "London Live Bus Times – TfL Buses",
+      "Lucky 777 Slot Machine – FREE",
+      "Magical Slots",
+      "Math Quiz HD",
+      "Math Quiz HD Pro",
+      "Medical ID (Free) Nödsituation",
+      "Medical ID (ICE): Nödsituation",
+      "Money Wheel Slot Machine 2",
+      "Money Wheel Slot Machine Game",
+      "Network Signal Info Pro",
+      "Office Jerk Free",
+      "Ovu Period Tracker Gratis",
+      "Phone Analyzer",
+      "Phone Analyzer Pro",
+      "Ping and Trace Pro",
+      "Ping Pro",
+      "Pixlr",
+      "Power Browser – Fast Internet Explorer",
+      "Private Browser & Incognito Browser",
+      "RecMe Free Screen Recorder",
+      "Red Hot 777 Slots: FREE",
+      "Salaire Brut ou Net",
+      "Scare Joke HD (Prank)",
+      "Scare Joke HD Pro (Prank)",
+      "Simple weather & clock widget",
+      "Speech2Text Translator",
+      "Statistics",
+      "Statistics Pro",
+      "TAXINA",
+      "Termometer (fria)",
+      "Triple 777 Slots – Free Casino",
+      "Triple Diamond 777 Slots",
+      "Triple Diamond Slot Machine",
+      "Under the Sea Slots",
+      "Veganized – Vegan Recipes, Nutrition, Grocery List",
+      "VoiceFX – Voice Changer with voice effects",
+      "WEATHER NOW",
+      "West Midlands Transport: Live Bus, Train Timetable",
+      "WiFi Overview 360 Pro",
+      "WiFi-o-Matic",
+      "WiFi-o-Matic Pro",
+      "15 dagars väderprognos",
+      "Car Navigation: GPS & Maps",
+      "Family Locator and GPS Tracker",
+      "Flush Pro – Restroom Finder",
+      "Flush – Toilet Finder & Map",
+      "Guide for Animal Crossing NL",
+      "London Tube Live – Underground",
+      "My Aurora Forecast & Alerts",
+      "My Earthquake Alerts & Feed",
+      "My Moon Phase Pro – Alerts",
+      "My Tide Times Pro – Tide Chart",
+      "My Tide Times – Tables & Chart",
+      "Peel TV Guide",
+      "Perfect365",
+      "Speed Cameras & Traffic",
+      "Sygic GPS-navigering & Kartor"
+    ];
+  }
 
-   void _getAppListInfo(){
-      //installedApps.forEach((mapInList) =>
-      for(Map app in installedApps) {
+  @override
+  void initState() {
+    super.initState();
+    _loadApps();
+    print('loaded apps. . . \n');
+    _getPermissions().then((permissions) => permissionMap = permissions);
+    print('loaded permissions. . . \n');
+  }
 
-        //labelPackageMap[app["label"]].put(app["package"]);
-        //print("label: ${app["label"]}\nhas package ${labelPackageMap[app["label"]]}");
-        /*appLabels.add(app["label"]);
-        print(app["label"]);
-        appPackages.add(app["package"]);
-        print("${app["package"]}\n");*/
-      }
-    }
-
-  Widget _getAppList(){
-    return ListView.separated(
-      separatorBuilder:
-        (context, i) => Divider(
-          color: Colors.black,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Blacklist: $appCount apps installed',
         ),
-      padding: EdgeInsets.all(15.0),
-      itemCount: appLabels.length,
-      itemBuilder: (context, i){
-      final blacklisted = (blackList.contains('${appLabels[i]}'));
-        return new ListTile(
-          title: Text(appLabels[i], style: TextStyle(fontWeight: FontWeight.w800),),
-          trailing: Icon( blacklisted ? Icons.cancel : Icons.check_box,
-                  color: (blacklisted ? Colors.red : Colors.green)),
-          onTap: null, //(_nameToPackage(appLabels[i]))
+      ),
+      body:
+      _getAppList(),
+    );
+  }
 
-        );
-      },
+  _whichHasWhich(){
+    installedPackages.forEach((package) =>
+        print(
+            '$package has permissions:\n${permissionMap[package]}\n\n'
+        )
     );
   }
 
   Future<Map<String,String>> _getPermissions() async {
     //Add support for checking if any "extra permissions" are given here, to rinse them out before they can get in!!
-
     Map<String, String> permissionMap;
-//    print("===========================================\n"
-//        "             get permissions 4each              \n"
-//        "===========================================\n");
     try{
       permissionMap = await platform.invokeMapMethod('getPermissions');
       //permissionMap.forEach((k, v) => print("app: $k \n\n\n\n\n permissions: $v \n\n\n\n"));
-
     } catch(e){
-        print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
+      print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
     }
-    //print(permissionMap);
+    permissionMap.forEach((k, v) => print("app: $k \npermissions: $v\n\n"));
     return permissionMap;
   }
 
-  Future _loadApps() async{
+
+  Future _loadApps() async {
     await LauncherAssist.getAllApps().then((apps) {
       setState(() {
         appCount = apps.length;
-        installedApps = apps;
-        _getAppListInfo();
-        permissionsNamePermission = _getPermissions();
-        print("loadApps done ... ");
+        installedApps = apps;   //List of Map of label, package and icon; icon is bytearray
       });
     });
-      setState(() {
-        setUpLoading = false;
-      });
-
+    installedAppLabels = _resolveTheListLabels(installedApps);
+    installedPackages = _resolveTheListPackages(installedApps);
+    installedAppIcons = _resolveTheListIcons(installedApps);
   }
 
-  Widget _loadThenBuild(){
-    if(setUpLoading){
-      return new Container(
-          child: new CircularProgressIndicator()
-      );
-    }
-    else {
-      return _getAppList();
-    }
-
-  }
-
-  @override
-  initState() {
-    super.initState();
-    setUpLoading = true;
-    _loadApps();
-    // Get all apps
-  }
-
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/blackListCsv.csv');
-  }
-
-
-  /*
-  _nameToPackage(String appName){
-     //take resolved name (drive) and find it's
-    // package (google.com.drive)
-    installedApps.forEach((mapInList) =>
-        appName == mapInList["label"] ? print("$appName") : print("")
+  _resolveTheListPackages(List<dynamic> theList){
+    List<String> packageList = [];
+    theList.forEach((element) =>
+        packageList.add(element["package"])
     );
-  }
-  */
-
-
-  _permissionsForPackage(String appName){
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return packageList;
   }
 
+  _resolveTheListLabels(List<dynamic> theList){
+    List<String> labelList = [];
+    theList.forEach((element) =>
+        labelList.add(element["label"])
+    );
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return labelList;
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Apps installed: $appCount'),
+  _resolveTheListIcons(List<dynamic> theList){
+    Uint8List iconList;
+    theList.forEach((element) =>
+        iconList.add(element["icon"])
+    );
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return iconList;
+  }
+
+  _capitalizeString(String str){
+    return str.substring(0,1).toUpperCase() + str.substring(1);
+  }
+
+  Widget _getAppList(){
+    return ListView.separated(
+      separatorBuilder:
+          (context, i) => Divider(
+        color: Colors.black,
       ),
-      body: Container(
-          child: _loadThenBuild(),
-      ),
+      padding: EdgeInsets.all(15.0),
+      itemCount: appCount,
+      itemBuilder: (context, i){
+        //find installedAppLabels and match its package with the blacklisted
+        //packages
+        final blacklisted = (blackList.contains(_capitalizeString(installedAppLabels[i])));
+        return new ListTile(
+          title: Text(_capitalizeString(installedAppLabels[i]), style: TextStyle(fontWeight: FontWeight.w800),),
+          trailing: Icon( blacklisted ? Icons.cancel : Icons.check_box,
+              color: (blacklisted ? Colors.red : Colors.green)),
+          onTap: null,
+        );
+      },
     );
   }
 }

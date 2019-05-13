@@ -6,8 +6,6 @@ import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
 
-//routes --> permissions
-
 import './routes/permissions/ActivityLog.dart';
 import './routes/permissions/AudioFiles.dart';
 import './routes/permissions/Calendar.dart';
@@ -20,8 +18,8 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
-import './routes/BlackList.dart';
 import './routes/permissions/testPermissions.dart';
+import './routes/BlackList.dart';
 
 
 
@@ -44,7 +42,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
-        'otherApps': (context) => OtherAppsPage(),
+        'blackList': (context) => BlackList(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
@@ -104,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.apps, color: Colors.deepPurple),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'otherApps');
+                      Navigator.pushNamed(context, 'blackList');
                     },
                     tooltip: 'To Other Apps Page',
                   ),
