@@ -33,8 +33,8 @@ class _OtherAppsPageState extends State<OtherAppsPage> {
       //installedApps.forEach((mapInList) =>
       for(Map app in installedApps) {
 
-        labelPackageMap[app["label"]].put(app["package"]);
-        print("label: ${app["label"]}\nhas package ${labelPackageMap[app["label"]]}");
+        //labelPackageMap[app["label"]].put(app["package"]);
+        //print("label: ${app["label"]}\nhas package ${labelPackageMap[app["label"]]}");
         /*appLabels.add(app["label"]);
         print(app["label"]);
         appPackages.add(app["package"]);
