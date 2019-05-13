@@ -16,7 +16,6 @@ class SignupPageState extends State<SignupPage> {
   String userID;
   final focusEmail = FocusNode();
   final focusPass = FocusNode();
-  final focusUser = FocusNode();
   final focusQues = FocusNode();
   final focusAnsw = FocusNode();
   String url = 'http://192.168.43.25:3000/register'; //change to server later
@@ -37,7 +36,6 @@ class SignupPageState extends State<SignupPage> {
     var response = await http.post(url,
         body: json.encode({
           'username': _email,
-          'displayname': _displayName,
           'password': _password,
           'securityQuestion': _securityQuestion,
           'securityAnswer': _securityAnswer
@@ -47,19 +45,19 @@ class SignupPageState extends State<SignupPage> {
           "Accept": "application/json",
         });
     print(response.body);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       var user = json.decode(response.body);
       userID = (user['user']['_id']);
       _showDialog(context, "Registration succesfull", "Welcome to the app!");
-    }
-    else if(response.body.contains('response.statusCode == 422')){
-      _showDialog(context, "Couldn't create account", "You have to use a correct email.");
-    }
-    else if(response.statusCode == 409){
+    } else if (response.statusCode == 422) {
+      _showDialog(context, "Couldn't create account",
+          "You have to use a correct email.");
+    } else if (response.statusCode == 409) {
       _showDialog(context, "Couldn't create acount", "User exists already.");
-    }
-    else if(response.statusCode == 400){
-      _showDialog(context, "Couldn't create account", "You have to fill in all fields.");
+    } else if (response.statusCode == 400) {
+      _showDialog(context, "Couldn't create account",
+          "You have to fill in all fields.");
     }
   }
 
@@ -142,19 +140,7 @@ class SignupPageState extends State<SignupPage> {
                         height: 20.0,
                       ),
                       _input("required password", true, "PASSWORD", 'Password',
-                          (value) => _password = value, focusPass, focusUser),
-                      SizedBox(
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      _input(
-                          "required displayName",
-                          false,
-                          "USERNAME",
-                          'Enter a username',
-                          (value) => _displayName = value,
-                          focusUser,
-                          focusQues),
+                          (value) => _password = value, focusPass, focusQues),
                       SizedBox(
                         width: 20.0,
                         height: 20.0,
@@ -248,24 +234,24 @@ class SignupPageState extends State<SignupPage> {
 
   Widget _input(String validation, bool, String label, String hint, save,
       FocusNode currentFocus, FocusNode nextFocus) {
-    if(nextFocus != currentFocus){
-    return new TextFormField(
-      decoration: InputDecoration(
-        hintText: hint,
-        labelText: label,
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-      ),
-      obscureText: bool,
-      validator: (value) => value.isEmpty ? validation : null,
-      onSaved: save,
-      textInputAction: TextInputAction.next,
-      focusNode: currentFocus,
-      onFieldSubmitted: (term) {
-        FocusScope.of(context).requestFocus(nextFocus);
-      },
-    );}
-    else{
+    if (nextFocus != currentFocus) {
+      return new TextFormField(
+        decoration: InputDecoration(
+          hintText: hint,
+          labelText: label,
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+        ),
+        obscureText: bool,
+        validator: (value) => value.isEmpty ? validation : null,
+        onSaved: save,
+        textInputAction: TextInputAction.next,
+        focusNode: currentFocus,
+        onFieldSubmitted: (term) {
+          FocusScope.of(context).requestFocus(nextFocus);
+        },
+      );
+    } else {
       return new TextFormField(
         decoration: InputDecoration(
           hintText: hint,
@@ -277,7 +263,7 @@ class SignupPageState extends State<SignupPage> {
         validator: (value) => value.isEmpty ? validation : null,
         onSaved: save,
         focusNode: currentFocus,
-        onFieldSubmitted: (term){
+        onFieldSubmitted: (term) {
           currentFocus.unfocus();
         },
       );
@@ -288,7 +274,7 @@ class SignupPageState extends State<SignupPage> {
 void _showDialog(BuildContext context, String title, String body) {
   // flutter defined function
   showDialog(
-    context:  context,
+    context: context,
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
@@ -299,9 +285,9 @@ void _showDialog(BuildContext context, String title, String body) {
           new FlatButton(
             child: new Text("Close"),
             onPressed: () {
-              if(title == "Registration succesfull")
-              Navigator.of(context).pushReplacementNamed('menu');
-              else{
+              if (title == "Registration succesfull")
+                Navigator.of(context).pushReplacementNamed('menu');
+              else {
                 Navigator.of(context).pop();
               }
             },
