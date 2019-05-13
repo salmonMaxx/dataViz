@@ -6,6 +6,16 @@ import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
 
+//drawer --> sidebar menu
+
+import './routes/drawer/AboutUs.dart';
+import './routes/drawer/BigPicture.dart';
+import './routes/drawer/FeedBack.dart';
+import './routes/drawer/Settings.dart';
+import './routes/drawer/ForgetMe1.dart';
+
+//routes --> permissions
+
 import './routes/permissions/ActivityLog.dart';
 import './routes/permissions/AudioFiles.dart';
 import './routes/permissions/Calendar.dart';
@@ -35,7 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue, fontFamily: 'Abel-Regular'
+        primarySwatch: Colors.blue, fontFamily: 'Abel-bold', backgroundColor: Colors.white70
       ),
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
@@ -47,6 +57,14 @@ class MyApp extends StatelessWidget {
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
+
+        //drawer
+        'big_picture': (context) => BigPicture(),
+        'settings': (context) => Settings(),
+        'about_us': (context) => AboutUs(),
+        'feedback': (context) => FeedBack(),
+        'blacklist': (context) => BlackList(),
+
         //PERMISSIONS
         'activity_log' : (context) => ActivityLog(),
         'audio_files' : (context) => AudioFiles(),
@@ -60,7 +78,7 @@ class MyApp extends StatelessWidget {
         'sensors' : (context) => Sensors(),
         'sms' : (context) => SMS(),
         'video_pics' : (context) => VideoPics(),
-        'testestest' : (context) => testPermissions(),
+        //'testestest' : (context) => testPermissions(),
       },
     );
   }
@@ -102,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.apps, color: Colors.deepPurple),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'blackList');
+                      Navigator.pushNamed(context, 'otherApps');
                     },
                     tooltip: 'To Other Apps Page',
                   ),
@@ -154,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(
-                        context, 'testestest',
+                        context, 'permissions',
                       );
                     },
                     tooltip: 'To permissionTemplate',

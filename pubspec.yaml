@@ -14,13 +14,10 @@ dependencies:
 
   launcher_assist: ^1.1.3
   cupertino_icons: ^0.1.2
-  permission_handler: ^3.0.0
-  modal_progress_hud: ^0.1.3
+  permission_handler: '^3.0.0'
+
   location: ^2.3.5
-  mongo_dart: ^0.3.5
-  csv: ^4.0.3
-  open_file: ^2.0.1
-  path_provider: ^1.0.0
+  #geolocation: ^4.0.1
 
   call_log: ^2.0.0
 
@@ -38,17 +35,21 @@ flutter:
   - assets/logo_dataviz_1.png
   - assets/dataViz_logo2.png
   - assets/mabu-lightbulb.png
-  - assets/Light_pic.png
   - assets/light.png
   - assets/Data-Science-vs.-Big-Data-vs.jpg
   - assets/blomma_test.jpg
   - assets/test1.jpg
-  - assets/blackListCsv.csv
+  - assets/lamp1.png
+  - assets/forgetmepic.jpg
 
   fonts:
   - family: Modak-Regular
     fonts:
     - asset: assets/Modak-Regular.ttf
+
+  - family: Roboto_Condensed
+    fonts:
+      - asset: assets/Roboto_Condensed/RobotoCondensed-Bold.ttf
 
   - family: Abel-Regular
     fonts:
