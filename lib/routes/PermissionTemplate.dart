@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:chewie/chewie.dart';
-import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
+// this is a template that you should use when you build the permission
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
@@ -231,14 +229,18 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  textBoxWithPic(Decoration myBoxDeco, String myImage, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic, Color myBorderColor) {
+  //INFORMATION BOX
+  // myBoxDeco --> put in null if you like it
+  // --> put in following and change the directions or more.
+  /*BoxDecoration(
+  gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+  borderRadius: new BorderRadius.all(borderRadius));*/
+
+  textBoxWithPic(Decoration myBoxDeco, String myImage, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic) {
     Radius borderRadius = const Radius.circular(5.0);
     Color myTextColor = Colors.white;
     if(myHeightPic==null){
       myHeightPic= 150;
-    }
-    if(myBorderColor==null){
-      myBorderColor= Colors.transparent;
     }
     if(myHeaderSize==null) {
       myHeaderSize = 25;
@@ -266,7 +268,6 @@ class PermissionTemplate extends StatefulWidget {
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
                   borderRadius: new BorderRadius.all(borderRadius),
-                  border: new Border.all(color: myBorderColor, width: 3),
                   image: new DecorationImage(
                     image: new AssetImage(myImage),
                     fit: BoxFit.cover,
@@ -312,12 +313,24 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  textBoxWith2Pics(String myImage1, String myImage2, String myHeader, String myText, double myHeightPic) {
+  textBoxWith2Pics(Decoration myBoxDeco, String myImage1, String myImage2, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic) {
     Radius borderRadius = const Radius.circular(10.0);
+    if(myHeightPic==null){
+      myHeightPic= 150;
+    }
+    if(myHeaderSize==null) {
+      myHeaderSize = 25;
+    }
+    if(myTextSize==null) {
+      myTextSize = 20;
+    }
+    if(myBoxDeco==null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
     return new Container(
-      decoration: BoxDecoration(
-          gradient: colorGradient(Alignment.bottomLeft, Alignment.topRight),
-          borderRadius: new BorderRadius.all(borderRadius)),
+      decoration: myBoxDeco,
       margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Column(
         children: <Widget>[
@@ -365,7 +378,7 @@ class PermissionTemplate extends StatefulWidget {
                   myHeader,
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 25,
+                      fontSize: myHeaderSize,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -379,7 +392,7 @@ class PermissionTemplate extends StatefulWidget {
                   margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10.0),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: myTextSize),
                   ),
                 ),
               ),
@@ -390,14 +403,25 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  textBoxWith3Pics(String myImage1, String myImage2, String myImage3, String myHeader, String myText,
+  textBoxWith3Pics(Decoration myBoxDeco, String myImage1, String myImage2, String myImage3, String myImage, String myHeader, double myHeaderSize, String myText,double myTextSize,
       double myHeightPic) {
     Radius borderRadius = const Radius.circular(10.0);
-    return new Container(
-      decoration: BoxDecoration(
+    if(myHeightPic==null){
+      myHeightPic= 150;
+    }
+    if(myHeaderSize==null) {
+      myHeaderSize = 25;
+    }
+    if(myTextSize==null) {
+      myTextSize = 20;
+    }
+    if(myBoxDeco==null) {
+      myBoxDeco = BoxDecoration(
           gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
-          color: Colors.indigo[900],
-          borderRadius: new BorderRadius.all(borderRadius)),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
+    return new Container(
+      decoration: myBoxDeco,
       margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
       child: Column(
         children: <Widget>[
@@ -677,6 +701,24 @@ class PermissionTemplate extends StatefulWidget {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// FOLLOWING IS NOT IMPORTANT; JUST FOR INSPO IN THE END, not exactly the same parameters....  -->
 
 class _PermissionTemplateState extends State<PermissionTemplate> {
 
@@ -1224,8 +1266,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    /*backgroundColor: Colors.indigo[200],
+    return Scaffold(/*
+    backgroundColor: Colors.indigo[200],
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
