@@ -40,6 +40,9 @@ flutter:
   - assets/test1.jpg
   - assets/lamp1.png
   - assets/forgetmepic.jpg
+  - assets/camera1.jpg
+  - assets/camera2.jpeg
+  - assets/camera3.jpg
 
   fonts:
   - family: Modak-Regular

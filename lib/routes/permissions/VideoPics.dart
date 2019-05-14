@@ -75,8 +75,7 @@ class _VideoPicsState extends State<VideoPics> {
             children: <Widget>[
         new Container(
         decoration: new BoxDecoration(color: Colors.green),
-        height: 300,
-        child: Text('Hej Hej')
+        child: template.textBoxWith3Pics(null, "assets/camera1.jpg", "assets/camera2.jpeg", "assets/camera3.jpg", "HEJ", null, "Du suger", null, 150)
         ),
         new Container(
           decoration: new BoxDecoration(color: Colors.red),
