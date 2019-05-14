@@ -3,15 +3,17 @@ import 'package:photo_manager/photo_manager.dart';
 
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
-import 'package:photo_manager/photo_manager.dart';
 import 'photos.dart';
+
+import '../PermissionTemplate.dart';
 
 class VideoPics extends StatefulWidget {
   @override
   _VideoPicsState createState() => _VideoPicsState();
 }
+
+var template = new PermissionTemplate();
+
 const _cacheIosAssetId = "106E99A1-4F6A-45A2-B320-B0AD4A8E8473/L0/001";
 const _cacheAndroidAssetId =
     "/storage/emulated/0/qqmusic/QQImage/1533629267497.jpg";
@@ -40,41 +42,55 @@ class _VideoPicsState extends State<VideoPics> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: const Text('Video and Image'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.photo),
-            tooltip: "get image path list",
-            onPressed: _onlyImage,
-          ),
-          IconButton(
-            icon: Icon(Icons.videocam),
-            tooltip: "get video path list",
-            onPressed: _onlyVideo,
-          ),
-          IconButton(
-            icon: Icon(Icons.create),
-            tooltip: "show cache id image",
-            onPressed: showImageDialogWithAssetId,
-          ),
-          IconButton(
-            icon: Icon(Icons.settings),
-            tooltip: "open application setting",
-            onPressed: _openSetting,
-          ),
+        backgroundColor: Colors.indigo[200],
+        appBar: new AppBar(
+          backgroundColor: Colors.indigo[900],
+          title: const Text('Video and Image'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.photo),
+              tooltip: "get image path list",
+              onPressed: _onlyImage,
+            ),
+            IconButton(
+              icon: Icon(Icons.videocam),
+              tooltip: "get video path list",
+              onPressed: _onlyVideo,
+            ),
+            IconButton(
+              icon: Icon(Icons.create),
+              tooltip: "show cache id image",
+              onPressed: showImageDialogWithAssetId,
+            ),
+            IconButton(
+              icon: Icon(Icons.settings),
+              tooltip: "open application setting",
+              onPressed: _openSetting,
+            ),
+          ],
+        ),
+        body:
+        new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+        new Container(
+        decoration: new BoxDecoration(color: Colors.green),
+        height: 300,
+        child: Text('Hej Hej')
+        ),
+        new Container(
+          decoration: new BoxDecoration(color: Colors.red),
+          height: 300,
+          margin: EdgeInsets.all(20.0),
+          child: new ListView.builder(
+                    itemBuilder: _buildItem,
+                    itemCount: pathList.length,
+        ),
+        ),
         ],
-      ),
-      body: new ListView.builder(
-        itemBuilder: _buildItem,
-        itemCount: pathList.length,
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
-        tooltip: "get all asset list",
-        onPressed: getImages,
-      ),
+        ),
     );
+
   }
 
   Widget _buildItem(BuildContext context, int index) {
@@ -145,7 +161,7 @@ class _VideoPicsState extends State<VideoPics> {
 
     print("wait scan");
     List<AssetPathEntity> list =
-    await PhotoManager.getAssetPathList(hasVideo: true);
+        await PhotoManager.getAssetPathList(hasVideo: true);
 
     pathList.clear();
     pathList.addAll(list);
@@ -208,10 +224,7 @@ class _VideoPicsState extends State<VideoPics> {
   }
 }
 
-
-
-
-  /*
+/*
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo[200],
@@ -233,4 +246,3 @@ class _VideoPicsState extends State<VideoPics> {
     );
   }
 }*/
-

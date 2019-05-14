@@ -28,8 +28,8 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
-import './routes/permissions/OtherApps.dart';
-//import './routes/permissions/testPermissions.dart';
+import './routes/permissions/testPermissions.dart';
+import './routes/BlackList.dart';
 
 
 
@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
-        'otherApps': (context) => OtherAppsPage(),
-        'forgetMe': (context) => ForgetMe1(),
+        'blackList': (context) => BlackList(),
+        'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
-        'blacklist': (context) => OtherAppsPage(),
+        'blacklist': (context) => BlackList(),
 
         //PERMISSIONS
         'activity_log' : (context) => ActivityLog(),
