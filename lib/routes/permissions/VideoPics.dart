@@ -41,55 +41,68 @@ class _VideoPicsState extends State<VideoPics> {
 
   @override
   Widget build(BuildContext context) {
+    Radius borderRadius = const Radius.circular(10.0);
     return new Scaffold(
-        backgroundColor: Colors.indigo[200],
-        appBar: new AppBar(
-          backgroundColor: Colors.indigo[900],
-          title: const Text('Video and Image'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.photo),
-              tooltip: "get image path list",
-              onPressed: _onlyImage,
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.indigo[900],
+        title: const Text('VIDEO & IMAGE'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          new Container(
+              child: template.textBoxWith3Pics(
+                  null,
+                  "assets/camera1.jpg",
+                  "assets/camera2.jpeg",
+                  "assets/camera3.jpg",
+                  "Selfies for everyone?",
+                  null,
+                  "Pictures and videos on your mobile can be highly private. When you answer YES to the request for permission,"
+                  " an app can easily see all the pictures and videos on your mobile. Remember what you accept!",
+                  null,
+                  100)),
+          new Container(
+            decoration: BoxDecoration(
+                gradient: template.colorGradient(
+                    Alignment.bottomLeft, Alignment.topRight),
+                borderRadius: new BorderRadius.all(borderRadius)),
+            margin: EdgeInsets.all(10.0),
+            child: new Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: IconButton(
+                    icon: Icon(Icons.photo),
+                    iconSize: 80,
+                    tooltip: "get image path list",
+                    onPressed: _onlyImage,
+                  ),
+                ),
+                Expanded(
+                  child: IconButton(
+                    icon: Icon(Icons.videocam),
+                    iconSize: 80,
+                    tooltip: "get video path list",
+                    onPressed: _onlyVideo,
+                  ),
+                ),
+              ],
             ),
-            IconButton(
-              icon: Icon(Icons.videocam),
-              tooltip: "get video path list",
-              onPressed: _onlyVideo,
+          ),
+          new Container(
+            decoration: new BoxDecoration(color: Colors.red),
+            height: 200,
+            margin: EdgeInsets.only(left: 10.0, right: 10.0, top:5, bottom:5),
+            child: new ListView.builder(
+              itemBuilder: _buildItem,
+              itemCount: pathList.length,
             ),
-            IconButton(
-              icon: Icon(Icons.create),
-              tooltip: "show cache id image",
-              onPressed: showImageDialogWithAssetId,
-            ),
-            IconButton(
-              icon: Icon(Icons.settings),
-              tooltip: "open application setting",
-              onPressed: _openSetting,
-            ),
-          ],
-        ),
-        body:
-        new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-        new Container(
-        decoration: new BoxDecoration(color: Colors.green),
-        child: template.textBoxWith3Pics(null, "assets/camera1.jpg", "assets/camera2.jpeg", "assets/camera3.jpg", "HEJ", null, "Du suger", null, 150)
-        ),
-        new Container(
-          decoration: new BoxDecoration(color: Colors.red),
-          height: 300,
-          margin: EdgeInsets.all(20.0),
-          child: new ListView.builder(
-                    itemBuilder: _buildItem,
-                    itemCount: pathList.length,
-        ),
-        ),
+          ),
         ],
-        ),
+      ),
     );
-
   }
 
   Widget _buildItem(BuildContext context, int index) {
