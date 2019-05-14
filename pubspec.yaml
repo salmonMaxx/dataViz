@@ -21,8 +21,7 @@ dependencies:
 
   call_log: ^2.0.0
 
-   #VIDEO
-  chewie: ^0.9.7
+  photo_manager: ^0.3.3
 
 dev_dependencies:
   flutter_test:
