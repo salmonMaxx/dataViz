@@ -241,6 +241,64 @@ class PermissionTemplate extends StatefulWidget {
   gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
   borderRadius: new BorderRadius.all(borderRadius));*/
 
+  textBox(Decoration myBoxDeco, String myHeader, double myHeaderSize, String myText,double myTextSize, EdgeInsets myMargin) {
+    Radius borderRadius = const Radius.circular(5.0);
+    Color myTextColor = Colors.white;
+    if(myHeaderSize==null) {
+      myHeaderSize = 25;
+    }
+    if(myTextSize==null) {
+      myTextSize = 20;
+    }
+    if(myBoxDeco==null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
+    if(myMargin ==null){
+      myMargin = EdgeInsets.only(left: 10, right:10, top:5, bottom: 5);
+    }
+    return new Container(
+      decoration: myBoxDeco,
+      margin: myMargin,
+      child: Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                child: new Text(
+                  myHeader,
+                  style: TextStyle(
+                      color: myTextColor,
+                      fontSize: myHeaderSize,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: new Container(
+                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: new Text(
+                    myText,
+                    style: TextStyle(
+                        color: myTextColor,
+                        fontSize: myTextSize),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   textBoxWithPic(Decoration myBoxDeco, String myImage, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic) {
     Radius borderRadius = const Radius.circular(5.0);
     Color myTextColor = Colors.white;

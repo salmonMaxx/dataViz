@@ -9,17 +9,71 @@ class PhotoPage extends StatefulWidget {
   const PhotoPage({Key key, this.pathEntity, this.photos}) : super(key: key);
 
   @override
-  _PhotoPageState createState() => _PhotoPageState();
+  PhotoPageState createState() => PhotoPageState();
 }
 
-class _PhotoPageState extends State<PhotoPage> {
+class PhotoPageState extends State<PhotoPage> {
+  partyPicFinder1(int theTime) {
+    List<AssetEntity> thePartyPicList = [];
+
+    for (int i = 0; i < widget.photos.length; i++) {
+      AssetEntity item = widget.photos[i];
+      AssetEntity theItem = widget.photos[i];
+      String dateTime = "${item.createDateTime}";
+      String theHourString = dateTime.substring(11, 13);
+      int theHour = int.parse(theHourString);
+
+      if (theHour == theTime) {
+        //print("===========================!!!");
+        //print(entity.id);
+        thePartyPicList.add(theItem);
+      }
+    }
+    return (thePartyPicList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.indigo[900],
+        //title: const Text('VIDEO & IMAGE'),
         title: Text(widget.pathEntity.name),
       ),
-      body: PhotoList(photos: widget.photos),
+      body: ListView(
+        children: <Widget>[
+          new Container(
+            margin: EdgeInsets.only(left: 30.0, right: 30, top:10, bottom:10),
+            height: 80,
+            child: Text(
+              "Uh-oh what is this, photos from your nightly adventures...\nscroll down",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25),
+            ),
+          ),
+          new Scrollbar(
+          child: Container(
+            height: 400,
+            //child: PhotoList(photos: widget.photos),
+            child: PhotoList(photos: partyPicFinder1(13)),
+          ),
+          ),
+          new Container(
+            margin: EdgeInsets.only(left: 5.0, right: 5, top:10, bottom:10),
+            height: 80,
+            child: Text(
+              "We will not use your pictures, we promise! However, other apps with this permission would easily reach this as well",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

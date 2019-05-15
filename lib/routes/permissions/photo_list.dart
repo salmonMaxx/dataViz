@@ -90,4 +90,5 @@ class _PhotoListState extends State<PhotoList> {
 
     /// copy log id , and create AssetEntity with id from main.dart
   }
+
 }
