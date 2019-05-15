@@ -185,23 +185,15 @@ class _LoginPageState extends State<LoginPage> {
                                       child: new Container(
                                           alignment: Alignment.center,
                                           height: 60.0,
-                                          child: new Text("REMEMBER ME",
-                                              style: new TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Colors.white))),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: OutlineButton(
-                                      borderSide: const BorderSide(
-                                          style: BorderStyle.none),
-                                      child: new Container(
-                                          alignment: Alignment.center,
-                                          height: 60.0,
                                           child: new Text("FORGOT PASSWORD",
                                               style: new TextStyle(
                                                   fontSize: 15.0,
                                                   color: Colors.white))),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                'forgotPassword');
+                                      },
                                     ),
                                   ),
                                 ],

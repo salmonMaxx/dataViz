@@ -2,6 +2,7 @@
 import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
 import './routes/ForgetMe.dart';
+import './routes/ForgotPassword.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         'signup': (context) => SignupPage(),
         'blackList': (context) => BlackList(),
         'forgetMe': (context) => ForgetMe(),
+        'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu':(context) => MenuPage(),
