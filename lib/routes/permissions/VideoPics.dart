@@ -4,6 +4,7 @@ import 'package:photo_manager/photo_manager.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'photos.dart';
+import 'photo_list.dart';
 
 import '../PermissionTemplate.dart';
 
@@ -13,6 +14,7 @@ class VideoPics extends StatefulWidget {
 }
 
 var template = new PermissionTemplate();
+var imageTemplate = new PhotoPageState();
 
 const _cacheIosAssetId = "106E99A1-4F6A-45A2-B320-B0AD4A8E8473/L0/001";
 const _cacheAndroidAssetId =
@@ -66,9 +68,11 @@ class _VideoPicsState extends State<VideoPics> {
           new Container(
             decoration: BoxDecoration(
                 gradient: template.colorGradient(
-                    Alignment.bottomLeft, Alignment.topRight),
-                borderRadius: new BorderRadius.all(borderRadius)),
-            margin: EdgeInsets.all(10.0),
+                    Alignment.bottomLeft, Alignment.bottomRight),
+                borderRadius: new BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10))),
+            margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 5),
             child: new Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -92,13 +96,35 @@ class _VideoPicsState extends State<VideoPics> {
             ),
           ),
           new Container(
-            decoration: new BoxDecoration(color: Colors.red),
+            child: template.textBox(BoxDecoration(
+                gradient: template.colorGradient(Alignment.centerLeft, Alignment.centerRight),
+                borderRadius: new BorderRadius.all(Radius.circular(0.0)))
+                , "We can se everything", null, "press on the icons above\nand see what we can see", null, EdgeInsets.only(left:10, right:10))
+          ),
+          new Container(
+            decoration: BoxDecoration(
+              gradient: template.colorGradient(
+                  Alignment.topLeft, Alignment.topRight),
+            borderRadius: new BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10)) ),
             height: 200,
-            margin: EdgeInsets.only(left: 10.0, right: 10.0, top:5, bottom:5),
+            margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5),
             child: new ListView.builder(
               itemBuilder: _buildItem,
               itemCount: pathList.length,
             ),
+          ),
+          new Container(
+            decoration: BoxDecoration(
+                gradient: template.colorGradient(
+                    Alignment.topLeft, Alignment.topRight),
+                borderRadius: new BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10)) ),
+            height: 200,
+            margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5),
+            child:  Text("Hej")
           ),
         ],
       ),
@@ -109,6 +135,7 @@ class _VideoPicsState extends State<VideoPics> {
     var data = pathList[index];
     return _buildWithData(data);
   }
+
 
   Widget _buildWithData(AssetPathEntity data) {
     return GestureDetector(
@@ -160,10 +187,6 @@ class _VideoPicsState extends State<VideoPics> {
     );
   }
 
-  void _openSetting() {
-    PhotoManager.openSetting();
-  }
-
   void getImages() async {
     var result = await PhotoManager.requestPermission();
     if (!(result == true)) {
@@ -199,6 +222,8 @@ class _VideoPicsState extends State<VideoPics> {
       print("You have to grant album privileges");
       return;
     }
+
+    //Get the path, recent, downloads etc.
     var pathList = await PhotoManager.getImageAsset();
     updateDatas(pathList);
   }
@@ -209,7 +234,7 @@ class _VideoPicsState extends State<VideoPics> {
     setState(() {});
   }
 
-  void showImageDialogWithAssetId() async {
+  /*void showImageDialogWithAssetId() async {
     String id;
 
     if (Platform.isIOS) {
@@ -233,7 +258,7 @@ class _VideoPicsState extends State<VideoPics> {
         );
       },
     );
-  }
+  }*/
 }
 
 /*
