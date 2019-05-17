@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
+import 'package:location/location.dart' as lc;
+import 'package:torsdags_test/routes/PermissionTemplate.dart';
 //import 'package:geolocation/geolocation.dart';
 
-class PermissionLocationScreen extends StatefulWidget {
+class Location extends StatefulWidget {
+  
+  Location({Key key, this.whoHasLocation}) : super(key:key);
+  final Map<String, dynamic> whoHasLocation;
+  
   @override
-  _PermissionLocationScreenState createState() => _PermissionLocationScreenState();
+  _LocationState createState() => _LocationState();
 }
 
-class _PermissionLocationScreenState extends State<PermissionLocationScreen> {
+class _LocationState extends State<Location> {
 
-  LocationData loc;
-  var location = new Location();
-  LocationData theLocation;
+  lc.LocationData loc;
+  var location = new lc.Location();
+  lc.LocationData theLocation;
+  PermissionTemplate temp = new PermissionTemplate();
 
   void _getLocation() async {
     theLocation = await location.getLocation();
-    location.onLocationChanged().listen((LocationData currentLocation) {
-      loc = currentLocation;
-      /*
-        print('lat/lon:, ${theLocation.latitude},
-                         ${theLocation.longitude}');
-        */
+    location.onLocationChanged().listen((lc.LocationData currentLocation) {
       setState(() {
+        loc = currentLocation;
       });
     });
   }
@@ -37,11 +39,6 @@ class _PermissionLocationScreenState extends State<PermissionLocationScreen> {
           children: <Widget>[
             Column( mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  'Location',
-                  style: Theme
-                      .of(context).textTheme.display2,
-                ),
                 Center(
                   child: loc?.latitude == null?
                   Text('getting location...',
@@ -58,6 +55,7 @@ class _PermissionLocationScreenState extends State<PermissionLocationScreen> {
                         .display1, // if it is then
                     //don't get value, print null
                   ),
+
                 ),
                 Center(
                   child: loc?.longitude == null?
@@ -76,6 +74,7 @@ class _PermissionLocationScreenState extends State<PermissionLocationScreen> {
                     //don't get value, print null
                   ),
                 ),
+                temp.otherPermissionBox(null, null, widget.whoHasLocation['whoHasLocation']),
               ],
             ),
             /*Row(
