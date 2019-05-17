@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();

@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../PermissionTemplate.dart';
+
 class ActivityLog extends StatefulWidget {
   @override
   _ActivityLogState createState() => _ActivityLogState();
 }
 
+var template = new PermissionTemplate();
+
 class _ActivityLogState extends State<ActivityLog> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo[500],
-      appBar: AppBar(
-        elevation: 0.0,
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
         centerTitle: true,
-        title: Text('Activity', textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
-        backgroundColor: Colors.transparent,
-
+        backgroundColor: Colors.indigo[900],
+        title: const Text('ACTIVITY LOG'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          new Container(
+            //Put in functions from the template below!!!
+            child: Text("HEJ")
+          ),
+        ],
       ),
     );
   }
