@@ -18,7 +18,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "kalle";
+    private static final String CHANNEL = "dataViz/permissions";
         @Override
         public void onCreate(Bundle savedInstanceState) {
 

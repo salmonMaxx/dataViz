@@ -1,4 +1,9 @@
 // routes
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
+import 'package:launcher_assist/launcher_assist.dart';
+
 import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
 import './routes/ForgetMe.dart';
@@ -28,14 +33,10 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
-import './routes/permissions/testPermissions.dart';
 import './routes/BlackList.dart';
 
-
-
 //packages
-import  'package:flutter/material.dart';
-//import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue, fontFamily: 'Abel-bold', backgroundColor: Colors.white70
-      ),
+          primarySwatch: Colors.blue,
+          fontFamily: 'Abel-bold',
+          backgroundColor: Colors.white70),
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
       routes: {
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
-        'menu':(context) => MenuPage(),
+        'menu': (context) => MenuPage(),
 
         //drawer
         'big_picture': (context) => BigPicture(),
@@ -66,19 +68,18 @@ class MyApp extends StatelessWidget {
         'blacklist': (context) => BlackList(),
 
         //PERMISSIONS
-        'activity_log' : (context) => ActivityLog(),
-        'audio_files' : (context) => AudioFiles(),
-        'calender' : (context) => Calendar(),
-        'call_log' : (context) => CallLog(),
-        'camera' : (context) => Camera(),
-        'contacts' : (context) => Contacts(),
-        'location' : (context) => PermissionLocationScreen(),
-        'mic' : (context) => Mic(),
-        'phone' : (context) => Phone(),
-        'sensors' : (context) => Sensors(),
-        'sms' : (context) => SMS(),
-        'video_pics' : (context) => VideoPics(),
-        //'testestest' : (context) => testPermissions(),
+        'activity_log': (context) => ActivityLog(),
+        'audio_files': (context) => AudioFiles(),
+        'calender': (context) => Calendar(),
+        'call_log': (context) => CallLog(),
+        'camera': (context) => Camera(),
+        'contacts': (context) => Contacts(),
+        'location': (context) => Location(),
+        'mic': (context) => Mic(),
+        'phone': (context) => Phone(),
+        'sensors': (context) => Sensors(),
+        'sms': (context) => SMS(),
+        'video_pics': (context) => VideoPics(),
       },
     );
   }
@@ -89,38 +90,222 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-    @override
-    _MyHomePageState createState() => _MyHomePageState();
-  }
-
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
 class _MyHomePageState extends State<MyHomePage> {
+  Map<String, String> permissionMap;
+  int appCount;
+  var installedApps;
+  var installedPackages;
+  var installedLabels;
+  var installedAppIcons;
+  List<String> installedAppLabels;
+  static const platform =
+      const MethodChannel("dataViz/permissions"); //change channel string
+  List<String> blackList = _getBlackList();
+  List<String> whoHasLocationPermission;
+
+
+  static _getBlackList() {
+    return [
+      "3 In 1 Diamond Slots + Bonus",
+      "777 Jackpot Slots-Free Casino",
+      "Arranger Keyboard",
+      "Audiosdroid Audio Studio DAW",
+      "Aux-Direct",
+      "Aux-Direct Pro",
+      "CALCULATEUR DE CREDIT",
+      "Christmas Slots Free",
+      "Classic Slot Machine Free",
+      "Creepypasta",
+      "Diamond 777 Slot Machine",
+      "Diamond Vault Slots – Vegas",
+      "DigiHUD Pro Speedometer",
+      "DigiHUD Speedometer",
+      "Double Diamond 777 Slots-Vegas",
+      "Double Gold Slots",
+      "En Fuego 777 Slot Machine",
+      "Fit 360 Fitness & Bodybuilding",
+      "Flashlight Gallery",
+      "Flashlight Gallery Lite",
+      "Flashlight Gallery Pro",
+      "Flygstatus & Schemalägga – FlightHero Free",
+      "Flygstatus & Schemalägga – FlightHero Pro",
+      "Free Adblocker Browser – Adblock & Popup Blocker",
+      "Free Triple Star Slot Machine",
+      "FX Music Karaoke Player",
+      "Geo Quiz",
+      "Geo Quiz Pro",
+      "GLOB ANOK",
+      "Halloween Corner",
+      "Halloween Slots Free",
+      "Irish Money Wheel Slots",
+      "Jokes",
+      "London Live Bus Times – TfL Buses",
+      "Lucky 777 Slot Machine – FREE",
+      "Magical Slots",
+      "Math Quiz HD",
+      "Math Quiz HD Pro",
+      "Medical ID (Free) Nödsituation",
+      "Medical ID (ICE): Nödsituation",
+      "Money Wheel Slot Machine 2",
+      "Money Wheel Slot Machine Game",
+      "Network Signal Info Pro",
+      "Office Jerk Free",
+      "Ovu Period Tracker Gratis",
+      "Phone Analyzer",
+      "Phone Analyzer Pro",
+      "Ping and Trace Pro",
+      "Ping Pro",
+      "Pixlr",
+      "Power Browser – Fast Internet Explorer",
+      "Private Browser & Incognito Browser",
+      "RecMe Free Screen Recorder",
+      "Red Hot 777 Slots: FREE",
+      "Salaire Brut ou Net",
+      "Scare Joke HD (Prank)",
+      "Scare Joke HD Pro (Prank)",
+      "Simple weather & clock widget",
+      "Speech2Text Translator",
+      "Statistics",
+      "Statistics Pro",
+      "TAXINA",
+      "Termometer (fria)",
+      "Triple 777 Slots – Free Casino",
+      "Triple Diamond 777 Slots",
+      "Triple Diamond Slot Machine",
+      "Under the Sea Slots",
+      "Veganized – Vegan Recipes, Nutrition, Grocery List",
+      "VoiceFX – Voice Changer with voice effects",
+      "WEATHER NOW",
+      "West Midlands Transport: Live Bus, Train Timetable",
+      "WiFi Overview 360 Pro",
+      "WiFi-o-Matic",
+      "WiFi-o-Matic Pro",
+      "15 dagars väderprognos",
+      "Car Navigation: GPS & Maps",
+      "Family Locator and GPS Tracker",
+      "Flush Pro – Restroom Finder",
+      "Flush – Toilet Finder & Map",
+      "Guide for Animal Crossing NL",
+      "London Tube Live – Underground",
+      "My Aurora Forecast & Alerts",
+      "My Earthquake Alerts & Feed",
+      "My Moon Phase Pro – Alerts",
+      "My Tide Times Pro – Tide Chart",
+      "My Tide Times – Tables & Chart",
+      "Peel TV Guide",
+      "Perfect365",
+      "Speed Cameras & Traffic",
+      "Sygic GPS-navigering & Kartor"
+    ];
+  }
+
+  Future<Map<String, String>> _getPermissions() async {
+    Map<String, String> permissionMap;
+    try {
+      permissionMap = await platform.invokeMapMethod('getPermissions');
+    } catch (e) {
+      print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
+    }
+    return permissionMap;
+  }
+
+  Future _loadApps() async {
+    await LauncherAssist.getAllApps().then((apps) {
+      setState(() {
+        appCount = apps.length;
+        installedApps =
+            apps; //List of Map of label, package and icon; icon is bytearray
+      });
+    });
+    installedAppLabels = _resolveTheListLabels(installedApps);
+    installedPackages = _resolveTheListPackages(installedApps);
+    //installedAppIcons = _resolveTheListIcons(installedApps);
+  }
+
+  _resolveTheListPackages(List<dynamic> theList) {
+    List<String> packageList = [];
+    theList.forEach((element) => packageList.add(element["package"]));
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return packageList;
+  }
+
+  _resolveTheListLabels(List<dynamic> theList) {
+    List<String> labelList = []; //make me the length of the list!!
+    theList.forEach((element) => labelList.add(element["label"]));
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return labelList;
+  }
+
+  _resolveTheListIcons(List<dynamic> theList) {
+    Uint8List iconList;
+    theList.forEach((element) => iconList.add(element["icon"]));
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return iconList;
+  }
+
+  _capitalizeString(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+  }
+
+  List<String> _getPermissionToAppList(String permission){
+    List<String> appsWithPermission = [];
+    permissionMap.forEach((package,permissionListString) {
+      if(permissionListString.split(",").contains(permission)){
+        //translate package into label with the installedApps variable
+        installedApps.forEach((index) {
+          if(index["package"] == package){
+            appsWithPermission.add(index["label"]);
+          }
+        });
+      }
+    });
+    print('$permission is given to: $appsWithPermission');
+    return appsWithPermission;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadApps();
+    print('loaded apps. . . \n');
+    _getPermissions().then((permissions) => permissionMap = permissions);
+    print('loaded permissions. . . \n');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
-      body: Row( mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Column( mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
                 children: <Widget>[
                   IconButton(
                     icon: Icon(Icons.person_pin, color: Colors.deepPurple),
                     iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'login');
-                    },
+                    onPressed: null,
                     tooltip: 'To Login-Page',
                   ),
                   IconButton(
                     icon: Icon(Icons.apps, color: Colors.deepPurple),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'otherApps');
+                      var route = new MaterialPageRoute(
+                          builder: (BuildContext context) => new BlackList(
+                                appInfo: {
+                                  'blackList': blackList,
+                                  'installedLabels': installedAppLabels,
+                                },
+                              ));
+                      Navigator.of(context).push(route);
                     },
                     tooltip: 'To Other Apps Page',
                   ),
@@ -128,9 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.remove_circle, color: Colors.red),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(
-                        context, 'forgetMe',
-                      );
+                      Navigator.pushNamed(context, 'forgetMe');
                     },
                     tooltip: 'To Login-Page',
                   ),
@@ -142,9 +325,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.location_on, color: Colors.red),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(
-                          context, 'location',
-                      );
+                      var route = new MaterialPageRoute(
+                          builder: (BuildContext context) => new Location(
+                                whoHasLocation: {
+                                  'whoHasLocation': _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION"),
+                                },
+                              ));
+                      Navigator.of(context).push(route);
                     },
                   ),
                   IconButton(
@@ -152,7 +339,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(
-                             context, 'menu',
+                        context,
+                        'menu',
                       );
                     },
                     tooltip: 'location',
@@ -162,7 +350,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(
-                        context, 'microphone',
+                        context,
+                        'microphone',
                       );
                     },
                     tooltip: 'microphone',
@@ -171,9 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.local_florist, color: Colors.green),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(
-                        context, 'permissions',
-                      );
+                      _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE");
                     },
                     tooltip: 'To permissionTemplate',
                   ),
@@ -187,12 +374,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+// CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
+// IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
 
-  // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
-  // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
-
-
-  /*
+/*
 
   void permissionContact() async {
     //REQUEST PERMISSION
