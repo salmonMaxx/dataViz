@@ -23,6 +23,10 @@ dependencies:
 
   photo_manager: ^0.3.3
 
+  device_calendar: ^0.0.2
+
+  contacts_service: ^0.0.9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

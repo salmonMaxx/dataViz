@@ -10,6 +10,7 @@ class _CallLogState extends State<CallLog> {
   @override
   Widget build(BuildContext context) {
 
+
     return Scaffold(
       backgroundColor: Colors.indigo[500],
       appBar: AppBar(

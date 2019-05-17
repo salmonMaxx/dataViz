@@ -48,9 +48,9 @@ class PhotoPageState extends State<PhotoPage> {
             margin: EdgeInsets.only(left: 30.0, right: 30, top:10, bottom:10),
             height: 80,
             child: Text(
-              "Uh-oh what is this, photos from your nightly adventures...\nscroll down",
+              "Uh-oh what is this, photos from your nightly adventures...\n scroll down",
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.indigo[900],
                   fontSize: 25),
             ),
           ),
@@ -68,7 +68,7 @@ class PhotoPageState extends State<PhotoPage> {
               "We will not use your pictures, we promise! However, other apps with this permission would easily reach this as well",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.indigo[900],
                   fontSize: 20),
             ),
           ),

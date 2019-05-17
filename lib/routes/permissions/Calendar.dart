@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:device_calendar/device_calendar.dart';
 
 class Calendar extends StatefulWidget {
   @override
@@ -14,12 +14,12 @@ class _CalendarState extends State<Calendar> {
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
-        title: Text('Calender', textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
+        title: Text('Calender',
+            textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
         backgroundColor: Colors.transparent,
-
       ),
-        body: new Center(
-          child: Container(
+      body: new Center(
+        child: Container(
           width: 200,
           height: 200,
           decoration: BoxDecoration(
@@ -28,8 +28,7 @@ class _CalendarState extends State<Calendar> {
             ),
           ),
         ),
-        ),
+      ),
     );
   }
 }
-

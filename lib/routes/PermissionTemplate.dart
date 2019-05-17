@@ -4,9 +4,10 @@ class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
 
-  boxRight(Decoration myBoxDeco, String myImage, String myHeader, String myText) {
+  boxRight(
+      Decoration myBoxDeco, String myImage, String myHeader, String myText) {
     Radius borderRadius = const Radius.circular(10.0);
-    if(myBoxDeco==null) {
+    if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
           gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
           borderRadius: new BorderRadius.all(borderRadius));
@@ -14,7 +15,7 @@ class PermissionTemplate extends StatefulWidget {
     return new Container(
       height: 150,
       decoration: myBoxDeco,
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Row(
         children: <Widget>[
           Flexible(
@@ -62,9 +63,10 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  boxLeft(Decoration myBoxDeco, String myImage, String myHeader, String myText) {
+  boxLeft(
+      Decoration myBoxDeco, String myImage, String myHeader, String myText) {
     Radius borderRadius = const Radius.circular(10.0);
-    if(myBoxDeco==null) {
+    if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
           gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
           borderRadius: new BorderRadius.all(borderRadius));
@@ -72,7 +74,7 @@ class PermissionTemplate extends StatefulWidget {
     return new Container(
       height: 150,
       decoration: myBoxDeco,
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Row(
         children: <Widget>[
           Flexible(
@@ -136,8 +138,8 @@ class PermissionTemplate extends StatefulWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(0),
-              margin:
-              EdgeInsets.only(left: 50.0, top: 7.5, bottom: 7.5, right: 10.0),
+              margin: EdgeInsets.only(
+                  left: 50.0, top: 7.5, bottom: 7.5, right: 10.0),
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.indigo[900], width: 2),
@@ -159,23 +161,30 @@ class PermissionTemplate extends StatefulWidget {
 // MyHeightPic is also flex, standard is 150 but it depends
 // if more than one pic is used, the width of every pic can be inserted, the tot width should be 370
 
-  textWithPic(String myImage, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic, Color myBorderColor) {
+  textWithPic(
+      String myImage,
+      String myHeader,
+      double myHeaderSize,
+      String myText,
+      double myTextSize,
+      double myHeightPic,
+      Color myBorderColor) {
     Radius borderRadius = const Radius.circular(5.0);
     Color myTextColor = Colors.indigo[900];
-    if(myHeightPic==null){
-      myHeightPic= 150;
+    if (myHeightPic == null) {
+      myHeightPic = 150;
     }
-    if(myBorderColor==null){
-      myBorderColor= Colors.transparent;
+    if (myBorderColor == null) {
+      myBorderColor = Colors.transparent;
     }
-    if(myHeaderSize==null) {
+    if (myHeaderSize == null) {
       myHeaderSize = 25;
     }
-    if(myTextSize==null) {
+    if (myTextSize == null) {
       myTextSize = 20;
     }
     return new Container(
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -217,7 +226,8 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
                     style: TextStyle(
@@ -241,22 +251,23 @@ class PermissionTemplate extends StatefulWidget {
   gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
   borderRadius: new BorderRadius.all(borderRadius));*/
 
-  textBox(Decoration myBoxDeco, String myHeader, double myHeaderSize, String myText,double myTextSize, EdgeInsets myMargin) {
+  textBox(Decoration myBoxDeco, String myHeader, double myHeaderSize,
+      String myText, double myTextSize, EdgeInsets myMargin) {
     Radius borderRadius = const Radius.circular(5.0);
     Color myTextColor = Colors.white;
-    if(myHeaderSize==null) {
+    if (myHeaderSize == null) {
       myHeaderSize = 25;
     }
-    if(myTextSize==null) {
+    if (myTextSize == null) {
       myTextSize = 20;
     }
-    if(myBoxDeco==null) {
+    if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
           gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
           borderRadius: new BorderRadius.all(borderRadius));
     }
-    if(myMargin ==null){
-      myMargin = EdgeInsets.only(left: 10, right:10, top:5, bottom: 5);
+    if (myMargin == null) {
+      myMargin = EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5);
     }
     return new Container(
       decoration: myBoxDeco,
@@ -283,12 +294,11 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
-                    style: TextStyle(
-                        color: myTextColor,
-                        fontSize: myTextSize),
+                    style: TextStyle(color: myTextColor, fontSize: myTextSize),
                   ),
                 ),
               ),
@@ -299,26 +309,33 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  textBoxWithPic(Decoration myBoxDeco, String myImage, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic) {
+  textBoxWithPic(
+      Decoration myBoxDeco,
+      String myImage,
+      String myHeader,
+      double myHeaderSize,
+      String myText,
+      double myTextSize,
+      double myHeightPic) {
     Radius borderRadius = const Radius.circular(5.0);
     Color myTextColor = Colors.white;
-    if(myHeightPic==null){
-      myHeightPic= 150;
+    if (myHeightPic == null) {
+      myHeightPic = 150;
     }
-    if(myHeaderSize==null) {
+    if (myHeaderSize == null) {
       myHeaderSize = 25;
     }
-    if(myTextSize==null) {
+    if (myTextSize == null) {
       myTextSize = 20;
     }
-    if(myBoxDeco==null) {
-    myBoxDeco = BoxDecoration(
-    gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
-    borderRadius: new BorderRadius.all(borderRadius));
+    if (myBoxDeco == null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(
-    decoration: myBoxDeco,
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      decoration: myBoxDeco,
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -359,7 +376,8 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
                     style: TextStyle(
@@ -376,25 +394,33 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  textBoxWith2Pics(Decoration myBoxDeco, String myImage1, String myImage2, String myHeader, double myHeaderSize, String myText,double myTextSize, double myHeightPic) {
+  textBoxWith2Pics(
+      Decoration myBoxDeco,
+      String myImage1,
+      String myImage2,
+      String myHeader,
+      double myHeaderSize,
+      String myText,
+      double myTextSize,
+      double myHeightPic) {
     Radius borderRadius = const Radius.circular(10.0);
-    if(myHeightPic==null){
-      myHeightPic= 150;
+    if (myHeightPic == null) {
+      myHeightPic = 150;
     }
-    if(myHeaderSize==null) {
+    if (myHeaderSize == null) {
       myHeaderSize = 25;
     }
-    if(myTextSize==null) {
+    if (myTextSize == null) {
       myTextSize = 20;
     }
-    if(myBoxDeco==null) {
+    if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
           gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(
       decoration: myBoxDeco,
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -404,7 +430,8 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   height: myHeightPic,
                   width: 185,
-                  margin: EdgeInsets.only(top: 10, bottom:10, left:10, right: 5),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -419,7 +446,8 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   height: myHeightPic,
                   width: 185,
-                  margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 10),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -452,7 +480,8 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10.0),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10.0),
                   child: new Text(
                     myText,
                     style: TextStyle(color: Colors.white, fontSize: myTextSize),
@@ -466,26 +495,34 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  textBoxWith3Pics(Decoration myBoxDeco, String myImage1, String myImage2, String myImage3, String myHeader, double myHeaderSize, String myText,double myTextSize,
+  textBoxWith3Pics(
+      Decoration myBoxDeco,
+      String myImage1,
+      String myImage2,
+      String myImage3,
+      String myHeader,
+      double myHeaderSize,
+      String myText,
+      double myTextSize,
       double myHeightPic) {
     Radius borderRadius = const Radius.circular(10.0);
-    if(myHeightPic==null){
-      myHeightPic= 150;
+    if (myHeightPic == null) {
+      myHeightPic = 150;
     }
-    if(myHeaderSize==null) {
+    if (myHeaderSize == null) {
       myHeaderSize = 25;
     }
-    if(myTextSize==null) {
+    if (myTextSize == null) {
       myTextSize = 20;
     }
-    if(myBoxDeco==null) {
+    if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
           gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(
       decoration: myBoxDeco,
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -495,7 +532,8 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   height: myHeightPic,
                   width: 150,
-                  margin: EdgeInsets.only(top: 10, bottom:10, left:10, right: 5),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -510,7 +548,8 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   height: myHeightPic,
                   width: 150,
-                  margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 5),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -525,7 +564,8 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   height: myHeightPic,
                   width: 150,
-                  margin: EdgeInsets.only(top: 10, bottom:10, left:5, right: 10),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -558,7 +598,8 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
                     style: TextStyle(color: Colors.white, fontSize: 20),
@@ -572,13 +613,14 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  highlightNumbers(String bigText1, String smallText1, String bigText2, String smallText2, String bigText3, String smallText3){
+  highlightNumbers(String bigText1, String smallText1, String bigText2,
+      String smallText2, String bigText3, String smallText3) {
     Radius borderRadius = const Radius.circular(10.0);
     double myHeight = 100;
     return new Container(
-      decoration: BoxDecoration(
-          borderRadius: new BorderRadius.all(borderRadius)),
-      margin: EdgeInsets.only(left: 10, right:10, top:5, bottom: 5),
+      decoration:
+          BoxDecoration(borderRadius: new BorderRadius.all(borderRadius)),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Column(
         children: <Widget>[
           new Row(
@@ -597,8 +639,11 @@ class PermissionTemplate extends StatefulWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           new Container(
-                            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                            child: new Text(bigText1, textAlign: TextAlign.center,
+                            margin: const EdgeInsets.only(
+                                left: 10, right: 10, top: 5),
+                            child: new Text(
+                              bigText1,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -612,9 +657,13 @@ class PermissionTemplate extends StatefulWidget {
                         children: <Widget>[
                           Flexible(
                             child: new Container(
-                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                              child: new Text(smallText1, textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              margin: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: new Text(
+                                smallText1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ),
                           ),
@@ -637,8 +686,11 @@ class PermissionTemplate extends StatefulWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           new Container(
-                            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                            child: new Text(bigText2, textAlign: TextAlign.center,
+                            margin: const EdgeInsets.only(
+                                left: 10, right: 10, top: 5),
+                            child: new Text(
+                              bigText2,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -652,9 +704,13 @@ class PermissionTemplate extends StatefulWidget {
                         children: <Widget>[
                           Flexible(
                             child: new Container(
-                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                              child: new Text(smallText2, textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              margin: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: new Text(
+                                smallText2,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ),
                           ),
@@ -677,8 +733,11 @@ class PermissionTemplate extends StatefulWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           new Container(
-                            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                            child: new Text(bigText3, textAlign: TextAlign.center,
+                            margin: const EdgeInsets.only(
+                                left: 10, right: 10, top: 5),
+                            child: new Text(
+                              bigText3,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -692,9 +751,13 @@ class PermissionTemplate extends StatefulWidget {
                         children: <Widget>[
                           Flexible(
                             child: new Container(
-                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                              child: new Text(smallText3, textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white, fontSize: 15),
+                              margin: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
+                              child: new Text(
+                                smallText3,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ),
                           ),
@@ -711,7 +774,7 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  colorGradient(Alignment myStart, Alignment myEnd){
+  colorGradient(Alignment myStart, Alignment myEnd) {
     return LinearGradient(
       // Where the linear gradient begins and ends
       begin: myStart,
@@ -728,18 +791,34 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  Future<void> popUp(BuildContext context, String myHeader, String myText, String myButtonText, Color myColor, String myNavigationAddress, otherFunction) {
+  Future<void> popUp(
+      BuildContext context,
+      String myHeader,
+      String myText,
+      String myButtonText,
+      Color myColor,
+      String myNavigationAddress,
+      otherFunction) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: myColor,
-          title: Text(myHeader, textAlign: TextAlign.center, style:  TextStyle(color: Colors.indigo[900],fontSize: 25, fontWeight: FontWeight.bold)),
+          title: Text(myHeader,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.indigo[900],
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold)),
           content: Text(myText,
               style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
           actions: <Widget>[
             FlatButton(
-              child: Text(myButtonText, textAlign: TextAlign.center, style: new TextStyle(color: Colors.indigo[900], fontSize: 30),),
+              child: Text(
+                myButtonText,
+                textAlign: TextAlign.center,
+                style: new TextStyle(color: Colors.indigo[900], fontSize: 30),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(myNavigationAddress);
@@ -752,26 +831,82 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
+  _capitalizeString(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+  }
+
+
+  otherPermissionBox(Decoration myBoxDeco, EdgeInsets myMargin, List theList) {
+    Radius borderRadius = const Radius.circular(5.0);
+    Color myTextColor = Colors.white;
+    if (myBoxDeco == null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
+    if (myMargin == null) {
+      myMargin = EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5);
+    }
+    return new Container(
+      decoration: myBoxDeco,
+      margin: myMargin,
+      child: Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                height: 50,
+                margin: const EdgeInsets.all(10),
+                child: new Text(
+                  "APPS WITH THIS \n PERMISSION: ",
+                  style: TextStyle(
+                      color: myTextColor,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: new Container(
+                  height: 200,
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: ListView.separated(
+                    separatorBuilder: (context, i) => Divider(
+                          color: Colors.white,
+                        ),
+                    padding: EdgeInsets.all(15.0),
+                    itemCount: theList.length,
+                    itemBuilder: (context, i) {
+                      return new ListTile(
+                        title: Text(
+                          _capitalizeString(theList[i]),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onTap: null,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-
-
-
-
-
-
-
-
-
-
 //-------------------------------------------------------------------------------STOP
-
 
 // FOLLOWING IS NOT IMPORTANT; JUST FOR INSPO IN THE END, not exactly the same parameters....  -->
 
 class _PermissionTemplateState extends State<PermissionTemplate> {
-
-
   boxRight(String myImage, String myHeader, String myText) {
     Radius borderRadius = const Radius.circular(10.0);
     return new Container(
@@ -898,8 +1033,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(0),
-              margin:
-              EdgeInsets.only(left: 50.0, top: 7.5, bottom: 7.5, right: 10.0),
+              margin: EdgeInsets.only(
+                  left: 50.0, top: 7.5, bottom: 7.5, right: 10.0),
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.indigo[900], width: 2),
@@ -921,8 +1056,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
 // MyHeightPic is also flex, standard is 150 but it depends
 // if more than one pic is used, the width of every pic can be inserted, the tot width should be 370
 
-  textBoxWithPic(String myImage, String myHeader, String myText,
-      double myHeightPic) {
+  textBoxWithPic(
+      String myImage, String myHeader, String myText, double myHeightPic) {
     Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       decoration: BoxDecoration(
@@ -969,8 +1104,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(
-                      left: 10, right: 10, bottom: 10),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
                     style: TextStyle(color: Colors.white, fontSize: 20),
@@ -1001,8 +1136,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 child: new Container(
                   height: myHeightPic,
                   width: 185,
-                  margin: EdgeInsets.only(
-                      top: 10, bottom: 10, left: 10, right: 5),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -1017,8 +1152,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 child: new Container(
                   height: myHeightPic,
                   width: 185,
-                  margin: EdgeInsets.only(
-                      top: 10, bottom: 10, left: 5, right: 10),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -1051,8 +1186,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(
-                      left: 10, right: 10, bottom: 10.0),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10.0),
                   child: new Text(
                     myText,
                     style: TextStyle(color: Colors.white, fontSize: 20),
@@ -1067,8 +1202,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
   }
 
   textBoxWith3Pics(String myImage1, String myImage2, String myImage3,
-      String myHeader, String myText,
-      double myHeightPic) {
+      String myHeader, String myText, double myHeightPic) {
     Radius borderRadius = const Radius.circular(10.0);
     return new Container(
       decoration: BoxDecoration(
@@ -1085,8 +1219,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 child: new Container(
                   height: myHeightPic,
                   width: 150,
-                  margin: EdgeInsets.only(
-                      top: 10, bottom: 10, left: 10, right: 5),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -1101,8 +1235,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 child: new Container(
                   height: myHeightPic,
                   width: 150,
-                  margin: EdgeInsets.only(
-                      top: 10, bottom: 10, left: 5, right: 5),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -1117,8 +1251,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                 child: new Container(
                   height: myHeightPic,
                   width: 150,
-                  margin: EdgeInsets.only(
-                      top: 10, bottom: 10, left: 5, right: 10),
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 10),
                   decoration: new BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.all(borderRadius),
@@ -1151,8 +1285,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                  margin: const EdgeInsets.only(
-                      left: 10, right: 10, bottom: 10),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
                     style: TextStyle(color: Colors.white, fontSize: 20),
@@ -1171,8 +1305,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     Radius borderRadius = const Radius.circular(10.0);
     double myHeight = 100;
     return new Container(
-      decoration: BoxDecoration(
-          borderRadius: new BorderRadius.all(borderRadius)),
+      decoration:
+          BoxDecoration(borderRadius: new BorderRadius.all(borderRadius)),
       margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Column(
         children: <Widget>[
@@ -1195,7 +1329,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                             margin: const EdgeInsets.only(
                                 left: 10, right: 10, top: 5),
                             child: new Text(
-                              bigText1, textAlign: TextAlign.center,
+                              bigText1,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -1212,7 +1347,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                               margin: const EdgeInsets.only(
                                   left: 10, right: 10, bottom: 10),
                               child: new Text(
-                                smallText1, textAlign: TextAlign.center,
+                                smallText1,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 15),
                               ),
@@ -1240,7 +1376,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                             margin: const EdgeInsets.only(
                                 left: 10, right: 10, top: 5),
                             child: new Text(
-                              bigText2, textAlign: TextAlign.center,
+                              bigText2,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -1257,7 +1394,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                               margin: const EdgeInsets.only(
                                   left: 10, right: 10, bottom: 10),
                               child: new Text(
-                                smallText2, textAlign: TextAlign.center,
+                                smallText2,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 15),
                               ),
@@ -1285,7 +1423,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                             margin: const EdgeInsets.only(
                                 left: 10, right: 10, top: 5),
                             child: new Text(
-                              bigText3, textAlign: TextAlign.center,
+                              bigText3,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -1302,7 +1441,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                               margin: const EdgeInsets.only(
                                   left: 10, right: 10, bottom: 10),
                               child: new Text(
-                                smallText3, textAlign: TextAlign.center,
+                                smallText3,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 15),
                               ),
@@ -1338,13 +1478,12 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     );
   }
 
-
 // functions
-
 
   @override
   Widget build(BuildContext context) {
-  return Scaffold(/*
+    return Scaffold(
+        /*
       backgroundColor: Colors.white70,
       appBar: AppBar(
         elevation: 0.0,
@@ -1395,6 +1534,6 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
               ]),
         ],
       ),*/
-  );
+        );
   }
 }

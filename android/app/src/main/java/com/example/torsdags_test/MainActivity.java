@@ -16,6 +16,9 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
 
+//SMS
+
+
 
 public class MainActivity extends FlutterActivity {
     private static final String CHANNEL = "kalle";
@@ -72,3 +75,4 @@ public class MainActivity extends FlutterActivity {
           return permissionNameMap;
       }
 }
+
