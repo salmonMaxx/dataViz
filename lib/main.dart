@@ -54,7 +54,6 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
-        'blackList': (context) => BlackList(),
         'forgetMe': (context) => ForgetMe(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
@@ -65,9 +64,9 @@ class MyApp extends StatelessWidget {
         'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
-        'blacklist': (context) => BlackList(),
 
-        //PERMISSIONS
+
+        //PERMInstalling build/app/outputs/apk/app.apk...ISSIONS
         'activity_log': (context) => ActivityLog(),
         'audio_files': (context) => AudioFiles(),
         'calender': (context) => Calendar(),
@@ -104,104 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> installedAppLabels;
   static const platform =
       const MethodChannel("dataViz/permissions"); //change channel string
-  List<String> blackList = _getBlackList();
   List<String> whoHasLocationPermission;
-
-
-  static _getBlackList() {
-    return [
-      "3 In 1 Diamond Slots + Bonus",
-      "777 Jackpot Slots-Free Casino",
-      "Arranger Keyboard",
-      "Audiosdroid Audio Studio DAW",
-      "Aux-Direct",
-      "Aux-Direct Pro",
-      "CALCULATEUR DE CREDIT",
-      "Christmas Slots Free",
-      "Classic Slot Machine Free",
-      "Creepypasta",
-      "Diamond 777 Slot Machine",
-      "Diamond Vault Slots – Vegas",
-      "DigiHUD Pro Speedometer",
-      "DigiHUD Speedometer",
-      "Double Diamond 777 Slots-Vegas",
-      "Double Gold Slots",
-      "En Fuego 777 Slot Machine",
-      "Fit 360 Fitness & Bodybuilding",
-      "Flashlight Gallery",
-      "Flashlight Gallery Lite",
-      "Flashlight Gallery Pro",
-      "Flygstatus & Schemalägga – FlightHero Free",
-      "Flygstatus & Schemalägga – FlightHero Pro",
-      "Free Adblocker Browser – Adblock & Popup Blocker",
-      "Free Triple Star Slot Machine",
-      "FX Music Karaoke Player",
-      "Geo Quiz",
-      "Geo Quiz Pro",
-      "GLOB ANOK",
-      "Halloween Corner",
-      "Halloween Slots Free",
-      "Irish Money Wheel Slots",
-      "Jokes",
-      "London Live Bus Times – TfL Buses",
-      "Lucky 777 Slot Machine – FREE",
-      "Magical Slots",
-      "Math Quiz HD",
-      "Math Quiz HD Pro",
-      "Medical ID (Free) Nödsituation",
-      "Medical ID (ICE): Nödsituation",
-      "Money Wheel Slot Machine 2",
-      "Money Wheel Slot Machine Game",
-      "Network Signal Info Pro",
-      "Office Jerk Free",
-      "Ovu Period Tracker Gratis",
-      "Phone Analyzer",
-      "Phone Analyzer Pro",
-      "Ping and Trace Pro",
-      "Ping Pro",
-      "Pixlr",
-      "Power Browser – Fast Internet Explorer",
-      "Private Browser & Incognito Browser",
-      "RecMe Free Screen Recorder",
-      "Red Hot 777 Slots: FREE",
-      "Salaire Brut ou Net",
-      "Scare Joke HD (Prank)",
-      "Scare Joke HD Pro (Prank)",
-      "Simple weather & clock widget",
-      "Speech2Text Translator",
-      "Statistics",
-      "Statistics Pro",
-      "TAXINA",
-      "Termometer (fria)",
-      "Triple 777 Slots – Free Casino",
-      "Triple Diamond 777 Slots",
-      "Triple Diamond Slot Machine",
-      "Under the Sea Slots",
-      "Veganized – Vegan Recipes, Nutrition, Grocery List",
-      "VoiceFX – Voice Changer with voice effects",
-      "WEATHER NOW",
-      "West Midlands Transport: Live Bus, Train Timetable",
-      "WiFi Overview 360 Pro",
-      "WiFi-o-Matic",
-      "WiFi-o-Matic Pro",
-      "15 dagars väderprognos",
-      "Car Navigation: GPS & Maps",
-      "Family Locator and GPS Tracker",
-      "Flush Pro – Restroom Finder",
-      "Flush – Toilet Finder & Map",
-      "Guide for Animal Crossing NL",
-      "London Tube Live – Underground",
-      "My Aurora Forecast & Alerts",
-      "My Earthquake Alerts & Feed",
-      "My Moon Phase Pro – Alerts",
-      "My Tide Times Pro – Tide Chart",
-      "My Tide Times – Tables & Chart",
-      "Peel TV Guide",
-      "Perfect365",
-      "Speed Cameras & Traffic",
-      "Sygic GPS-navigering & Kartor"
-    ];
-  }
 
   Future<Map<String, String>> _getPermissions() async {
     Map<String, String> permissionMap;
@@ -289,27 +191,6 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.person_pin, color: Colors.deepPurple),
-                    iconSize: 48.0,
-                    onPressed: null,
-                    tooltip: 'To Login-Page',
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.apps, color: Colors.deepPurple),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      var route = new MaterialPageRoute(
-                          builder: (BuildContext context) => new BlackList(
-                                appInfo: {
-                                  'blackList': blackList,
-                                  'installedLabels': installedAppLabels,
-                                },
-                              ));
-                      Navigator.of(context).push(route);
-                    },
-                    tooltip: 'To Other Apps Page',
-                  ),
-                  IconButton(
                     icon: Icon(Icons.remove_circle, color: Colors.red),
                     iconSize: 48.0,
                     onPressed: () {
@@ -322,47 +203,19 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.location_on, color: Colors.red),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      var route = new MaterialPageRoute(
-                          builder: (BuildContext context) => new Location(
-                                whoHasLocation: {
-                                  'whoHasLocation': _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION"),
-                                },
-                              ));
-                      Navigator.of(context).push(route);
-                    },
-                  ),
-                  IconButton(
                     icon: Icon(Icons.home, color: Colors.blueGrey),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        'menu',
-                      );
+                      var route = new MaterialPageRoute(
+                          builder: (BuildContext context) => new MenuPage(
+                            appInfo: {
+                              'installedLabels': installedAppLabels,
+                              //keep adding here to get more into the menu page
+                            },
+                          ));
+                      Navigator.of(context).push(route);
                     },
                     tooltip: 'location',
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.mic, color: Colors.blueGrey),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        'microphone',
-                      );
-                    },
-                    tooltip: 'microphone',
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.local_florist, color: Colors.green),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE");
-                    },
-                    tooltip: 'To permissionTemplate',
                   ),
                 ],
               ),
