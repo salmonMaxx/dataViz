@@ -74,12 +74,7 @@ class _LocationState extends State<Location> {
                     //don't get value, print null
                   ),
                 ),
-                RaisedButton(
-                  onPressed: (){
-                    print('${widget.whoHasLocation["whoHasLocation"]}');
-                  },
-                ),
-                temp.boxLeft(null, '', 'Location', '${loc?.longitude} \n',),
+                temp.otherPermissionBox(null, null, widget.whoHasLocation['whoHasLocation']),
               ],
             ),
             /*Row(
