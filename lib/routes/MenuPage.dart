@@ -122,7 +122,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('calender'),
+                  onTap:  () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Contacts(widget.appInfo["contacts"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.calendar_today),
               top: 17.42,
               left: 65.0,

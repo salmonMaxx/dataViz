@@ -165,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       }
     });
-    print('$permission is given to: $appsWithPermission');
+    //print('$permission is given to: $appsWithPermission');
     return appsWithPermission;
   }
 
@@ -210,7 +210,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: (BuildContext context) => new MenuPage(
                             appInfo: {
                               'installedLabels': installedAppLabels,
+                              'contacts' : _getPermissionToAppList("android.permission.READ_CONTACTS"),
+                              'microphone' : _getPermissionToAppList("android.permission.RECORD_AUDIO"),
+                              'sms' : _getPermissionToAppList("android.permission.READ_SMS"),
+                              'readExternalStorage' : _getPermissionToAppList("android.permission.READ_EXTERNAL_STORAGE"),
+                              'location' : _getPermissionToAppList("android.permission.ACESS_FINE_LOCATION"),
+
                               //keep adding here to get more into the menu page
+                              //TODO Contacts, microphone, sms, video and images, location
                             },
                           ));
                       Navigator.of(context).push(route);
