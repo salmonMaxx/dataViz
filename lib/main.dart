@@ -17,7 +17,6 @@ import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
 import './routes/drawer/Settings.dart';
-import './routes/drawer/ForgetMe1.dart';
 
 //routes --> permissions
 
@@ -26,14 +25,9 @@ import './routes/permissions/AudioFiles.dart';
 import './routes/permissions/Calendar.dart';
 import './routes/permissions/CallLog.dart';
 import './routes/permissions/Camera.dart';
-import './routes/permissions/Contacts.dart';
-import './routes/permissions/Location.dart';
-import './routes/permissions/Mic.dart';
 import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
-import './routes/permissions/VideoPics.dart';
-import './routes/BlackList.dart';
 
 //packages
 import 'package:flutter/material.dart';
