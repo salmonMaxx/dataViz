@@ -16,6 +16,7 @@ var template = new PermissionTemplate();
 class _CameraState extends State<Camera> {
 
   // BOX 1
+  String myImage = "assets/camera1.jpg";
   String myHeader = "1 PIC = 1000 WORDS";
   String myText = "What if someone can see you trough your phones camera?! scarey right?? ";
 
@@ -32,7 +33,7 @@ class _CameraState extends State<Camera> {
         children: <Widget>[
           new Container(
             //Put in functions from the template below!!!
-              child: template.textBoxWithPic(null, "assets/camera1.jpg", myHeader , null, myText, null, 150),
+              child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 150),
           ),
 
           //TAKE AWAY COMMENTS

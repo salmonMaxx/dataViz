@@ -37,9 +37,9 @@ class _MicState extends State<Mic> {
           ),
 
           //TAKE AWAY COMMENTS
-          //new Container(
-          //child: template.otherPermissionBox(null, null, widget.whoHasMic['whoHasMic']),
-          // ),
+          /*new Container(
+          child: template.otherPermissionBox(null, null, widget.whoHasMic['whoHasMic']),
+           ),*/
         ],
       ),
     );

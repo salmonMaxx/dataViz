@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-class BlackList extends StatefulWidget {
+import 'PermissionTemplate.dart';
 
+class BlackList extends StatefulWidget {
   BlackList(this.installed);
   List<String> installed;
 
   @override
-  _BlackListState createState() =>
-      _BlackListState();
+  _BlackListState createState() => _BlackListState();
 }
 
-class _BlackListState extends State<BlackList> {
+var template = new PermissionTemplate();
 
+class _BlackListState extends State<BlackList> {
   List<String> blackList = _getBlackList();
   List<String> installedAppLabels;
+
 
   static _getBlackList() {
     return [
@@ -109,17 +111,32 @@ class _BlackListState extends State<BlackList> {
       "Sygic GPS-navigering & Kartor"
     ];
   }
+  String myHeader = "BLACKLISTED APPS";
+  String myText = "hej hej hej hej hej";
 
   @override
   Widget build(BuildContext context) {
     installedAppLabels = widget.installed;
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.indigo[900],
         title: Text(
           'Blacklist: ${widget.installed.length} apps installed',
         ),
       ),
-      body: _getAppList(),
+      body: ListView(
+        children: <Widget>[
+          new Container(
+              child: template.textBox(null, myHeader, null, myText, null, null)
+          ),
+          new Container(
+            height: 500,
+            child: _getAppList(),
+          ),
+        ],
+      ),
     );
   }
 
