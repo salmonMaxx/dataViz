@@ -360,15 +360,18 @@ class PermissionTemplate extends StatefulWidget {
           new Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Container(
+              Flexible(
+                child: new Container(
                 margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 child: new Text(
                   myHeader,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: myTextColor,
                       fontSize: myHeaderSize,
                       fontWeight: FontWeight.bold),
                 ),
+              ),
               ),
             ],
           ),
@@ -381,6 +384,7 @@ class PermissionTemplate extends StatefulWidget {
                       const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: new Text(
                     myText,
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                         color: myTextColor,
                         fontSize: myTextSize,

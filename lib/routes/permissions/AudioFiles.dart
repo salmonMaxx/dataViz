@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
 import '../PermissionTemplate.dart';
-
 class AudioFiles extends StatefulWidget {
+
+  AudioFiles({Key key, this.whoHasAudioFiles}) : super(key:key);
+  final Map<String, dynamic> whoHasAudioFiles;
+
   @override
   _AudioFilesState createState() => _AudioFilesState();
+
 }
 
 var template = new PermissionTemplate();
 
 class _AudioFilesState extends State<AudioFiles> {
+  // BOX 1
+  String myImage1 = "assets/audiofile1.jpg";
+  String myImage2 = "assets/audiofile2.jpg";
+  String myHeader = "INFORMATION BOX";
+  String myText = "something about audio files!";
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +27,19 @@ class _AudioFilesState extends State<AudioFiles> {
       appBar: new AppBar(
         centerTitle: true,
         backgroundColor: Colors.indigo[900],
-        title: const Text('ACTIVITY LOG'),
+        title: const Text('AUDIO FILES'),
       ),
       body: ListView(
         children: <Widget>[
-          //Put in functions from the template below!!!
           new Container(
-              child: Text("HEJ")
+            //Put in functions from the template below!!!
+            child: template.textBoxWith2Pics(null, myImage1 , myImage2, myHeader , null, myText, null, 100),
           ),
+
+          //TAKE AWAY COMMENTS
+          //new Container(
+          //child: template.otherPermissionBox(null, null, widget.whoHasAudioFiles['whoHasAudioFiles']),
+          // ),
         ],
       ),
     );

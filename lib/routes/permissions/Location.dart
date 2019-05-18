@@ -24,8 +24,10 @@ class _LocationState extends State<Location> {
     location.onLocationChanged().listen((lc.LocationData currentLocation) {
       setState(() {
         loc = currentLocation;
-      });
-    });
+      },
+      );
+    },
+    );
   }
 
   @override

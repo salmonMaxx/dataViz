@@ -1,33 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:device_calendar/device_calendar.dart';
+
+import '../PermissionTemplate.dart';
 
 class Calendar extends StatefulWidget {
   @override
   _CalendarState createState() => _CalendarState();
+
+  Calendar({Key key, this.whoHasCalendar}) : super(key:key);
+  final Map<String, dynamic> whoHasCalendar;
+
 }
 
+var template = new PermissionTemplate();
+
 class _CalendarState extends State<Calendar> {
+
+  String myHeader = "INFORMATION BOX";
+  String myText = "We can see you";
+  String  myImage1 =  "assets/calender1.jpg";
+  String  myImage2 =  "assets/calender2.jpg";
+  String  myImage3 =  "assets/calender3.jpeg";
+
+  String myHeader2 = "FUN FACT";
+  String myText2 = "hey girl, what you doing?!";
+  String  myImage4 =  "assets/calender4.jpg";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo[500],
-      appBar: AppBar(
-        elevation: 0.0,
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
         centerTitle: true,
-        title: Text('Calender',
-            textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.indigo[900],
+        title: const Text('CALENDER'),
       ),
-      body: new Center(
-        child: Container(
-          width: 200,
-          height: 200,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/dataViz_logo2.png'),
-            ),
+      body: ListView(
+        children: <Widget>[
+          new Container(
+            //Put in functions from the template below!!!
+              child: template.textBoxWithPic(null, myImage4, myHeader , null, myText, null, 150)
           ),
-        ),
+          new Container(
+            child: template.textBoxWith3Pics(null, myImage3, myImage2, myImage1, myHeader , null, myText, null, 100),
+          ),
+// TAKE AWAY COMMENTS
+          //new Container(
+          //child: template.otherPermissionBox(null, null, widget.whoHasCalendar['whoHasCalendar']),
+          //),
+        ],
       ),
     );
   }
