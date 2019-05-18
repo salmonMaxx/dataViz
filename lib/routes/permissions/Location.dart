@@ -32,7 +32,11 @@ class _LocationState extends State<Location> {
   Widget build(BuildContext context) {
     _getLocation();
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.indigo[200],
+      appBar: AppBar(        centerTitle: true,
+        backgroundColor: Colors.indigo[900],
+        title: const Text('CONTACTS'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
