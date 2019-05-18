@@ -10,7 +10,8 @@ class ForgetMe extends StatefulWidget {
 class _ForgetMeState extends State<ForgetMe> {
   String _email;
   String _password;
-  String url = 'http://192.168.43.25:3000/delete'; //change to server later
+  String url = 'http://34.74.219.4:3000/delete'; //server url
+  //String url = 'http://192.168.43.25:3000/delete'; //local url
   final focusUser = FocusNode();
   final focusPass = FocusNode();
   final formkey = new GlobalKey<FormState>();

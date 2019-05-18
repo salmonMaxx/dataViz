@@ -10,10 +10,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email;
   String _password;
-  String userID;
   final focusPass = FocusNode();
   final focusUser = FocusNode();
-  String url = 'http://192.168.43.25:3000/login'; //change to server later
+  String url = 'http://34.74.219.4:3000/login'; //server url
+  //String url = 'http://192.168.43.25:3000/login'; //local url
   final formkey = new GlobalKey<FormState>();
 
   checkFields() {
@@ -38,8 +38,6 @@ class _LoginPageState extends State<LoginPage> {
         });
     if (response.statusCode == 200) {
       Navigator.of(context).pushReplacementNamed('menu');
-      var user = json.decode(response.body);
-      userID = (user['user']['_id']);
     } else {
       _showDialog(context, 'Failed to log in',
           'The combination of email and password is not valid');

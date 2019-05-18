@@ -10,15 +10,10 @@ class SignupPage extends StatefulWidget {
 class SignupPageState extends State<SignupPage> {
   String _email;
   String _password;
-  String _displayName;
-  String _securityQuestion;
-  String _securityAnswer;
-  String userID;
   final focusEmail = FocusNode();
   final focusPass = FocusNode();
-  final focusQues = FocusNode();
-  final focusAnsw = FocusNode();
-  String url = 'http://192.168.43.25:3000/register'; //change to server later
+  String url = '34.74.219.4:3000/register'; //server url
+  //String url = 'http://192.168.43.25:3000/register'; //local url
 
   final formkey = new GlobalKey<FormState>();
   checkFields() {
@@ -37,8 +32,6 @@ class SignupPageState extends State<SignupPage> {
         body: json.encode({
           'username': _email,
           'password': _password,
-          'securityQuestion': _securityQuestion,
-          'securityAnswer': _securityAnswer
         }),
         headers: {
           "Content-Type": "application/json",
@@ -47,8 +40,6 @@ class SignupPageState extends State<SignupPage> {
     print(response.body);
     print(response.statusCode);
     if (response.statusCode == 200) {
-      var user = json.decode(response.body);
-      userID = (user['user']['_id']);
       _showDialog(context, "Registration succesfull", "Welcome to the app!");
     } else if (response.statusCode == 422) {
       _showDialog(context, "Couldn't create account",
@@ -140,31 +131,8 @@ class SignupPageState extends State<SignupPage> {
                         height: 20.0,
                       ),
                       _input("required password", true, "PASSWORD", 'Password',
-                          (value) => _password = value, focusPass, focusQues),
-                      SizedBox(
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      _input(
-                          'required securityQuestion',
-                          false,
-                          "SECURITY QUESTION",
-                          "If you need to reser password",
-                          (value) => _securityQuestion = value,
-                          focusQues,
-                          focusAnsw),
-                      SizedBox(
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      _input(
-                          'required securityAnswer',
-                          true,
-                          "SECURE ANSWER",
-                          "Answer your question",
-                          (value) => _securityAnswer = value,
-                          focusAnsw,
-                          focusAnsw),
+                          (value) => _password = value, focusPass, focusPass),
+
                       new Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Center(
