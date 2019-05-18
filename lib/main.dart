@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.remove_circle, color: Colors.red),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'forgetMe');
+                      Navigator.pushNamed(context, 'login');
                     },
                     tooltip: 'To Login-Page',
                   ),
