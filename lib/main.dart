@@ -72,14 +72,10 @@ class MyApp extends StatelessWidget {
         'calender': (context) => Calendar(),
         'call_log': (context) => CallLog(),
         'camera': (context) => Camera(),
-        'contacts': (context) => Contacts(),
-        'location': (context) => Location(),
-        'mic': (context) => Mic(),
         'phone': (context) => Phone(),
         'sensors': (context) => Sensors(),
         'sms': (context) => SMS(),
-        'video_pics': (context) => VideoPics(),
-      },
+              },
     );
   }
 }
@@ -213,8 +209,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               'contacts' : _getPermissionToAppList("android.permission.READ_CONTACTS"),
                               'microphone' : _getPermissionToAppList("android.permission.RECORD_AUDIO"),
                               'sms' : _getPermissionToAppList("android.permission.READ_SMS"),
-                              'readExternalStorage' : _getPermissionToAppList("android.permission.READ_EXTERNAL_STORAGE"),
-                              'location' : _getPermissionToAppList("android.permission.ACESS_FINE_LOCATION"),
+                              'videoPics' : _getPermissionToAppList("android.permission.READ_EXTERNAL_STORAGE"),
+                              'location' : _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION"),
 
                               //keep adding here to get more into the menu page
                               //TODO Contacts, microphone, sms, video and images, location

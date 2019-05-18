@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../PermissionTemplate.dart';
 
 class Mic extends StatefulWidget {
-
-  Mic({Key key, this.whoHasMic}) : super(key:key);
-  final Map<String, dynamic> whoHasMic;
+  Mic(this.whoHasMic);
+  final List<String> whoHasMic;
 
   @override
   _MicState createState() => _MicState();
@@ -14,7 +13,6 @@ class Mic extends StatefulWidget {
 var template = new PermissionTemplate();
 
 class _MicState extends State<Mic> {
-
   // BOX 1
   String myImage = "assets/audiofile2.jpg";
   String myHeader = "MIC";
@@ -33,13 +31,12 @@ class _MicState extends State<Mic> {
         children: <Widget>[
           new Container(
             //Put in functions from the template below!!!
-            child: template.textBoxWithPic(null, myImage , myHeader , null, myText, null, 80),
+            child: template.textBoxWithPic(
+                null, myImage, myHeader, null, myText, null, 80),
           ),
-
-          //TAKE AWAY COMMENTS
-          /*new Container(
-          child: template.otherPermissionBox(null, null, widget.whoHasMic['whoHasMic']),
-           ),*/
+          new Container(
+            child: template.otherPermissionBox(null, null, widget.whoHasMic),
+          ),
         ],
       ),
     );

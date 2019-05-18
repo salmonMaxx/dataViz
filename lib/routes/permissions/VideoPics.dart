@@ -9,6 +9,8 @@ import 'photo_list.dart';
 import '../PermissionTemplate.dart';
 
 class VideoPics extends StatefulWidget {
+  VideoPics(this.whoHasVideoPics);
+  List<String> whoHasVideoPics;
   @override
   _VideoPicsState createState() => _VideoPicsState();
 }

@@ -4,8 +4,8 @@ import 'package:torsdags_test/routes/PermissionTemplate.dart';
 //import 'package:geolocation/geolocation.dart' as GeoLocator;
 
 class Location extends StatefulWidget {
-  Location({Key key, this.whoHasLocation}) : super(key: key);
-  final Map<String, dynamic> whoHasLocation;
+  Location(this.whoHasLocation);
+  final List<String> whoHasLocation;
 
   @override
   _LocationState createState() => _LocationState();
@@ -19,12 +19,14 @@ class _LocationState extends State<Location> {
 
   void _getLocation() async {
     theLocation = await location.getLocation();
-    location.onLocationChanged().listen((lc.LocationData currentLocation) {
-      setState(() {
-        loc = currentLocation;
+    location.onLocationChanged().listen(
+      (lc.LocationData currentLocation) {
+        setState(
+          () {
+            loc = currentLocation;
+          },
+        );
       },
-      );
-    },
     );
   }
 
@@ -70,8 +72,7 @@ class _LocationState extends State<Location> {
                           //don't get value, print null
                         ),
                 ),
-                temp.otherPermissionBox(
-                    null, null, widget.whoHasLocation['whoHasLocation']),
+                temp.otherPermissionBox(null, null, widget.whoHasLocation),
               ],
             ),
             /*Row(

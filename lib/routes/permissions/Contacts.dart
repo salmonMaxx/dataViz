@@ -4,6 +4,8 @@ import 'package:contacts_service/contacts_service.dart';
 import '../PermissionTemplate.dart';
 
 class Contacts extends StatefulWidget {
+  Contacts(this.whoHasContacts);
+  List<String> whoHasContacts;
   @override
   _ContactsState createState() => _ContactsState();
 }
