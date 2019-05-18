@@ -17,11 +17,15 @@ dependencies:
   permission_handler: '^3.0.0'
 
   location: ^2.3.5
-  #geolocation: ^4.0.1
+  geolocator: '^4.0.0'
 
   call_log: ^2.0.0
 
   photo_manager: ^0.3.3
+
+  device_calendar: ^0.0.2
+
+  contacts_service: ^0.0.9
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +47,16 @@ flutter:
   - assets/camera1.jpg
   - assets/camera2.jpeg
   - assets/camera3.jpg
+  - assets/activity1.jpeg
+  - assets/activity2.jpeg
+  - assets/activity3.jpeg
+  - assets/calender1.jpg
+  - assets/calender2.jpg
+  - assets/calender3.jpeg
+  - assets/calender4.jpg
+  - assets/sensors1.jpg
+  - assets/audiofile1.jpg
+  - assets/audiofile2.jpg
 
   fonts:
   - family: Modak-Regular

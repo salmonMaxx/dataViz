@@ -44,6 +44,7 @@ class _VideoPicsState extends State<VideoPics> {
   @override
   Widget build(BuildContext context) {
     Radius borderRadius = const Radius.circular(10.0);
+    List <String> theList = ["Hej", "Ho","lets go","Hej", "Ho","lets go","Hej", "Ho","lets go","Hej", "Ho","lets go",];
     return new Scaffold(
       backgroundColor: Colors.indigo[200],
       appBar: new AppBar(
@@ -108,7 +109,7 @@ class _VideoPicsState extends State<VideoPics> {
             borderRadius: new BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10)) ),
-            height: 200,
+            height: 100,
             margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5),
             child: new ListView.builder(
               itemBuilder: _buildItem,
@@ -116,17 +117,9 @@ class _VideoPicsState extends State<VideoPics> {
             ),
           ),
           new Container(
-            decoration: BoxDecoration(
-                gradient: template.colorGradient(
-                    Alignment.topLeft, Alignment.topRight),
-                borderRadius: new BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)) ),
-            height: 200,
-            margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5),
-            child:  Text("Hej")
-          ),
-        ],
+            child: template.otherPermissionBox(null, null, theList),
+            ),
+          ],
       ),
     );
   }

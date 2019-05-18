@@ -1,4 +1,9 @@
 // routes
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
+import 'package:launcher_assist/launcher_assist.dart';
+
 import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
 import './routes/ForgetMe.dart';
@@ -29,14 +34,10 @@ import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 import './routes/permissions/VideoPics.dart';
-import './routes/permissions/testPermissions.dart';
 import './routes/BlackList.dart';
 
-
-
 //packages
-import  'package:flutter/material.dart';
-//import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,41 +47,40 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue, fontFamily: 'Abel-bold', backgroundColor: Colors.white70
-      ),
+          primarySwatch: Colors.blue,
+          fontFamily: 'Abel-bold',
+          backgroundColor: Colors.white70),
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
       routes: {
         'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
-        'blackList': (context) => BlackList(),
         'forgetMe': (context) => ForgetMe(),
         'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
-        'menu':(context) => MenuPage(),
+        'menu': (context) => MenuPage(),
 
         //drawer
         'big_picture': (context) => BigPicture(),
         'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
-        'blacklist': (context) => BlackList(),
 
-        //PERMISSIONS
-        'activity_log' : (context) => ActivityLog(),
-        'audio_files' : (context) => AudioFiles(),
-        'calender' : (context) => Calendar(),
-        'call_log' : (context) => CallLog(),
-        'camera' : (context) => Camera(),
-        'contacts' : (context) => Contacts(),
-        'location' : (context) => PermissionLocationScreen(),
-        'mic' : (context) => Mic(),
-        'phone' : (context) => Phone(),
-        'sensors' : (context) => Sensors(),
-        'sms' : (context) => SMS(),
-        'video_pics' : (context) => VideoPics(),
-        //'testestest' : (context) => testPermissions(),
+
+        //PERMInstalling build/app/outputs/apk/app.apk...ISSIONS
+        'activity_log': (context) => ActivityLog(),
+        'audio_files': (context) => AudioFiles(),
+        'calender': (context) => Calendar(),
+        'call_log': (context) => CallLog(),
+        'camera': (context) => Camera(),
+        'contacts': (context) => Contacts(),
+        'location': (context) => Location(),
+        'mic': (context) => Mic(),
+        'phone': (context) => Phone(),
+        'sensors': (context) => Sensors(),
+        'sms': (context) => SMS(),
+        'video_pics': (context) => VideoPics(),
       },
     );
   }
@@ -91,48 +91,112 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-    @override
-    _MyHomePageState createState() => _MyHomePageState();
-  }
-
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
 class _MyHomePageState extends State<MyHomePage> {
+  Map<String, String> permissionMap;
+  int appCount;
+  var installedApps;
+  var installedPackages;
+  var installedLabels;
+  var installedAppIcons;
+  List<String> installedAppLabels;
+  static const platform =
+      const MethodChannel("dataViz/permissions"); //change channel string
+  List<String> whoHasLocationPermission;
+
+  Future<Map<String, String>> _getPermissions() async {
+    Map<String, String> permissionMap;
+    try {
+      permissionMap = await platform.invokeMapMethod('getPermissions');
+    } catch (e) {
+      print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
+    }
+    return permissionMap;
+  }
+
+  Future _loadApps() async {
+    await LauncherAssist.getAllApps().then((apps) {
+      setState(() {
+        appCount = apps.length;
+        installedApps =
+            apps; //List of Map of label, package and icon; icon is bytearray
+      });
+    });
+    installedAppLabels = _resolveTheListLabels(installedApps);
+    installedPackages = _resolveTheListPackages(installedApps);
+    //installedAppIcons = _resolveTheListIcons(installedApps);
+  }
+
+  _resolveTheListPackages(List<dynamic> theList) {
+    List<String> packageList = [];
+    theList.forEach((element) => packageList.add(element["package"]));
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return packageList;
+  }
+
+  _resolveTheListLabels(List<dynamic> theList) {
+    List<String> labelList = []; //make me the length of the list!!
+    theList.forEach((element) => labelList.add(element["label"]));
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return labelList;
+  }
+
+  _resolveTheListIcons(List<dynamic> theList) {
+    Uint8List iconList;
+    theList.forEach((element) => iconList.add(element["icon"]));
+    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
+    return iconList;
+  }
+
+  _capitalizeString(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+  }
+
+  List<String> _getPermissionToAppList(String permission){
+    List<String> appsWithPermission = [];
+    permissionMap.forEach((package,permissionListString) {
+      if(permissionListString.split(",").contains(permission)){
+        //translate package into label with the installedApps variable
+        installedApps.forEach((index) {
+          if(index["package"] == package){
+            appsWithPermission.add(index["label"]);
+          }
+        });
+      }
+    });
+    print('$permission is given to: $appsWithPermission');
+    return appsWithPermission;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadApps();
+    print('loaded apps. . . \n');
+    _getPermissions().then((permissions) => permissionMap = permissions);
+    print('loaded permissions. . . \n');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
-      body: Row( mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Column( mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.person_pin, color: Colors.deepPurple),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'login');
-                    },
-                    tooltip: 'To Login-Page',
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.apps, color: Colors.deepPurple),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'otherApps');
-                    },
-                    tooltip: 'To Other Apps Page',
-                  ),
-                  IconButton(
                     icon: Icon(Icons.remove_circle, color: Colors.red),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(
-                        context, 'forgetMe',
-                      );
+                      Navigator.pushNamed(context, 'forgetMe');
                     },
                     tooltip: 'To Login-Page',
                   ),
@@ -141,43 +205,19 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.location_on, color: Colors.red),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, 'location',
-                      );
-                    },
-                  ),
-                  IconButton(
                     icon: Icon(Icons.home, color: Colors.blueGrey),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(
-                             context, 'menu',
-                      );
+                      var route = new MaterialPageRoute(
+                          builder: (BuildContext context) => new MenuPage(
+                            appInfo: {
+                              'installedLabels': installedAppLabels,
+                              //keep adding here to get more into the menu page
+                            },
+                          ));
+                      Navigator.of(context).push(route);
                     },
                     tooltip: 'location',
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.mic, color: Colors.blueGrey),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context, 'microphone',
-                      );
-                    },
-                    tooltip: 'microphone',
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.local_florist, color: Colors.green),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context, 'permissions',
-                      );
-                    },
-                    tooltip: 'To permissionTemplate',
                   ),
                 ],
               ),
@@ -189,12 +229,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+// CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
+// IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
 
-  // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
-  // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER
-
-
-  /*
+/*
 
   void permissionContact() async {
     //REQUEST PERMISSION

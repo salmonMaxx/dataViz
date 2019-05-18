@@ -1,28 +1,25 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:launcher_assist/launcher_assist.dart';
+
+import 'PermissionTemplate.dart';
 
 class BlackList extends StatefulWidget {
+  BlackList(this.installed);
+  List<String> installed;
+
   @override
   _BlackListState createState() => _BlackListState();
 }
 
-class _BlackListState extends State<BlackList> {
+var template = new PermissionTemplate();
 
-  Map<String,String> permissionMap;
-  int appCount;
-  var installedApps;
-  var installedPackages;
-  var installedLabels;
-  var installedAppIcons;
-  List<String> installedAppLabels;
-  static const platform = const MethodChannel("kalle"); //change channel string
+class _BlackListState extends State<BlackList> {
   List<String> blackList = _getBlackList();
+  List<String> installedAppLabels;
+
 
   static _getBlackList() {
-    return ["3 In 1 Diamond Slots + Bonus",
+    return [
+      "3 In 1 Diamond Slots + Bonus",
       "777 Jackpot Slots-Free Casino",
       "Arranger Keyboard",
       "Audiosdroid Audio Studio DAW",
@@ -114,109 +111,57 @@ class _BlackListState extends State<BlackList> {
       "Sygic GPS-navigering & Kartor"
     ];
   }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadApps();
-    print('loaded apps. . . \n');
-    _getPermissions().then((permissions) => permissionMap = permissions);
-    print('loaded permissions. . . \n');
-  }
+  String myHeader = "BLACKLISTED APPS";
+  String myText = "hej hej hej hej hej";
 
   @override
   Widget build(BuildContext context) {
+    installedAppLabels = widget.installed;
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.indigo[900],
         title: Text(
-          'Blacklist: $appCount apps installed',
+          'Blacklist: ${widget.installed.length} apps installed',
         ),
       ),
-      body:
-      _getAppList(),
-    );
-  }
-
-  _whichHasWhich(){
-    installedPackages.forEach((package) =>
-        print(
-            '$package has permissions:\n${permissionMap[package]}\n\n'
-        )
-    );
-  }
-
-  Future<Map<String,String>> _getPermissions() async {
-    //Add support for checking if any "extra permissions" are given here, to rinse them out before they can get in!!
-    Map<String, String> permissionMap;
-    try{
-      permissionMap = await platform.invokeMapMethod('getPermissions');
-      //permissionMap.forEach((k, v) => print("app: $k \n\n\n\n\n permissions: $v \n\n\n\n"));
-    } catch(e){
-      print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
-    }
-    permissionMap.forEach((k, v) => print("app: $k \npermissions: $v\n\n"));
-    return permissionMap;
-  }
-
-
-  Future _loadApps() async {
-    await LauncherAssist.getAllApps().then((apps) {
-      setState(() {
-        appCount = apps.length;
-        installedApps = apps;   //List of Map of label, package and icon; icon is bytearray
-      });
-    });
-    installedAppLabels = _resolveTheListLabels(installedApps);
-    installedPackages = _resolveTheListPackages(installedApps);
-    installedAppIcons = _resolveTheListIcons(installedApps);
-  }
-
-  _resolveTheListPackages(List<dynamic> theList){
-    List<String> packageList = [];
-    theList.forEach((element) =>
-        packageList.add(element["package"])
-    );
-    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
-    return packageList;
-  }
-
-  _resolveTheListLabels(List<dynamic> theList){
-    List<String> labelList = [];
-    theList.forEach((element) =>
-        labelList.add(element["label"])
-    );
-    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
-    return labelList;
-  }
-
-  _resolveTheListIcons(List<dynamic> theList){
-    Uint8List iconList;
-    theList.forEach((element) =>
-        iconList.add(element["icon"])
-    );
-    //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
-    return iconList;
-  }
-
-  _capitalizeString(String str){
-    return str.substring(0,1).toUpperCase() + str.substring(1);
-  }
-
-  Widget _getAppList(){
-    return ListView.separated(
-      separatorBuilder:
-          (context, i) => Divider(
-        color: Colors.black,
+      body: ListView(
+        children: <Widget>[
+          new Container(
+              child: template.textBox(null, myHeader, null, myText, null, null)
+          ),
+          new Container(
+            height: 500,
+            child: _getAppList(),
+          ),
+        ],
       ),
+    );
+  }
+
+  _capitalizeString(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+  }
+
+  Widget _getAppList() {
+    return ListView.separated(
+      separatorBuilder: (context, i) => Divider(
+            color: Colors.black,
+          ),
       padding: EdgeInsets.all(15.0),
-      itemCount: appCount,
-      itemBuilder: (context, i){
+      itemCount: installedAppLabels?.length ?? 80,
+      itemBuilder: (context, i) {
         //find installedAppLabels and match its package with the blacklisted
         //packages
-        final blacklisted = (blackList.contains(_capitalizeString(installedAppLabels[i])));
+        final blacklisted =
+            (blackList.contains(_capitalizeString(installedAppLabels[i])));
         return new ListTile(
-          title: Text(_capitalizeString(installedAppLabels[i]), style: TextStyle(fontWeight: FontWeight.w800),),
-          trailing: Icon( blacklisted ? Icons.cancel : Icons.check_box,
+          title: Text(
+            _capitalizeString(installedAppLabels[i]),
+            style: TextStyle(fontWeight: FontWeight.w800),
+          ),
+          trailing: Icon(blacklisted ? Icons.cancel : Icons.check_box,
               color: (blacklisted ? Colors.red : Colors.green)),
           onTap: null,
         );

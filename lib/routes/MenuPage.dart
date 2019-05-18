@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import './BlackList.dart';
 
 Future<void> _ackAlert(BuildContext context) {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Discover all Permissions!', textAlign: TextAlign.center, style:  TextStyle(color: Colors.indigo[900],fontSize: 25)),
-        content: Text('Go through the icons in the menu to see the importance of different permissions and how your apps uses them.',
+        title: Text('Discover all Permissions!',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.indigo[900], fontSize: 25)),
+        content: Text(
+            'Go through the icons in the menu to see the importance of different permissions and how your apps uses them.',
             style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
         actions: <Widget>[
           FlatButton(
-            child: Text('OK!', textAlign: TextAlign.center, style: new TextStyle(color: Colors.indigo[900])),
+            child: Text('OK!',
+                textAlign: TextAlign.center,
+                style: new TextStyle(color: Colors.indigo[900], fontSize: 25)),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -22,6 +28,9 @@ Future<void> _ackAlert(BuildContext context) {
 }
 
 class MenuPage extends StatefulWidget {
+  MenuPage({Key key, this.appInfo}) : super(key: key);
+  Map<String, List<String>> appInfo;
+
   @override
   _MenuPageState createState() => _MenuPageState();
 }
@@ -45,20 +54,23 @@ class _MenuPageState extends State<MenuPage> {
           border: new Border.all(color: Colors.indigo[300], width: 20.0)),
     );
 
-
     return Scaffold(
       backgroundColor: Colors.indigo[900],
       appBar: AppBar(
         actions: <Widget>[
-          new IconButton( icon: new Icon(Icons.info), tooltip: 'INFO', onPressed: () {
-            _ackAlert(context);
-          }, ),],
+          new IconButton(
+            icon: new Icon(Icons.info),
+            tooltip: 'INFO',
+            onPressed: () {
+              _ackAlert(context);
+            },
+          ),
+        ],
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text('dataViz',
             textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
       ),
-
       body: Center(
         child: new Stack(
           children: <Widget>[
@@ -71,7 +83,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 600,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/light.png'),
+                      image: AssetImage('assets/light.png'),
                     ),
                   ),
                 ),
@@ -98,8 +110,13 @@ class _MenuPageState extends State<MenuPage> {
             //Permission menu
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('camera'),
-                  iconData: Icons.camera_alt),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new BlackList(widget.appInfo["installedLabels"]));
+                    Navigator.of(context).push(route);
+                  },
+                  iconData: Icons.list),
               top: 0.0,
               left: 130.0,
             ),
@@ -180,7 +197,6 @@ class _MenuPageState extends State<MenuPage> {
               top: 260.0,
               left: 130.0,
             ),
-
           ],
         ),
       ),
@@ -241,18 +257,15 @@ class _MenuPageState extends State<MenuPage> {
                 Navigator.of(context).pushNamed('feedback');
               },
             ),
+            ListTile(title: Text('')),
             ListTile(
-              title: Text('')
-            ),
-            ListTile(
-
               title: Text('FORGET ME!',
                   style: new TextStyle(
-                      fontSize: 30.0,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,),
-                      textAlign: TextAlign.center),
-
+                    fontSize: 30.0,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).pushNamed('forgetMe');
