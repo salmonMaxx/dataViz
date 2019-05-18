@@ -1,21 +1,47 @@
 import 'package:flutter/material.dart';
 
+import '../PermissionTemplate.dart';
+
 class Phone extends StatefulWidget {
+
+  Phone({Key key, this.whoHasPhone}) : super(key:key);
+  final Map<String, dynamic> whoHasPhone;
+
   @override
   _PhoneState createState() => _PhoneState();
 }
 
+var template = new PermissionTemplate();
+
 class _PhoneState extends State<Phone> {
+
+
+  // BOX 1
+  String myImage = "test1.jpg";
+  String myHeader = "PHONE";
+  String myText = "Phonephoneiphone ";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo[500],
-      appBar: AppBar(
-        elevation: 0.0,
+      backgroundColor: Colors.indigo[200],
+      appBar: new AppBar(
         centerTitle: true,
-        title: Text('Phone', textAlign: TextAlign.center, style: new TextStyle(fontSize: 30.0)),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.indigo[900],
+        title: const Text('PHONE'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          new Container(
+            //Put in functions from the template below!!!
+            child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 150),
+          ),
 
+          //TAKE AWAY COMMENTS
+          //new Container(
+          //child: template.otherPermissionBox(null, null, widget.whoHasPhone['whoHasPhone']),
+          // ),
+        ],
       ),
     );
   }

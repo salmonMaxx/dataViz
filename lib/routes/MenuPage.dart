@@ -16,7 +16,7 @@ Future<void> _ackAlert(BuildContext context) {
           FlatButton(
             child: Text('OK!',
                 textAlign: TextAlign.center,
-                style: new TextStyle(color: Colors.indigo[900])),
+                style: new TextStyle(color: Colors.indigo[900], fontSize: 25)),
             onPressed: () {
               Navigator.of(context).pop();
             },
