@@ -47,6 +47,7 @@ flutter:
   - assets/camera1.jpg
   - assets/camera2.jpeg
   - assets/camera3.jpg
+  - assets/camera4.jpg
   - assets/activity1.jpeg
   - assets/activity2.jpeg
   - assets/activity3.jpeg
@@ -57,6 +58,8 @@ flutter:
   - assets/sensors1.jpg
   - assets/audiofile1.jpg
   - assets/audiofile2.jpg
+  - assets/phone1.jpg
+  - assets/phone2.jpg
 
   fonts:
   - family: Modak-Regular

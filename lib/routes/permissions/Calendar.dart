@@ -25,6 +25,11 @@ class _CalendarState extends State<Calendar> {
   String myText2 = "hey girl, what you doing?!";
   String  myImage4 =  "assets/calender4.jpg";
 
+  getDate() {
+    final timeStamp = new DateTime.now().millisecondsSinceEpoch.toString();
+    return "$timeStamp";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +41,7 @@ class _CalendarState extends State<Calendar> {
       ),
       body: ListView(
         children: <Widget>[
+          new Container(child: template.textBox(null, getDate(), null, "Todays date", null, null)),
           new Container(
             //Put in functions from the template below!!!
               child: template.textBoxWithPic(null, myImage4, myHeader , null, myText, null, 150)

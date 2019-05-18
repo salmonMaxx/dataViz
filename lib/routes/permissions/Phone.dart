@@ -17,7 +17,7 @@ class _PhoneState extends State<Phone> {
 
 
   // BOX 1
-  String myImage = "test1.jpg";
+  String myImage = "assets/phone2.jpg";
   String myHeader = "PHONE";
   String myText = "Phonephoneiphone ";
 
@@ -34,7 +34,7 @@ class _PhoneState extends State<Phone> {
         children: <Widget>[
           new Container(
             //Put in functions from the template below!!!
-            child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 150),
+            child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 100),
           ),
 
           //TAKE AWAY COMMENTS

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'PermissionTemplate.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -40,95 +41,108 @@ class _ForgetMeState extends State<ForgetMe> {
     if (response.statusCode == 200) {
       _showDialog(context, "Account deleted",
           "Nice job! Continue to protect your data. You will be redirected to the signup page!");
-    }
-    else{
-      _showDialog(context, "Failed to delete account", "Make sure to enter the correct credentials.");
+    } else {
+      _showDialog(context, "Failed to delete account",
+          "Make sure to enter the correct credentials.");
     }
   }
 
+  String forgetpic = 'assets/forgetmepic.jpg';
+
+  var template = new PermissionTemplate();
+
   Widget build(BuildContext context) {
     return new Scaffold(
+      backgroundColor: Colors.indigo[200],
       appBar: AppBar(
-        title: Text('Forget Me!'),
+        centerTitle: true,
+        title: Text('FORGET ME!'),
         backgroundColor: Colors.indigo[900],
-        actions: <Widget>[
-        ],
+        actions: <Widget>[],
       ),
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          Container(
-            color: Colors.deepPurple[300],
-            height: 120,
-            width: 110,
+          new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                child: Form(
+                  key: formkey,
+                  child: template.textWithPic(
+                      forgetpic,
+                      "FANTASTIC!",
+                      60,
+                      'We really encourage our users to delete their accounts to protect their data.'
+                      '\nRemember that you have the right to delete your data on other apps and plattforms as well. '
+                      '\n\nTake back controll of your data! ',
+                      null,
+                      130,
+                      Colors.indigo[900]),
+                ),
+              ),
+              _input(
+                  "required email",
+                  false,
+                  "EMAIL",
+                  'Enter your account\'s email',
+                  (value) => _email = value,
+                  focusUser,
+                  focusPass),
+              SizedBox(
+                width: 20.0,
+                height: 20.0,
+              ),
+              _input("required password", true, "PASSWORD", 'Password',
+                  (value) => _password = value, focusPass, focusPass),
+              new Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: RaisedButton(
+                                padding: EdgeInsets.all(5.0),
+                                child: Text('Forget me',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  deleteFromDB();
+                                },
+                                splashColor: Colors.amber,
+                                color: Colors.green,
+                              ),
+                              flex: 1,
+                            ),
+                            Expanded(
+                              child: RaisedButton(
+                                padding: EdgeInsets.all(5.0),
+                                child: Text('Cancel',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),),
+                                onPressed: () {},
+                                splashColor: Colors.amber,
+                                color: Colors.red[900],
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Center(
-              child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Center(
-                      child: Form(
-                    key: formkey,
-                    child: Center(
-                        child: ListView(shrinkWrap: true, children: <Widget>[
-                      SizedBox(
-                        width: 20,
-                        height: 200,
-                        child: Card(
-                          child: Text(
-                            'FANTASTIC! \n \n'
-                            'We really encourage our users to delete their accounts to protect their data. '
-                            'Remember that you have the right to delete your data on other apps and plattforms as well. '
-                            '\n\nTake back controll of your data! ',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      _input(
-                          "required email",
-                          false,
-                          "EMAIL",
-                          'Enter your account\'s email',
-                          (value) => _email = value,
-                          focusUser,
-                          focusPass),
-                      SizedBox(
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      _input("required password", true, "PASSWORD", 'Password',
-                          (value) => _password = value, focusPass, focusPass),
-                      new Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Center(
-                              child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: RaisedButton(
-                                            child: Text('Forget me'),
-                                            onPressed: () {
-                                              deleteFromDB();
-                                            },
-                                            splashColor: Colors.amber,
-                                            color: Colors.lightGreenAccent,
-                                          ),
-                                          flex: 1,
-                                        ),
-                                        Expanded(
-                                          child: RaisedButton(
-                                            child: Text('Cancel'),
-                                            onPressed: () {},
-                                            splashColor: Colors.amber,
-                                            color: Colors.red[900],
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ]))))
-                    ])),
-                  ))))
         ],
       ),
     );
