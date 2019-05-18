@@ -12,8 +12,10 @@ class _LoginPageState extends State<LoginPage> {
   String _password;
   final focusPass = FocusNode();
   final focusUser = FocusNode();
-  String url = 'http://192.168.43.25:3000/login'; //change to server later
+  String url = 'http://34.74.219.4:3000/login'; //server url
+  //String url = 'http://192.168.43.25:3000/login'; //local url
   final formkey = new GlobalKey<FormState>();
+
   checkFields() {
     final form = formkey.currentState;
     if (form.validate()) {
@@ -24,19 +26,23 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<String> logIn() async {
-    print('makeRequest is running');
     checkFields();
-      var response = await http
-        .post(url, body: json.encode({
-      'username': _email,
-      //'displayname': ,
-      'password': _password,
-    }), headers: {"Content-Type": "application/json",
-    "Accept": "application/json",});
-    print(response.body);
-    Navigator.of(context).pushReplacementNamed('menu');
+    var response = await http.post(url,
+        body: json.encode({
+          'username': _email,
+          'password': _password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        });
+    if (response.statusCode == 200) {
+      Navigator.of(context).pushReplacementNamed('menu');
+    } else {
+      _showDialog(context, 'Failed to log in',
+          'The combination of email and password is not valid');
+    }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +50,6 @@ class _LoginPageState extends State<LoginPage> {
     return new Scaffold(
       backgroundColor: Colors.indigo[900],
       appBar: AppBar(
-
         elevation: 0.0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -91,7 +96,6 @@ class _LoginPageState extends State<LoginPage> {
                       child: new Text("SIGN UP",
                           style: new TextStyle(
                               fontSize: 25.0, color: Colors.white30))),
-
                 ),
               ),
             ],
@@ -106,8 +110,14 @@ class _LoginPageState extends State<LoginPage> {
                   child: ListView(
                     shrinkWrap: true,
                     children: <Widget>[
-                      _input("required email", false, "EMAIL",
-                          'Enter your Email', (value) => _email = value, focusUser, focusPass),
+                      _input(
+                          "required email",
+                          false,
+                          "EMAIL",
+                          'Enter your Email',
+                          (value) => _email = value,
+                          focusUser,
+                          focusPass),
                       SizedBox(
                         width: 20.0,
                         height: 20.0,
@@ -161,7 +171,6 @@ class _LoginPageState extends State<LoginPage> {
                                     height: 18.0,
                                     width: 18.0,
                                   ),
-
                                 ],
                               ),
                               SizedBox(height: 15.0),
@@ -174,23 +183,15 @@ class _LoginPageState extends State<LoginPage> {
                                       child: new Container(
                                           alignment: Alignment.center,
                                           height: 60.0,
-                                          child: new Text("REMEMBER ME",
-                                              style: new TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Colors.white))),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: OutlineButton(
-                                      borderSide: const BorderSide(
-                                          style: BorderStyle.none),
-                                      child: new Container(
-                                          alignment: Alignment.center,
-                                          height: 60.0,
                                           child: new Text("FORGOT PASSWORD",
                                               style: new TextStyle(
                                                   fontSize: 15.0,
                                                   color: Colors.white))),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                'forgotPassword');
+                                      },
                                     ),
                                   ),
                                 ],
@@ -211,8 +212,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _input(String validation, bool, String label, String hint, save, FocusNode currentFocus, FocusNode nextFocus) {
-    if (nextFocus != currentFocus){
+  Widget _input(String validation, bool, String label, String hint, save,
+      FocusNode currentFocus, FocusNode nextFocus) {
+    if (nextFocus != currentFocus) {
       return new TextFormField(
         decoration: InputDecoration(
           hintText: hint,
@@ -224,12 +226,11 @@ class _LoginPageState extends State<LoginPage> {
         style: new TextStyle(color: Colors.white),
         validator: (value) => value.isEmpty ? validation : null,
         onSaved: save,
-        onFieldSubmitted: (term){
+        onFieldSubmitted: (term) {
           FocusScope.of(context).requestFocus(nextFocus);
         },
       );
-    }
-    else{
+    } else {
       return new TextFormField(
         decoration: InputDecoration(
           hintText: hint,
@@ -241,10 +242,37 @@ class _LoginPageState extends State<LoginPage> {
         validator: (value) => value.isEmpty ? validation : null,
         onSaved: save,
         focusNode: currentFocus,
-        onFieldSubmitted: (term){
+        onFieldSubmitted: (term) {
           currentFocus.unfocus();
         },
       );
     }
   }
+}
+
+void _showDialog(BuildContext context, String title, String body) {
+  // flutter defined function
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text(title),
+        content: new Text(body),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Close"),
+            onPressed: () {
+              if (title == "Registration succesfull")
+                Navigator.of(context).pushReplacementNamed('menu');
+              else {
+                Navigator.of(context).pop();
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

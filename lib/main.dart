@@ -7,6 +7,7 @@ import 'package:launcher_assist/launcher_assist.dart';
 import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
 import './routes/ForgetMe.dart';
+import './routes/ForgotPassword.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
         'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
         'forgetMe': (context) => ForgetMe(),
+        'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu': (context) => MenuPage(),
