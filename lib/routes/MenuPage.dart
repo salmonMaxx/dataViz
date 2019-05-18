@@ -153,7 +153,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('contacts'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Contacts(widget.appInfo["contacts"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.contacts),
               top: 65.0,
               left: 17.42,

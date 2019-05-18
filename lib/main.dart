@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         'feedback': (context) => FeedBack(),
 
 
-        //PERMInstalling build/app/outputs/apk/app.apk...ISSIONS
+        //PERMIISSIONS
         'activity_log': (context) => ActivityLog(),
         'audio_files': (context) => AudioFiles(),
         'calender': (context) => Calendar(),
@@ -253,6 +253,8 @@ class _MyHomePageState extends State<MyHomePage> {
     bool calendarShow          = await PermissionHandler()
         .shouldShowRequestPermissionRationale(calendarPermission);
    REQUEST STATUS
+
+   permissionsRequestCalendar   = requestPermissionFor();
 
     print('============== requesting ==============');
     permissionsRequestCalendar   = requestPermissionFor(calendarPermission);

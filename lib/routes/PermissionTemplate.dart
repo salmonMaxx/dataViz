@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
@@ -41,13 +40,13 @@ class PermissionTemplate extends StatefulWidget {
               children: <Widget>[
                 new Container(
                   margin: const EdgeInsets.only(left: 5, top: 7.5),
-                  child: new Text(
+                  child: myHeader.isNotEmpty ? new Text(
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
                         fontWeight: FontWeight.bold),
-                  ),
+                  ) : null,
                 ),
                 new Container(
                   margin: const EdgeInsets.only(left: 5),
@@ -84,13 +83,13 @@ class PermissionTemplate extends StatefulWidget {
               children: <Widget>[
                 new Container(
                   margin: const EdgeInsets.only(left: 10, top: 7.5),
-                  child: new Text(
+                  child: myHeader.isNotEmpty ? new Text(
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
                         fontWeight: FontWeight.bold),
-                  ),
+                  ) : null,
                 ),
                 new Container(
                   margin: const EdgeInsets.only(left: 10),
@@ -132,8 +131,8 @@ class PermissionTemplate extends StatefulWidget {
           Expanded(
             child: Container(
               margin: EdgeInsets.only(left: 10),
-              child: Text(myHeader,
-                  style: TextStyle(color: Colors.indigo[900], fontSize: 25)),
+              child: myHeader.isNotEmpty ? Text(myHeader,
+                  style: TextStyle(color: Colors.indigo[900], fontSize: 25)) : null,
             ),
           ),
           Expanded(
@@ -280,13 +279,13 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               new Container(
                 margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: new Text(
+                child: myHeader.isNotEmpty ? new Text(
                   myHeader,
                   style: TextStyle(
                       color: myTextColor,
                       fontSize: myHeaderSize,
                       fontWeight: FontWeight.bold),
-                ),
+                ) : null,
               ),
             ],
           ),
@@ -362,16 +361,16 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               Flexible(
                 child: new Container(
-                margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: new Text(
-                  myHeader,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: myTextColor,
-                      fontSize: myHeaderSize,
-                      fontWeight: FontWeight.bold),
+                  margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: myHeader.isNotEmpty ? new Text(
+                    myHeader,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: myTextColor,
+                        fontSize: myHeaderSize,
+                        fontWeight: FontWeight.bold),
+                  ) : null,
                 ),
-              ),
               ),
             ],
           ),
@@ -470,13 +469,13 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               new Container(
                 margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: new Text(
+                child: myHeader.isNotEmpty ? new Text(
                   myHeader,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: myHeaderSize,
                       fontWeight: FontWeight.bold),
-                ),
+                ) : null,
               ),
             ],
           ),
@@ -588,13 +587,13 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               new Container(
                 margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: new Text(
+                child: myHeader.isNotEmpty ? new Text(
                   myHeader,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
-                ),
+                ) : null,
               ),
             ],
           ),
@@ -840,7 +839,6 @@ class PermissionTemplate extends StatefulWidget {
     return str.substring(0, 1).toUpperCase() + str.substring(1);
   }
 
-
   otherPermissionBox(Decoration myBoxDeco, EdgeInsets myMargin, List theList) {
     Radius borderRadius = const Radius.circular(5.0);
     Color myTextColor = Colors.white;
@@ -864,10 +862,10 @@ class PermissionTemplate extends StatefulWidget {
                 height: 50,
                 margin: const EdgeInsets.all(10),
                 child: new Text(
-                  "APPS WITH THIS \n PERMISSION: ",
+                  "INSTALLED APPS WITH \nTHIS PERMISSION: ",
                   style: TextStyle(
                       color: myTextColor,
-                      fontSize: 25,
+                      fontSize: 23,
                       fontWeight: FontWeight.bold),
                 ),
               ),
