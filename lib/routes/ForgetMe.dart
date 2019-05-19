@@ -129,9 +129,10 @@ class _ForgetMeState extends State<ForgetMe> {
                                       color: Colors.white,
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold),),
-                                onPressed: () {},
+                                onPressed: () {Navigator.popAndPushNamed(context, "homepage");} ,
                                 splashColor: Colors.amber,
                                 color: Colors.red[900],
+                                
                               ),
                             )
                           ],
