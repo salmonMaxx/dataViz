@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.remove_circle, color: Colors.red),
+                    icon: Icon(Icons.local_florist, color: Colors.red),
                     iconSize: 48.0,
                     onPressed: () {
                       Navigator.pushNamed(context, 'login');

@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      backgroundColor: Colors.indigo[900],
+      backgroundColor: Colors.indigo[500],
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
@@ -58,8 +58,8 @@ class _LoginPageState extends State<LoginPage> {
         shrinkWrap: true,
         children: <Widget>[
           Container(
-            height: 300.0,
-            width: 300.0,
+            margin: EdgeInsets.only(left: 100.0, right: 100.0, top: 20.0),
+            height: 150.0,
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/logo_dataviz_1.png"),
@@ -104,107 +104,97 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(28.0),
               child: Center(
-                  child: Form(
-                key: formkey,
-                child: Center(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      _input(
-                          "required email",
-                          false,
-                          "EMAIL",
-                          'Enter your Email',
-                          (value) => _email = value,
-                          focusUser,
-                          focusPass),
-                      SizedBox(
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      _input("required password", true, "PASSWORD", 'Password',
-                          (value) => _password = value, focusPass, focusPass),
-                      new Padding(
-                        padding: EdgeInsets.all(0.0),
-                        child: Center(
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 80.0, right: 80.0, top: 20.0),
-                                      child: OutlineButton(
-                                          borderSide: const BorderSide(
-                                              style: BorderStyle.none),
-                                          child: new Container(
-                                              alignment: Alignment.center,
-                                              height: 60.0,
-                                              decoration: new BoxDecoration(
-                                                color: Color(0xFF2E7D32),
-                                                borderRadius:
-                                                    new BorderRadius.circular(
-                                                        25.0),
-                                                boxShadow: <BoxShadow>[
-                                                  BoxShadow(
-                                                    color: Colors.indigo[300],
-                                                    offset: Offset(1.0, 1.0),
-                                                    blurRadius: 10.0,
-                                                  ),
-                                                ],
-                                              ),
-                                              child: new Text("OK!",
-                                                  style: new TextStyle(
-                                                      fontSize: 30.0,
-                                                      color: Colors.white))),
-                                          /*child: Text("OK! "),*/
-                                          onPressed: logIn),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 18.0,
-                                    width: 18.0,
-                                  ),
-                                  SizedBox(
-                                    height: 18.0,
-                                    width: 18.0,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15.0),
-                              new Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: OutlineButton(
+                child: Form(
+                  key: formkey,
+                  child: Center(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        _input(
+                            "required email",
+                            false,
+                            "EMAIL",
+                            'Enter your Email',
+                            (value) => _email = value,
+                            focusUser,
+                            focusPass),
+                        SizedBox(
+                          width: 20.0,
+                          height: 20.0,
+                        ),
+                        _input(
+                            "required password",
+                            true,
+                            "PASSWORD",
+                            'Password',
+                            (value) => _password = value,
+                            focusPass,
+                            focusPass),
+                        new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Flexible(
+                                  child: new Container(
+                                    margin: EdgeInsets.only(top: 50.0),
+                                      height: 60.0,
+                                      width: 100,
+                                      decoration: new BoxDecoration(
+                                        color: Color(0xFF2E7D32),
+                                        borderRadius:
+                                        new BorderRadius.circular(25.0),
+                                        boxShadow: <BoxShadow>[
+                                          BoxShadow(
+                                            color: Colors.indigo[300],
+                                            offset: Offset(1.0, 1.0),
+                                            blurRadius: 10.0,
+                                          ),
+                                        ],
+                                      ),
+                                  child: OutlineButton(
                                       borderSide: const BorderSide(
                                           style: BorderStyle.none),
-                                      child: new Container(
-                                          alignment: Alignment.center,
-                                          height: 60.0,
-                                          child: new Text("FORGOT PASSWORD",
+                                          child: new Text("OK!",
                                               style: new TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Colors.white))),
-                                      onPressed: () {
-                                        Navigator.of(context)
-                                            .pushReplacementNamed(
-                                                'forgotPassword');
-                                      },
-                                    ),
+                                                  fontSize: 30.0,
+                                                  color: Colors.white)),
+                                      /*child: Text("OK! "),*/
+                                      onPressed: logIn),
+                                  ),),
+                              ],
+                            ),
+                            SizedBox(height: 15.0),
+                            new Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: OutlineButton(
+                                    borderSide: const BorderSide(
+                                        style: BorderStyle.none),
+                                    child: new Container(
+                                        alignment: Alignment.center,
+                                        height: 60.0,
+                                        child: new Text("FORGOT PASSWORD",
+                                            style: new TextStyle(
+                                                fontSize: 15.0,
+                                                color: Colors.white))),
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed(
+                                              'forgotPassword');
+                                    },
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 15.0),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ),
         ],
