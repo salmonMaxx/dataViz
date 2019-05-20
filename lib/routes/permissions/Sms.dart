@@ -13,6 +13,8 @@ class SMS extends StatefulWidget {
 }
 
 var template = new PermissionTemplate();
+//var smsInfo = new TextEditingController();
+String smsInfo = 'Find out who you have contacted the most and what you have talked about by clicking the button';
 
 _querySMS() async {
   SmsQuery query = new SmsQuery();
@@ -21,23 +23,46 @@ _querySMS() async {
   threads.sort((a, b) => a.address.compareTo(b.address));
   String favouriteContact;
   int counter = 0;
-  int maxCounter = 0;
+  int maxSMS = 0;
   for (var i = 0; i < threads.length - 1; i++) {
     if (threads[i].address == threads[i + 1].address) {
       counter++;
-      if (counter > maxCounter) {
-        maxCounter = counter;
+      if (counter > maxSMS) {
+        maxSMS = counter;
         favouriteContact = threads[i].address;
       }
     } else {
       counter = 0;
     }
   }
-  print('Favourite: ' +
+  smsInfo=('The contact you have been texting the most with is ' +
       favouriteContact +
       ' with ' +
-      maxCounter.toString() +
-      ' sms');
+      maxSMS.toString() +
+      ' sms saved on your phone!');
+  counter = 0;
+  int dayMaxSMS = 0;
+  String favouriteDate;
+  threads.retainWhere((test) => test.address == favouriteContact);
+  threads.sort((a, b) => a.address.compareTo(b.address));
+  for (var i = 0; i<maxSMS-1; i++){
+    if(threads[i].dateSent.year == threads[i+1].dateSent.year && threads[i].dateSent.month ==
+    threads[i+1].dateSent.month && threads[i].dateSent.day == threads[i+1].dateSent.day){
+      counter ++;
+      print(threads[i].body);
+      print(threads[i].dateSent);
+      if(counter > dayMaxSMS){
+        dayMaxSMS = counter;
+        favouriteDate = threads[i].dateSent.toString();
+      }
+      else{
+        counter = 0;
+      }
+    }
+  }
+  print (dayMaxSMS);
+  print(favouriteDate);
+
   /*for (var i = 0; i < threads.length; i++) {
     print(threads[i].body);
   }
@@ -93,6 +118,16 @@ class _SMSState extends State<SMS> {
             //child: template.otherPermissionBox(null, null, widget.whoHasPhone['whoHasPhone']),
             // ),
             ),
+        new Container(
+
+          child: new Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+            Expanded(
+
+              child: template.textBox(null, 'Favourite contact', null, smsInfo, null, null)
+            )
+          ],)
+        )
       ]),
     );
   }
