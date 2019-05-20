@@ -56,7 +56,7 @@ class SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      backgroundColor: Colors.pink[300],
+      backgroundColor: Colors.indigo[400],
       appBar: AppBar(
         /*title: Image(image:AssetImage("Pictures/nobel2.jpg"), height: 30.0,fit: BoxFit.fitHeight,),*/
 
@@ -68,9 +68,12 @@ class SignupPageState extends State<SignupPage> {
         shrinkWrap: true,
         children: <Widget>[
           Container(
-            height: 20.0,
-            width: 20.0,
+            margin: EdgeInsets.only(left: 100.0, right: 100.0, top: 20.0),
+            height: 150.0,
             decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/logo_dataviz_1.png"),
+                  fit: BoxFit.cover),
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(500.0),
                   bottomRight: Radius.circular(500.0)),
@@ -112,87 +115,74 @@ class SignupPageState extends State<SignupPage> {
             child: Padding(
               padding: const EdgeInsets.all(28.0),
               child: Center(
-                  child: Form(
-                key: formkey,
-                child: Center(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      _input(
-                          "required email",
-                          false,
-                          "EMAIL",
-                          'Enter your Email',
-                          (value) => _email = value,
-                          focusEmail,
-                          focusPass),
-                      SizedBox(
-                        width: 20.0,
-                        height: 20.0,
-                      ),
-                      _input("required password", true, "PASSWORD", 'Password',
-                          (value) => _password = value, focusPass, focusPass),
-
-                      new Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
+                child: Form(
+                  key: formkey,
+                  child: Center(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        _input(
+                            "required email",
+                            false,
+                            "EMAIL",
+                            'Enter your Email',
+                            (value) => _email = value,
+                            focusEmail,
+                            focusPass),
+                        SizedBox(
+                          width: 20.0,
+                          height: 20.0,
+                        ),
+                        _input(
+                            "required password",
+                            true,
+                            "PASSWORD",
+                            'Password',
+                            (value) => _password = value,
+                            focusPass,
+                            focusPass),
+                        new Column(
+                          children: <Widget>[
+                            Row(
                               children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: OutlineButton(
-                                          borderSide: const BorderSide(
-                                              style: BorderStyle.none),
-                                          child: new Container(
-                                              alignment: Alignment.center,
-                                              height: 60.0,
-                                              decoration: new BoxDecoration(
-                                                color: Color(0xFF2E7D32),
-                                                borderRadius:
-                                                    new BorderRadius.circular(
-                                                        25.0),
-                                                boxShadow: <BoxShadow>[
-                                                  BoxShadow(
-                                                    color: Colors.indigo[300],
-                                                    offset: Offset(1.0, 1.0),
-                                                    blurRadius: 10.0,
-                                                  ),
-                                                ],
-                                              ),
-                                              child: new Text(
-                                                  "Create new account",
-                                                  style: new TextStyle(
-                                                      fontSize: 20.0,
-                                                      color: Colors.white))),
-                                          /*child: Text("OK! "),*/
-                                          onPressed: signUp),
+                                Expanded(
+                                  child: new Container(
+                                    margin: EdgeInsets.only(top: 50),
+                                    alignment: Alignment.center,
+                                    height: 60.0,
+                                    decoration: new BoxDecoration(
+                                      color: Color(0xFF2E7D32),
+                                      borderRadius:
+                                          new BorderRadius.circular(25.0),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.indigo[300],
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 10.0,
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 18.0,
-                                      width: 18.0,
-                                    ),
-                                    SizedBox(
-                                      height: 18.0,
-                                      width: 18.0,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 15.0),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                    child: OutlineButton(
+                                        borderSide: const BorderSide(
+                                            style: BorderStyle.none),
+                                        child: new Text("Create new account",
+                                            style: new TextStyle(
+                                                fontSize: 20.0,
+                                                color: Colors.white)),
+                                        /*child: Text("OK! "),*/
+                                        onPressed: signUp),
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
+                            SizedBox(height: 15.0),
+                          ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ),
         ],
