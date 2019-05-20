@@ -27,7 +27,7 @@ class _CalendarState extends State<Calendar> {
 
   getDate() {
     final timeStamp = new DateTime.now().millisecondsSinceEpoch.toString();
-    return "$timeStamp";
+    return timeStamp;
   }
 
   @override
