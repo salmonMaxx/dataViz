@@ -18,7 +18,6 @@ import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
 import './routes/drawer/Settings.dart';
-import './routes/drawer/ForgetMe1.dart';
 
 //routes --> permissions
 
@@ -27,14 +26,9 @@ import './routes/permissions/AudioFiles.dart';
 import './routes/permissions/Calendar.dart';
 import './routes/permissions/CallLog.dart';
 import './routes/permissions/Camera.dart';
-import './routes/permissions/Contacts.dart';
-import './routes/permissions/Location.dart';
-import './routes/permissions/Mic.dart';
 import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
-import './routes/permissions/VideoPics.dart';
-import './routes/BlackList.dart';
 
 //packages
 import 'package:flutter/material.dart';
@@ -68,20 +62,16 @@ class MyApp extends StatelessWidget {
         'feedback': (context) => FeedBack(),
 
 
-        //PERMInstalling build/app/outputs/apk/app.apk...ISSIONS
+        //PERMIISSIONS
         'activity_log': (context) => ActivityLog(),
         'audio_files': (context) => AudioFiles(),
         'calender': (context) => Calendar(),
         'call_log': (context) => CallLog(),
         'camera': (context) => Camera(),
-        'contacts': (context) => Contacts(),
-        'location': (context) => Location(),
-        'mic': (context) => Mic(),
         'phone': (context) => Phone(),
         'sensors': (context) => Sensors(),
         'sms': (context) => SMS(),
-        'video_pics': (context) => VideoPics(),
-      },
+              },
     );
   }
 }
@@ -167,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       }
     });
-    print('$permission is given to: $appsWithPermission');
+    //print('$permission is given to: $appsWithPermission');
     return appsWithPermission;
   }
 
@@ -212,7 +202,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: (BuildContext context) => new MenuPage(
                             appInfo: {
                               'installedLabels': installedAppLabels,
+                              'contacts' : _getPermissionToAppList("android.permission.READ_CONTACTS"),
+                              'microphone' : _getPermissionToAppList("android.permission.RECORD_AUDIO"),
+                              'sms' : _getPermissionToAppList("android.permission.READ_SMS"),
+                              'videoPics' : _getPermissionToAppList("android.permission.READ_EXTERNAL_STORAGE"),
+                              'location' : _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION"),
+
                               //keep adding here to get more into the menu page
+                              //TODO Contacts, microphone, sms, video and images, location
                             },
                           ));
                       Navigator.of(context).push(route);
@@ -256,6 +253,8 @@ class _MyHomePageState extends State<MyHomePage> {
     bool calendarShow          = await PermissionHandler()
         .shouldShowRequestPermissionRationale(calendarPermission);
    REQUEST STATUS
+
+   permissionsRequestCalendar   = requestPermissionFor();
 
     print('============== requesting ==============');
     permissionsRequestCalendar   = requestPermissionFor(calendarPermission);

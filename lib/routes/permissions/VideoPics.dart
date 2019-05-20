@@ -9,6 +9,8 @@ import 'photo_list.dart';
 import '../PermissionTemplate.dart';
 
 class VideoPics extends StatefulWidget {
+  VideoPics(this.whoHasVideoPics);
+  List<String> whoHasVideoPics;
   @override
   _VideoPicsState createState() => _VideoPicsState();
 }
@@ -44,7 +46,6 @@ class _VideoPicsState extends State<VideoPics> {
   @override
   Widget build(BuildContext context) {
     Radius borderRadius = const Radius.circular(10.0);
-    List <String> theList = ["Hej", "Ho","lets go","Hej", "Ho","lets go","Hej", "Ho","lets go","Hej", "Ho","lets go",];
     return new Scaffold(
       backgroundColor: Colors.indigo[200],
       appBar: new AppBar(
@@ -117,7 +118,7 @@ class _VideoPicsState extends State<VideoPics> {
             ),
           ),
           new Container(
-            child: template.otherPermissionBox(null, null, theList),
+            child: template.otherPermissionBox(null, null, widget.whoHasVideoPics),
             ),
           ],
       ),

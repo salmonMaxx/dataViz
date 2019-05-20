@@ -4,8 +4,8 @@ import 'package:torsdags_test/routes/PermissionTemplate.dart';
 //import 'package:geolocation/geolocation.dart' as GeoLocator;
 
 class Location extends StatefulWidget {
-  Location({Key key, this.whoHasLocation}) : super(key: key);
-  final Map<String, dynamic> whoHasLocation;
+  Location(this.whoHasLocation);
+  final List<String> whoHasLocation;
 
   @override
   _LocationState createState() => _LocationState();
@@ -19,12 +19,14 @@ class _LocationState extends State<Location> {
 
   void _getLocation() async {
     theLocation = await location.getLocation();
-    location.onLocationChanged().listen((lc.LocationData currentLocation) {
-      setState(() {
-        loc = currentLocation;
+    location.onLocationChanged().listen(
+      (lc.LocationData currentLocation) {
+        setState(
+          () {
+            loc = currentLocation;
+          },
+        );
       },
-      );
-    },
     );
   }
 
@@ -33,52 +35,68 @@ class _LocationState extends State<Location> {
     _getLocation();
     return Scaffold(
       backgroundColor: Colors.indigo[200],
-      appBar: AppBar(        centerTitle: true,
+      appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.indigo[900],
-        title: const Text('CONTACTS'),
+        title: const Text('LOCATION'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Column(
+      body: ListView(
+        children: <Widget>[
+          Container(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Center(
-                  child: loc?.latitude == null
-                      ? Text(
-                          'getting location...',
-                          style: Theme.of(context).textTheme.display1,
-                        )
-                      : Text(
-                          // the ?.method() operator checks
-                          '${loc?.latitude}', //  if the getter (lat/lon) is null,
-                          style: Theme.of(context)
-                              .textTheme
-                              .display1, // if it is then
-                          //don't get value, print null
-                        ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: loc?.longitude == null
+                          ? temp.textBox(null, 'getting location...', null,
+                              'blabla', null, null)
+                          : temp.textBox(
+                              BoxDecoration(
+                                  gradient: temp.colorGradient(
+                                      Alignment.centerRight,
+                                      Alignment.centerLeft),
+                                  borderRadius: new BorderRadius.only(
+                                      topLeft: Radius.circular(10.0),
+                                      topRight: Radius.circular(10.0))),
+                              // the ?.method() operator checks
+                              'This devices lat/long: ',
+                              null,
+                              '${loc?.longitude}\n${loc?.latitude}',
+                              null,
+                              EdgeInsets.only(left: 10, right: 10, top: 5)
+                              // if it is then
+                              //don't get value, print null
+                              ),
+                    ),
+                    temp.textBox(
+                        BoxDecoration(
+                            gradient: temp.colorGradient(
+                                Alignment.centerRight, Alignment.centerLeft),
+                            borderRadius: new BorderRadius.only(
+                                bottomLeft: Radius.circular(10.0),
+                                bottomRight: Radius.circular(10.0))),
+                        "The location permission",
+                        null,
+                        "This permission grants the app to see the exact location of your device in real time.",
+                        null,
+                        EdgeInsets.only(left: 10, right: 10, bottom: 5)),
+                    temp.textBox(
+                        BoxDecoration(
+                            gradient: temp.colorGradient(
+                                Alignment.centerLeft, Alignment.centerRight),
+                            ),
+                        '',
+                        null,
+                        "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time.",
+                        null,
+                        null),
+                    temp.otherPermissionBox(null, null, widget.whoHasLocation),
+                  ],
                 ),
-                Center(
-                  child: loc?.longitude == null
-                      ? Text(
-                          'getting location...',
-                          style: Theme.of(context).textTheme.display1,
-                        )
-                      : Text(
-                          // the ?.method() operator checks
-                          '${loc?.longitude}', //  if the getter (lat/lon) is null,
-                          style: Theme.of(context)
-                              .textTheme
-                              .display1, // if it is then
-                          //don't get value, print null
-                        ),
-                ),
-                temp.otherPermissionBox(
-                    null, null, widget.whoHasLocation['whoHasLocation']),
-              ],
-            ),
-            /*Row(
+                /*Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
@@ -87,8 +105,10 @@ class _LocationState extends State<Location> {
                 ),
               ],
             ),*/
-          ],
-        ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

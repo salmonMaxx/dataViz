@@ -54,7 +54,6 @@ class SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       backgroundColor: Colors.indigo[400],
       appBar: AppBar(
@@ -89,7 +88,7 @@ class SignupPageState extends State<SignupPage> {
                       color: Colors.transparent,
                       borderSide: const BorderSide(style: BorderStyle.none),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('login');
+                        Navigator.of(context).pop();
                       },
                       child: new Text("LOGIN",
                           style: new TextStyle(

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import './BlackList.dart';
+import './permissions/Contacts.dart';
+import './permissions/Location.dart';
+import './permissions/Mic.dart';
+import './permissions/Sms.dart';
+import './permissions/VideoPics.dart';
 
 Future<void> _ackAlert(BuildContext context) {
   return showDialog<void>(
@@ -122,7 +127,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('calender'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new Contacts(widget.appInfo["contacts"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.calendar_today),
               top: 17.42,
               left: 65.0,
@@ -143,14 +153,24 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('contacts'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Contacts(widget.appInfo["contacts"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.contacts),
               top: 65.0,
               left: 17.42,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('video_pics'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new VideoPics(widget.appInfo["videoPics"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.personal_video),
               top: 130.0,
               left: 260.0,
@@ -178,7 +198,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('mic'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Mic(widget.appInfo["microphone"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.keyboard_voice),
               top: 242.58,
               left: 65.0,
@@ -192,7 +217,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('location'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Location(widget.appInfo["location"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.location_on),
               top: 260.0,
               left: 130.0,
