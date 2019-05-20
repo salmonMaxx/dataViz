@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//TODO MAKE MEDIAQUERIES ON ALL WIDTHS AND SIZES
+
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
@@ -162,6 +164,7 @@ class PermissionTemplate extends StatefulWidget {
 // if more than one pic is used, the width of every pic can be inserted, the tot width should be 370
 
   textWithPic(
+      BuildContext context,
       String myImage,
       String myHeader,
       double myHeaderSize,
@@ -192,7 +195,7 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               new Container(
                 height: myHeightPic,
-                width: 370,
+                width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.all(10.0),
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -296,7 +299,7 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   margin:
                       const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                  child: new Text(
+                  child: myText == null ? new Text("") : new Text(
                     myText,
                     style: TextStyle(color: myTextColor, fontSize: myTextSize),
                   ),
@@ -340,7 +343,9 @@ class PermissionTemplate extends StatefulWidget {
         children: <Widget>[
           new Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
+              Expanded( child:
               new Container(
                 height: myHeightPic,
                 width: 370,
@@ -353,7 +358,7 @@ class PermissionTemplate extends StatefulWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
+              ),),
             ],
           ),
           new Row(

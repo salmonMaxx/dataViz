@@ -1,6 +1,4 @@
-name: torsdags_test
-description: Denna gång är det torsdag och testerna pågår!
-
+name: dataViz
 
 version: 1.0.0+1
 
@@ -26,7 +24,9 @@ dependencies:
 
   device_calendar: ^0.0.2
 
-  #contacts_service: ^0.0.9
+  contacts_service: ^0.0.9
+
+  speech_recognition: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +48,7 @@ flutter:
   - assets/camera1.jpg
   - assets/camera2.jpeg
   - assets/camera3.jpg
+  - assets/camera4.jpg
   - assets/activity1.jpeg
   - assets/activity2.jpeg
   - assets/activity3.jpeg
@@ -58,6 +59,8 @@ flutter:
   - assets/sensors1.jpg
   - assets/audiofile1.jpg
   - assets/audiofile2.jpg
+  - assets/phone1.jpg
+  - assets/phone2.jpg
 
   fonts:
   - family: Modak-Regular
