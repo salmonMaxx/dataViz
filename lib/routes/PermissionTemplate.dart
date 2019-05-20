@@ -903,6 +903,71 @@ class PermissionTemplate extends StatefulWidget {
       ),
     );
   }
+
+
+  scrollListWithHeader(Decoration myBoxDeco, String myHeader, EdgeInsets myMargin, List theList) {
+    Radius borderRadius = const Radius.circular(5.0);
+    Color myTextColor = Colors.white;
+    if (myBoxDeco == null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
+    if (myMargin == null) {
+      myMargin = EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5);
+    }
+    return new Container(
+      decoration: myBoxDeco,
+      margin: myMargin,
+      child: Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                height: 50,
+                margin: const EdgeInsets.all(10),
+                child: new Text(myHeader,
+                  style: TextStyle(
+                      color: myTextColor,
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: new Container(
+                  height: 200,
+                  margin:
+                  const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: ListView.separated(
+                    separatorBuilder: (context, i) => Divider(
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(15.0),
+                    itemCount: theList.length,
+                    itemBuilder: (context, i) {
+                      return new ListTile(
+                        title: Text(
+                          _capitalizeString(theList[i]),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onTap: null,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 //-------------------------------------------------------------------------------STOP

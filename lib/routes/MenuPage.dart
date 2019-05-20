@@ -5,6 +5,9 @@ import './permissions/Location.dart';
 import './permissions/Mic.dart';
 import './permissions/Sms.dart';
 import './permissions/VideoPics.dart';
+import './permissions/Calendar.dart';
+import './permissions/Phone.dart';
+import './permissions/CallLog.dart';
 
 Future<void> _ackAlert(BuildContext context) {
   return showDialog<void>(
@@ -130,7 +133,7 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new Contacts(widget.appInfo["contacts"]));
+                            new Calendar(widget.appInfo["calendar"]));
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.calendar_today),
@@ -139,7 +142,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('phone'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Phone(widget.appInfo["phone"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.phone_forwarded),
               top: 17.42,
               left: 195.0,
@@ -184,8 +192,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('call_log'),
-                  iconData: Icons.group_add),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                      new CallLog(widget.appInfo["call_log"]));
+                      Navigator.of(context).push(route);},
+                      iconData: Icons.group_add),
               top: 195.0,
               left: 242.58,
             ),
