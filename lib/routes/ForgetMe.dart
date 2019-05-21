@@ -70,6 +70,7 @@ class _ForgetMeState extends State<ForgetMe> {
                 child: Form(
                   key: formkey,
                   child: template.textWithPic(
+                      context,
                       forgetpic,
                       "FANTASTIC!",
                       60,
