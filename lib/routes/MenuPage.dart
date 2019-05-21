@@ -195,7 +195,7 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                      new CallLog(widget.appInfo["call_log"]));
+                      new CallLog(widget.appInfo["callLog"]));
                       Navigator.of(context).push(route);},
                       iconData: Icons.group_add),
               top: 195.0,

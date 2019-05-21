@@ -24,8 +24,6 @@ dependencies:
 
   device_calendar: ^0.0.2
 
-  contacts_service: ^0.0.9
-
   speech_recognition: ^0.3.0
 
 dev_dependencies:
@@ -61,6 +59,8 @@ flutter:
   - assets/audiofile2.jpg
   - assets/phone1.jpg
   - assets/phone2.jpg
+  - assets/location_map.jpg
+  - assets/location_code.jpg
 
   fonts:
   - family: Modak-Regular

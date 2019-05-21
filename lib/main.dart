@@ -206,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               'location' : _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION"),
                               'calendar' : _getPermissionToAppList("android.permission.READ_CALENDAR"),
                               'phone' : _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE"),
-                              'call_log' : _getPermissionToAppList("android.permission.READ_CALL_LOG"),
+                              'callLog' : _getPermissionToAppList("android.permission.READ_CALL_LOG"),
 
                               //keep adding here to get more into the menu page
                               //TODO Contacts, microphone, sms, video and images, location

@@ -35,35 +35,39 @@ class _ForgetMe1State extends State<ForgetMe1> {
               template.textWithPic(
                   context,
                   forgetpic,
-                  "FANTASTIC!", 60,
+                  "FANTASTIC!",
+                  null,
                   'We really encourage our users to delete their accounts to protect their data.'
                   '\nRemember that you have the right to delete your data on other apps and plattforms as well. '
-                  '\n\nTake back controll of your data! ', null,
-                  150, Colors.indigo[900]),
+                  '\n\nTake back controll of your data! ',
+                  null,
+                  150,
+                  Colors.indigo[900]),
               new Center(
                 child: new OutlineButton(
                   padding: EdgeInsets.all(20.0),
-                  borderSide: const BorderSide (style: BorderStyle.none),
+                  borderSide: const BorderSide(style: BorderStyle.none),
                   onPressed: () {
-                    template.popUp(context,
+                    template.popUp(
+                        context,
                         'You will now be forgotten!',
                         "When pressing OK! you will be signed out and not a part of our database any more.",
                         'OK!',
-                    Colors.greenAccent, "login", deleteFromDB
-                    );
+                        Colors.greenAccent,
+                        "login",
+                        deleteFromDB);
                   },
                   child: Container(
-                    padding: EdgeInsets.all(3),
+                      padding: EdgeInsets.all(3),
                       decoration: BoxDecoration(
                           color: Colors.greenAccent,
-                          borderRadius: new BorderRadius.all(const Radius.circular(10.0))),
-                      child:
-                      Text("FORGET ME NOW!",
-                          style: new TextStyle(fontSize: 30.0))
-                    ),
-    ),
-    ),
-    ],
+                          borderRadius: new BorderRadius.all(
+                              const Radius.circular(10.0))),
+                      child: Text("FORGET ME NOW!",
+                          style: new TextStyle(fontSize: 30.0))),
+                ),
+              ),
+            ],
           ),
         ],
       ),
