@@ -622,6 +622,64 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
+  textBoxInteract(Decoration myBoxDeco, String myHeader, double myHeaderSize,
+      String myText, double myTextSize, EdgeInsets myMargin) {
+    Radius borderRadius = const Radius.circular(5.0);
+    Color myTextColor = Colors.white;
+    if (myHeaderSize == null) {
+      myHeaderSize = 25;
+    }
+    if (myTextSize == null) {
+      myTextSize = 20;
+    }
+    if (myBoxDeco == null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
+    if (myMargin == null) {
+      myMargin = EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5);
+    }
+    return new Container(
+      decoration: myBoxDeco,
+      margin: myMargin,
+      child: Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                child: myHeader.isNotEmpty ? new Text(
+                  myHeader,
+                  style: TextStyle(
+                      color: myTextColor,
+                      fontSize: myHeaderSize,
+                      fontWeight: FontWeight.bold),
+                ) : null,
+              ),
+            ],
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: new Container(
+                  margin:
+                  const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: myText == null ? new Text("") : new Text(
+                    myText,
+                    style: TextStyle(color: myTextColor, fontSize: myTextSize),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   highlightNumbers(String bigText1, String smallText1, String bigText2,
       String smallText2, String bigText3, String smallText3) {
     Radius borderRadius = const Radius.circular(10.0);
@@ -1486,6 +1544,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     );
   }
 
+
+
 // functions
 
   @override
@@ -1545,3 +1605,4 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
         );
   }
 }
+

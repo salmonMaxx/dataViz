@@ -24,7 +24,6 @@ dependencies:
 
   device_calendar: ^0.0.2
 
-  contacts_service: ^0.0.9
 
   speech_recognition: ^0.3.0
 
