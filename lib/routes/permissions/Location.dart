@@ -58,9 +58,9 @@ class _LocationState extends State<Location> {
                             borderRadius: new BorderRadius.only(
                                 bottomLeft: Radius.circular(10.0),
                                 bottomRight: Radius.circular(10.0))),
-                        "The location permission",
+                        "Big Brother follows you?",
                         null,
-                        "This permission grants the app to see the exact location of your device in real time.",
+                        "The location permission grants an app to see the exact location of your device in real time. Wherever you go.",
                         null,
                         EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     Center(
@@ -92,9 +92,9 @@ class _LocationState extends State<Location> {
                             borderRadius: new BorderRadius.only(
                                 bottomLeft: Radius.circular(10.0),
                                 bottomRight: Radius.circular(10.0))),
-                        "The location permission",
+                        "Here you are!",
                         null,
-                        "This permission grants the app to see the exact location of your device in real time.",
+                        "Try walking around in the room to see how accurate this data actually is.",
                         null,
                         EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     temp.boxRight(

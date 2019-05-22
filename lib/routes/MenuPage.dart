@@ -266,8 +266,10 @@ class _MenuPageState extends State<MenuPage> {
                   style:
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).pushNamed('blacklist');
+                var route = new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new BlackList(widget.appInfo["installedLabels"]));
+                Navigator.of(context).push(route);
               },
             ),
             ListTile(

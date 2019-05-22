@@ -170,6 +170,8 @@ class _IntroPageState extends State<IntroPage> {
       body: PageView(children: <Widget>[
         page1(),
         page2(),
+
+        //page3(),
         page4(),
       ]),
     );
