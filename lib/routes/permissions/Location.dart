@@ -21,11 +21,13 @@ class _LocationState extends State<Location> {
     theLocation = await location.getLocation();
     location.onLocationChanged().listen(
       (lc.LocationData currentLocation) {
-        setState(
-          () {
-            loc = currentLocation;
-          },
-        );
+        if (mounted) {
+          setState(
+            () {
+              loc = currentLocation;
+            },
+          );
+        }
       },
     );
   }
@@ -49,10 +51,22 @@ class _LocationState extends State<Location> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    temp.textBox(
+                        BoxDecoration(
+                            gradient: temp.colorGradient(
+                                Alignment.centerRight, Alignment.centerLeft),
+                            borderRadius: new BorderRadius.only(
+                                bottomLeft: Radius.circular(10.0),
+                                bottomRight: Radius.circular(10.0))),
+                        "The location permission",
+                        null,
+                        "This permission grants the app to see the exact location of your device in real time.",
+                        null,
+                        EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     Center(
                       child: loc?.longitude == null
                           ? temp.textBox(null, 'getting location...', null,
-                              'blabla', null, null)
+                              'working on it...', 8, null)
                           : temp.textBox(
                               BoxDecoration(
                                   gradient: temp.colorGradient(
@@ -83,16 +97,17 @@ class _LocationState extends State<Location> {
                         "This permission grants the app to see the exact location of your device in real time.",
                         null,
                         EdgeInsets.only(left: 10, right: 10, bottom: 5)),
-                    temp.textBox(
-                        BoxDecoration(
-                            gradient: temp.colorGradient(
-                                Alignment.centerLeft, Alignment.centerRight),
-                            ),
+                    temp.boxRight(
+                      null,
+                      'assets/location_map.jpg',
+                      '',
+                      "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time.",
+                    ),
+                    temp.boxxLeft(
+                        null,
+                        'assets/location_code.jpg',
                         '',
-                        null,
-                        "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time.",
-                        null,
-                        null),
+                      "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time.",),
                     temp.otherPermissionBox(null, null, widget.whoHasLocation),
                   ],
                 ),

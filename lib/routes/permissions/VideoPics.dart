@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-import 'dart:io';
 import 'dart:typed_data';
 import 'photos.dart';
-import 'photo_list.dart';
 
 import '../PermissionTemplate.dart';
 

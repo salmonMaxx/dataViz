@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sms/sms.dart';
 import '../PermissionTemplate.dart';
-import 'package:async/async.dart';
-import 'package:sms/contact.dart';
 
-class SMS extends StatefulWidget {
-  SMS({Key key, this.whoHasSMS}) : super(key: key);
-  final Map<String, dynamic> whoHasSMS;
+class Sms extends StatefulWidget {
+  Sms(this.whoHasSMS);
+  final List<String> whoHasSMS;
 
   @override
-  _SMSState createState() => _SMSState();
-
+  _SmsState createState() => _SmsState();
 }
 
 var template = new PermissionTemplate();
@@ -21,13 +18,12 @@ String favouriteDateString = 'Press the message icon to see this feature';
 List smsList = new List.filled(1, favouriteDateString, growable: true);
 final smsController = TextEditingController();
 
-
-
-class _SMSState extends State<SMS> {
+class _SmsState extends State<Sms> {
   // BOX 1
   String myImage = "assets/sensors1.jpg";
   String myHeader = "SMS";
-  String myText = "By allowing the SMS permission an app can find out a lot about you. Look for yourself by pushing the grey button.";
+  String myText =
+      "By allowing the SMS permission an app can find out a lot about you. Look for yourself by pushing the grey button.";
   String leftText = 'Test';
 
   Future<void> _querySMS() async {
@@ -78,16 +74,22 @@ class _SMSState extends State<SMS> {
       }
     }
     setState(() {
-      favouriteDateString = 'These messages with your favourite are from ' + favouriteDate.year.toString() + '-' + favouriteDate.month.toString() + '-' + favouriteDate.day.toString() + ':\n';
+      favouriteDateString = 'These messages with your favourite are from ' +
+          favouriteDate.year.toString() +
+          '-' +
+          favouriteDate.month.toString() +
+          '-' +
+          favouriteDate.day.toString() +
+          ':\n';
       smsList[0] = favouriteDateString;
     });
 
     //Add day with favourite SMS to list
     threads.retainWhere((test) =>
-    test.dateSent.year == favouriteDate.year &&
+        test.dateSent.year == favouriteDate.year &&
         test.dateSent.month == favouriteDate.month &&
         test.dateSent.day == favouriteDate.day);
-    if(smsList.length==1) {
+    if (smsList.length == 1) {
       for (var i = 0; i < dayMaxSMS - 1; i++) {
         smsList.add(threads[i].body);
       }
@@ -106,7 +108,8 @@ class _SMSState extends State<SMS> {
       body: ListView(children: <Widget>[
         new Container(
           //Put in functions from the template below!!!
-          child: template.textBoxWithPic(null, myImage, myHeader, null, myText, null, null),
+          child: template.textBoxWithPic(
+              null, myImage, myHeader, null, myText, null, null),
         ),
         new Container(
             child: new Row(
@@ -121,9 +124,7 @@ class _SMSState extends State<SMS> {
                   }),
             ),
           ],
-        )
-
-            ),
+        )),
         new Container(
             child: new Row(
           crossAxisAlignment: CrossAxisAlignment.center,
