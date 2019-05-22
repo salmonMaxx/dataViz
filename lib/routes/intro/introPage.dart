@@ -157,10 +157,10 @@ class _IntroPageState extends State<IntroPage> {
       );
     }
 
-    page3() {
+    /*page3() {
       currentIndexPage = 3;
       return SMS();
-    }
+    }*/
 
     page4() {
       return LoginPage();
@@ -170,7 +170,6 @@ class _IntroPageState extends State<IntroPage> {
       body: PageView(children: <Widget>[
         page1(),
         page2(),
-        page3(),
         page4(),
       ]),
     );
