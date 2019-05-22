@@ -16,36 +16,38 @@ var template = new PermissionTemplate();
 
 class _ContactsState extends State<Contacts> {
   PermissionStatus contactPermissionStatus;
-  Iterable<Contact> _contactIterable;
-  dynamic contactInfo;
+  List<String> contactInfo;
 
 
   @override
   void initState(){
     super.initState();
-    getContacts();
+    _getContacts().then((list) => setState(() {
+      contactInfo = list;
+    }));
   }
 
-  getContacts() async {
+  Future<List<String>> _getContacts() async {
     PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.contacts);
     if(permission != PermissionStatus.granted) {
       Map<PermissionGroup,
           PermissionStatus> requestContacts = await PermissionHandler()
           .requestPermissions([PermissionGroup.contacts]);
     }
-    await ContactsService.getContacts().then((contacts) => _contactIterable = contacts);
+    Iterable<Contact> listToFix = await ContactsService.getContacts();
+    return _fixContactInfo(listToFix);
   }
 
-  fixContactInfo() async{
+  Future<List<String>> _fixContactInfo(Iterable<Contact> contactIterable) async{
     List <String> contactInfo = [];
-    String GN;
-    String FN;
-    String Email;
-    for (var contact in _contactIterable) {
+    String givenName;
+    String firstName;
+    String email;
+    for (var contact in contactIterable) {
       if (contact.givenName != null) {
-        GN = contact?.givenName ?? "";
-        FN = contact?.familyName ?? "";
-        contactInfo.add(GN + " " + FN);
+        givenName = contact?.givenName ?? "";
+        firstName = contact?.familyName ?? "";
+        contactInfo.add(givenName + " " + firstName);
       }
     }
     return contactInfo;
@@ -71,7 +73,8 @@ class _ContactsState extends State<Contacts> {
             child: IconButton(
               icon: Icon(Icons.person_pin, color: Colors.white),
               iconSize: 100.0,
-              onPressed: null,
+              onPressed: (){
+              },
               tooltip: 'get freaking contacts',
             ),
           ),

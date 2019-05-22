@@ -7,6 +7,10 @@ import '../permissions/Sms.dart';
 import '../LoginPage.dart';
 
 class IntroPage extends StatefulWidget {
+
+  IntroPage(this.whoHasThis);
+  List<String> whoHasThis;
+
   @override
   _IntroPageState createState() => _IntroPageState();
 }
@@ -159,7 +163,7 @@ class _IntroPageState extends State<IntroPage> {
 
     page3() {
       currentIndexPage = 3;
-      return SMS();
+      return Sms(widget.whoHasThis);
     }
 
     page4() {

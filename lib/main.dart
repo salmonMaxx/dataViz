@@ -24,11 +24,6 @@ import './routes/intro/introPage.dart';
 
 //routes --> permissions
 
-import './routes/permissions/ActivityLog.dart';
-import './routes/permissions/AudioFiles.dart';
-import './routes/permissions/CallLog.dart';
-import './routes/permissions/Camera.dart';
-import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 
 //packages
@@ -55,9 +50,6 @@ class MyApp extends StatelessWidget {
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu': (context) => MenuPage(),
-
-        //intro
-        'intro' : (context) => IntroPage(),
 
         //drawer
         'big_picture': (context) => BigPicture(),
@@ -177,10 +169,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   IconButton(
                     icon: Icon(Icons.local_florist, color: Colors.pink),
                     iconSize: 48.0,
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'intro');
+                    onPressed: (){
+                      var list = _getPermissionToAppList("android.permission.READ_SMS");
+                      var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                          new Sms(list));
+                          Navigator.of(context).push(route);
                     },
-                    tooltip: 'To Login-Page',
                   ),
                 ],
               ),

@@ -1095,11 +1095,16 @@ class PermissionTemplate extends StatefulWidget {
                           color: Colors.white,
                         ),
                     padding: EdgeInsets.all(15.0),
-                    itemCount: theList.length,
+                    itemCount: theList?.length ?? 1,
                     itemBuilder: (context, i) {
                       return new ListTile(
-                        title: Text(
+                        title: theList != null ? Text(
                           _capitalizeString(theList[i]),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                        :
+                        Text(
+                          "getting info. . .",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onTap: null,
