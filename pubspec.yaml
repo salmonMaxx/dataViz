@@ -27,6 +27,8 @@ dependencies:
 
   contacts_service: ^0.0.9
 
+  dots_indicator: ^0.0.5
+
 
 
 dev_dependencies:

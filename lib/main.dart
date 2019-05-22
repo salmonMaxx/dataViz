@@ -19,6 +19,9 @@ import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
 import './routes/drawer/Settings.dart';
 
+//intro
+import './routes/intro/introPage.dart';
+
 //routes --> permissions
 
 import './routes/permissions/ActivityLog.dart';
@@ -54,6 +57,9 @@ class MyApp extends StatelessWidget {
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu': (context) => MenuPage(),
+
+        //intro
+        'intro' : (context) => IntroPage(),
 
         //drawer
         'big_picture': (context) => BigPicture(),
@@ -173,7 +179,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -183,10 +188,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.local_florist, color: Colors.red),
+                    icon: Icon(Icons.local_florist, color: Colors.pink),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'login');
+                      Navigator.pushNamed(context, 'intro');
                     },
                     tooltip: 'To Login-Page',
                   ),
