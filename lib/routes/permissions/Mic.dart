@@ -81,10 +81,10 @@ class _MicState extends State<Mic> {
                 temp.textBoxWithPic(
                   null,
                   "assets/audiofile2.jpg",
-                  'Microphone',
-                  null,
-                  'The microphone permission....',
-                  null,
+                  'Do you have a beautiful voice?',
+                  20,
+                  'Try talking (or singing!) to the microphone and see if what the phone can hear.',
+                  16,
                   null,
                 ),
                 Container(

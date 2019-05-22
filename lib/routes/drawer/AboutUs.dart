@@ -8,7 +8,7 @@ class AboutUs extends StatefulWidget {
 
 class _AboutUsState extends State<AboutUs> {
   String myText =
-      'Why care about app permissions? Maybe you have heard that “data is the new oil” but what does that actually mean? With this app we want to vizulize what different types of data there is and why you should care about protecting it. \n \n Behind the development of the app are three students at Uppsala University who want to raise awareness of data gathering and encourage users to make thoughtful decisions about their personal data. The only data we save is your username and your encrypted password, all other app functions are not stored.';
+      'Why care about app permissions? Maybe you have heard that “data is the new oil” but what does that actually mean? With this app, we want to visualize what different types of data there is and why you should care about protecting it. \n \n Behind the development of the app are three students at Uppsala University who want to raise awareness of data gathering and encourage users to make thoughtful decisions about their personal data. The only data we save is your username and your encrypted password, all other app functions are not stored.';
   var template = new PermissionTemplate();
   @override
   Widget build(BuildContext context) {

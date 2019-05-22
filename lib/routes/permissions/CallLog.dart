@@ -18,8 +18,8 @@ class _CallLogState extends State<CallLog> {
 
   // BOX 1
   String myImage = "assets/blomma_test.jpg";
-  String myHeader = "SOMETHING ABOUT CALL LOG";
-  String myText = "Call Log";
+  String myHeader = "Would you like to share who you have called recently?";
+  String myText = "\nYour call log contains a register of all phone calls you have conducted and details about for example who dialed and the call time. \n \nSince the beginning of 2019 Google has restricted all Android apps to access call log data except if you are the default phone app on your phone. This update is great since it protects data from being used by apps that do not really require it.";
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _CallLogState extends State<CallLog> {
         children: <Widget>[
           new Container(
             //Put in functions from the template below!!!
-            child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 150),
+            child: template.textBoxWithPic(null, myImage, myHeader , 25, myText, 18, 150),
           ),
 
           new Container(
