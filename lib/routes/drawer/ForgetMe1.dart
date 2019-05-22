@@ -33,6 +33,7 @@ class _ForgetMe1State extends State<ForgetMe1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               template.textWithPic(
+                  context,
                   forgetpic,
                   "FANTASTIC!", 60,
                   'We really encourage our users to delete their accounts to protect their data.'

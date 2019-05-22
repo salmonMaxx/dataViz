@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var installedAppIcons;
   List<String> installedAppLabels;
   static const platform =
-      const MethodChannel("dataViz/permissions"); //change channel string
+  const MethodChannel("dataViz/permissions"); //change channel string
   List<String> whoHasLocationPermission;
 
   Future<Map<String, String>> _getPermissions() async {
@@ -151,13 +151,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return str.substring(0, 1).toUpperCase() + str.substring(1);
   }
 
-  List<String> _getPermissionToAppList(String permission){
+  List<String> _getPermissionToAppList(String permission) {
     List<String> appsWithPermission = [];
-    permissionMap.forEach((package,permissionListString) {
-      if(permissionListString.split(",").contains(permission)){
+    permissionMap.forEach((package, permissionListString) {
+      if (permissionListString.split(",").contains(permission)) {
         //translate package into label with the installedApps variable
         installedApps.forEach((index) {
-          if(index["package"] == package){
+          if (index["package"] == package) {
             appsWithPermission.add(index["label"]);
           }
         });
@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print('loaded permissions. . . \n');
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
@@ -230,6 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 
 // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
 // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//TODO MAKE MEDIAQUERIES ON ALL WIDTHS AND SIZES
+
 class PermissionTemplate extends StatefulWidget {
   @override
   _PermissionTemplateState createState() => _PermissionTemplateState();
@@ -162,6 +164,7 @@ class PermissionTemplate extends StatefulWidget {
 // if more than one pic is used, the width of every pic can be inserted, the tot width should be 370
 
   textWithPic(
+      BuildContext context,
       String myImage,
       String myHeader,
       double myHeaderSize,
@@ -192,7 +195,7 @@ class PermissionTemplate extends StatefulWidget {
             children: <Widget>[
               new Container(
                 height: myHeightPic,
-                width: 370,
+                width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.all(10.0),
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -296,7 +299,7 @@ class PermissionTemplate extends StatefulWidget {
                 child: new Container(
                   margin:
                       const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                  child: new Text(
+                  child: myText == null ? new Text("") : new Text(
                     myText,
                     style: TextStyle(color: myTextColor, fontSize: myTextSize),
                   ),
@@ -340,7 +343,9 @@ class PermissionTemplate extends StatefulWidget {
         children: <Widget>[
           new Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
+              Expanded( child:
               new Container(
                 height: myHeightPic,
                 width: 370,
@@ -353,7 +358,7 @@ class PermissionTemplate extends StatefulWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
+              ),),
             ],
           ),
           new Row(
@@ -607,6 +612,64 @@ class PermissionTemplate extends StatefulWidget {
                   child: new Text(
                     myText,
                     style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  textBoxInteract(Decoration myBoxDeco, String myHeader, double myHeaderSize,
+      String myText, double myTextSize, EdgeInsets myMargin) {
+    Radius borderRadius = const Radius.circular(5.0);
+    Color myTextColor = Colors.white;
+    if (myHeaderSize == null) {
+      myHeaderSize = 25;
+    }
+    if (myTextSize == null) {
+      myTextSize = 20;
+    }
+    if (myBoxDeco == null) {
+      myBoxDeco = BoxDecoration(
+          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          borderRadius: new BorderRadius.all(borderRadius));
+    }
+    if (myMargin == null) {
+      myMargin = EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5);
+    }
+    return new Container(
+      decoration: myBoxDeco,
+      margin: myMargin,
+      child: Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                child: myHeader.isNotEmpty ? new Text(
+                  myHeader,
+                  style: TextStyle(
+                      color: myTextColor,
+                      fontSize: myHeaderSize,
+                      fontWeight: FontWeight.bold),
+                ) : null,
+              ),
+            ],
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: new Container(
+                  margin:
+                  const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: myText == null ? new Text("") : new Text(
+                    myText,
+                    style: TextStyle(color: myTextColor, fontSize: myTextSize),
                   ),
                 ),
               ),
@@ -1481,6 +1544,8 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
     );
   }
 
+
+
 // functions
 
   @override
@@ -1540,3 +1605,4 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
         );
   }
 }
+

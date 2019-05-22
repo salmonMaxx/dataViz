@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart' as lc;
-import 'package:torsdags_test/routes/PermissionTemplate.dart';
+import 'package:dataViz/routes/PermissionTemplate.dart';
 //import 'package:geolocation/geolocation.dart' as GeoLocator;
 
 class Location extends StatefulWidget {
