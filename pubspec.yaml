@@ -14,7 +14,6 @@ dependencies:
   cupertino_icons: ^0.1.2
   permission_handler: '^3.0.0'
   sms: ^0.2.0
-  contacts_service: ^0.2.6
   location: ^2.3.5
   geolocator: '^4.0.0'
 
@@ -24,6 +23,9 @@ dependencies:
 
   device_calendar: ^0.0.2
 
+  contacts_service: ^0.0.9
+
+  dots_indicator: ^0.0.5
 
   speech_recognition: ^0.3.0
 

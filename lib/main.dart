@@ -19,6 +19,9 @@ import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
 import './routes/drawer/Settings.dart';
 
+//intro
+import './routes/intro/introPage.dart';
+
 //routes --> permissions
 
 import './routes/permissions/ActivityLog.dart';
@@ -53,6 +56,9 @@ class MyApp extends StatelessWidget {
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu': (context) => MenuPage(),
 
+        //intro
+        'intro' : (context) => IntroPage(),
+
         //drawer
         'big_picture': (context) => BigPicture(),
         'settings': (context) => Settings(),
@@ -81,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var installedAppIcons;
   List<String> installedAppLabels;
   static const platform =
-      const MethodChannel("dataViz/permissions"); //change channel string
+  const MethodChannel("dataViz/permissions"); //change channel string
   List<String> whoHasLocationPermission;
 
   Future<Map<String, String>> _getPermissions() async {
@@ -157,10 +163,9 @@ class _MyHomePageState extends State<MyHomePage> {
     print('loaded permissions. . . \n');
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -170,10 +175,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.local_florist, color: Colors.red),
+                    icon: Icon(Icons.local_florist, color: Colors.pink),
                     iconSize: 48.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'login');
+                      Navigator.pushNamed(context, 'intro');
                     },
                     tooltip: 'To Login-Page',
                   ),
@@ -215,6 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 
 // CODE FROM WEEK THAT I DIDN'T WANT TO LOSE
 // IT'S ALL PERMISSIONS AND NICE TO HAVE AS A REMINDER

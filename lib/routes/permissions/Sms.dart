@@ -21,10 +21,9 @@ final smsController = TextEditingController();
 class _SmsState extends State<Sms> {
   // BOX 1
   String myImage = "assets/sensors1.jpg";
-  String myHeader = "SMS";
-  String myText =
-      "By allowing the SMS permission an app can find out a lot about you. Look for yourself by pushing the grey button.";
-  String leftText = 'Test';
+  String myHeader = "The SMS Permission";
+  String myText = "By allowing the SMS permission an app can read text messages stored on your device and SIM card. Before 2019, all apps with this permission were also allowed to send text messages but Google updated it to only allow your device’s default app to send SMS. However, if you have sent any private or confidential information through SMS we advise you to really think an extra time before allowing an app to read your SMS.";
+
 
   Future<void> _querySMS() async {
     SmsQuery query = new SmsQuery();
@@ -74,22 +73,16 @@ class _SmsState extends State<Sms> {
       }
     }
     setState(() {
-      favouriteDateString = 'These messages with your favourite are from ' +
-          favouriteDate.year.toString() +
-          '-' +
-          favouriteDate.month.toString() +
-          '-' +
-          favouriteDate.day.toString() +
-          ':\n';
+      favouriteDateString = 'These messages with your favourite are from ' + favouriteDate.year.toString() + '-' + favouriteDate.month.toString() + '-' + favouriteDate.day.toString() + ':\n';
       smsList[0] = favouriteDateString;
     });
 
     //Add day with favourite SMS to list
     threads.retainWhere((test) =>
-        test.dateSent.year == favouriteDate.year &&
+    test.dateSent.year == favouriteDate.year &&
         test.dateSent.month == favouriteDate.month &&
         test.dateSent.day == favouriteDate.day);
-    if (smsList.length == 1) {
+    if(smsList.length==1) {
       for (var i = 0; i < dayMaxSMS - 1; i++) {
         smsList.add(threads[i].body);
       }
@@ -108,8 +101,7 @@ class _SmsState extends State<Sms> {
       body: ListView(children: <Widget>[
         new Container(
           //Put in functions from the template below!!!
-          child: template.textBoxWithPic(
-              null, myImage, myHeader, null, myText, null, null),
+          child: template.textBoxWithPic(null, myImage, myHeader, null, myText, null, null),
         ),
         new Container(
             child: new Row(
