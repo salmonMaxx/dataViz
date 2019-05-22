@@ -110,7 +110,10 @@ class _VideoPicsState extends State<VideoPics> {
                 bottomRight: Radius.circular(10)) ),
             height: 100,
             margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5),
-            child: new ListView.builder(
+            child: new ListView.separated(
+              separatorBuilder: (context, i) => Divider(
+                color: Colors.white,
+              ),
               itemBuilder: _buildItem,
               itemCount: pathList.length,
             ),
@@ -132,7 +135,7 @@ class _VideoPicsState extends State<VideoPics> {
   Widget _buildWithData(AssetPathEntity data) {
     return GestureDetector(
       child: ListTile(
-        title: Text(data.name),
+        title: Text(data.name, style:  TextStyle(color: Colors.white)),
       ),
       onTap: () async {
         var list = await data.assetList;
