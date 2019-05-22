@@ -11,7 +11,7 @@ class PermissionTemplate extends StatefulWidget {
     Radius borderRadius = const Radius.circular(10.0);
     if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
-          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          gradient: colorGradient(Alignment.topLeft, Alignment.bottomRight),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(

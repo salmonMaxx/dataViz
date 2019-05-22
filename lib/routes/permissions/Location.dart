@@ -51,6 +51,18 @@ class _LocationState extends State<Location> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    temp.textBox(
+                        BoxDecoration(
+                            gradient: temp.colorGradient(
+                                Alignment.centerRight, Alignment.centerLeft),
+                            borderRadius: new BorderRadius.only(
+                                bottomLeft: Radius.circular(10.0),
+                                bottomRight: Radius.circular(10.0))),
+                        "The location permission",
+                        null,
+                        "This permission grants the app to see the exact location of your device in real time.",
+                        null,
+                        EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     Center(
                       child: loc?.longitude == null
                           ? temp.textBox(null, 'getting location...', null,
@@ -86,10 +98,7 @@ class _LocationState extends State<Location> {
                         null,
                         EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     temp.boxRight(
-                      BoxDecoration(
-                        gradient: temp.colorGradient(
-                            Alignment.centerLeft, Alignment.centerRight),
-                      ),
+                      null,
                       'assets/location_map.jpg',
                       '',
                       "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time.",

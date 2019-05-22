@@ -23,10 +23,8 @@ import './routes/drawer/Settings.dart';
 
 import './routes/permissions/ActivityLog.dart';
 import './routes/permissions/AudioFiles.dart';
-import './routes/permissions/Calendar.dart';
 import './routes/permissions/CallLog.dart';
 import './routes/permissions/Camera.dart';
-import './routes/permissions/Phone.dart';
 import './routes/permissions/Sensors.dart';
 import './routes/permissions/Sms.dart';
 
@@ -60,15 +58,7 @@ class MyApp extends StatelessWidget {
         'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
-
-
-        //PERMIISSIONS
-        'activity_log': (context) => ActivityLog(),
-        'audio_files': (context) => AudioFiles(),
-        'camera': (context) => Camera(),
-        'sensors': (context) => Sensors(),
-        'sms': (context) => SMS(),
-              },
+      },
     );
   }
 }
@@ -142,13 +132,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return str.substring(0, 1).toUpperCase() + str.substring(1);
   }
 
-  List<String> _getPermissionToAppList(String permission){
+  List<String> _getPermissionToAppList(String permission) {
     List<String> appsWithPermission = [];
-    permissionMap.forEach((package,permissionListString) {
-      if(permissionListString.split(",").contains(permission)){
+    permissionMap.forEach((package, permissionListString) {
+      if (permissionListString.split(",").contains(permission)) {
         //translate package into label with the installedApps variable
         installedApps.forEach((index) {
-          if(index["package"] == package){
+          if (index["package"] == package) {
             appsWithPermission.add(index["label"]);
           }
         });

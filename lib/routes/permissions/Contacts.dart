@@ -26,7 +26,6 @@ class _ContactsState extends State<Contacts> {
     getContacts();
   }
 
-
   getContacts() async {
     PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.contacts);
     if(permission != PermissionStatus.granted) {
@@ -63,8 +62,9 @@ class _ContactsState extends State<Contacts> {
       ),
       body: ListView(
         children: <Widget>[
-         new Container(
-            child: template.scrollListWithHeader(null, "Are these guys your friends?", null, contactInfo),
+          new Container(
+            child: template.scrollListWithHeader(
+                null, "Are these guys your friends?", null, contactInfo),
           ),
           new Container(
             alignment: Alignment.center,
@@ -75,9 +75,10 @@ class _ContactsState extends State<Contacts> {
               tooltip: 'get freaking contacts',
             ),
           ),
-         new Container(
-           child: template.otherPermissionBox(null, null, widget.whoHasContacts),
-         ),
+          new Container(
+            child: template.otherPermissionBox(
+                null, null, widget.whoHasContacts),
+          ),
         ],
       ),
     );

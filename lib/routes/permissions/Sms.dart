@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sms/sms.dart';
 import '../PermissionTemplate.dart';
-import 'package:async/async.dart';
-import 'package:sms/contact.dart';
 
 class SMS extends StatefulWidget {
   SMS({Key key, this.whoHasSMS}) : super(key: key);

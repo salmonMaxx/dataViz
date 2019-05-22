@@ -3,7 +3,6 @@ import './BlackList.dart';
 import './permissions/Contacts.dart';
 import './permissions/Location.dart';
 import './permissions/Mic.dart';
-import './permissions/Sms.dart';
 import './permissions/VideoPics.dart';
 import './permissions/Calendar.dart';
 import './permissions/Phone.dart';
@@ -37,7 +36,7 @@ Future<void> _ackAlert(BuildContext context) {
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key, this.appInfo}) : super(key: key);
-  Map<String, List<String>> appInfo;
+  final Map<String, List<String>> appInfo;
 
   @override
   _MenuPageState createState() => _MenuPageState();
@@ -46,13 +45,6 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
-    Widget image = new DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/logo_dataviz_1.png'),
-        ),
-      ),
-    );
     Widget bigCircle = new Container(
       width: 310.0,
       height: 310.0,
