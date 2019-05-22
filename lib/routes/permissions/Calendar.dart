@@ -6,8 +6,8 @@ class Calendar extends StatefulWidget {
   @override
   _CalendarState createState() => _CalendarState();
 
-  Calendar({Key key, this.whoHasCalendar}) : super(key:key);
-  final Map<String, dynamic> whoHasCalendar;
+  Calendar(this.whoHasCalendar);
+  final List <String> whoHasCalendar;
 
 }
 
@@ -49,10 +49,9 @@ class _CalendarState extends State<Calendar> {
           new Container(
             child: template.textBoxWith3Pics(null, myImage3, myImage2, myImage1, myHeader , null, myText, null, 100),
           ),
-// TAKE AWAY COMMENTS
-          //new Container(
-          //child: template.otherPermissionBox(null, null, widget.whoHasCalendar['whoHasCalendar']),
-          //),
+          new Container(
+          child: template.otherPermissionBox(null, null, widget.whoHasCalendar),
+          ),
         ],
       ),
     );

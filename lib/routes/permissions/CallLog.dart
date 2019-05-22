@@ -5,8 +5,8 @@ import '../PermissionTemplate.dart';
 
 class CallLog extends StatefulWidget {
 
-  CallLog({Key key, this.whoHasCallLog}) : super(key:key);
-  final Map<String, dynamic> whoHasCallLog;
+  CallLog(this.whoHasCallLog);
+  final List<String> whoHasCallLog;
 
   @override
   _CallLogState createState() => _CallLogState();
@@ -37,10 +37,9 @@ class _CallLogState extends State<CallLog> {
             child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 150),
           ),
 
-          //TAKE AWAY COMMENTS
-          //new Container(
-          //child: template.otherPermissionBox(null, null, widget.whoHasCallLog['whoHasCallLog']),
-          // ),
+          new Container(
+          child: template.otherPermissionBox(null, null, widget.whoHasCallLog),
+           ),
         ],
       ),
     );

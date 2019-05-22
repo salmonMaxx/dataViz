@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sms/sms.dart';
 import '../PermissionTemplate.dart';
-import 'package:async/async.dart';
-import 'package:sms/contact.dart';
 
-class SMS extends StatefulWidget {
-  SMS({Key key, this.whoHasSMS}) : super(key: key);
-  final Map<String, dynamic> whoHasSMS;
+class Sms extends StatefulWidget {
+  Sms(this.whoHasSMS);
+  final List<String> whoHasSMS;
 
   @override
-  _SMSState createState() => _SMSState();
-
+  _SmsState createState() => _SmsState();
 }
 
 var template = new PermissionTemplate();
@@ -21,9 +18,7 @@ String favouriteDateString = 'Press the message icon to see this feature';
 List smsList = new List.filled(1, favouriteDateString, growable: true);
 final smsController = TextEditingController();
 
-
-
-class _SMSState extends State<SMS> {
+class _SmsState extends State<Sms> {
   // BOX 1
   String myImage = "assets/sensors1.jpg";
   String myHeader = "The SMS Permission";
@@ -121,9 +116,7 @@ class _SMSState extends State<SMS> {
                   }),
             ),
           ],
-        )
-
-            ),
+        )),
         new Container(
             child: new Row(
           crossAxisAlignment: CrossAxisAlignment.center,

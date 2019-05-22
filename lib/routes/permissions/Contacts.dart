@@ -13,18 +13,42 @@ class Contacts extends StatefulWidget {
 
 var template = new PermissionTemplate();
 
+
 class _ContactsState extends State<Contacts> {
   PermissionStatus contactPermissionStatus;
+  Iterable<Contact> _contactIterable;
+  dynamic contactInfo;
+
+
+  @override
+  void initState(){
+    super.initState();
+    getContacts();
+  }
 
   getContacts() async {
     PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.contacts);
-    if(permission != PermissionStatus.granted || permission != PermissionStatus.unknown) {
+    if(permission != PermissionStatus.granted) {
       Map<PermissionGroup,
           PermissionStatus> requestContacts = await PermissionHandler()
           .requestPermissions([PermissionGroup.contacts]);
     }
-    Iterable<Contact> contacts = await ContactsService.getContacts();
-    return contacts;
+    await ContactsService.getContacts().then((contacts) => _contactIterable = contacts);
+  }
+
+  fixContactInfo() async{
+    List <String> contactInfo = [];
+    String GN;
+    String FN;
+    String Email;
+    for (var contact in _contactIterable) {
+      if (contact.givenName != null) {
+        GN = contact?.givenName ?? "";
+        FN = contact?.familyName ?? "";
+        contactInfo.add(GN + " " + FN);
+      }
+    }
+    return contactInfo;
   }
 
   @override
@@ -39,19 +63,24 @@ class _ContactsState extends State<Contacts> {
       body: ListView(
         children: <Widget>[
           new Container(
+            child: template.scrollListWithHeader(
+                null, "Are these guys your friends?", null, contactInfo),
+          ),
+          new Container(
+            alignment: Alignment.center,
             child: IconButton(
               icon: Icon(Icons.person_pin, color: Colors.white),
-              iconSize: 300.0,
-              onPressed: () {
-                print("==============================================");
-                getContacts();
-              },
+              iconSize: 100.0,
+              onPressed: null,
               tooltip: 'get freaking contacts',
             ),
+          ),
+          new Container(
+            child: template.otherPermissionBox(
+                null, null, widget.whoHasContacts),
           ),
         ],
       ),
     );
   }
 }
-
