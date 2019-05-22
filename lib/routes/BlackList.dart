@@ -112,7 +112,7 @@ class _BlackListState extends State<BlackList> {
     ];
   }
   String myHeader = "BLACKLISTED APPS";
-  String myText = "hej hej hej hej hej";
+  String myText = "Here you can see if you got known dangerous apps. If you have an app marked red it is blacklisted and you should consider deleting it.";
 
   @override
   Widget build(BuildContext context) {
