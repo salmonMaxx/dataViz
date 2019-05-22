@@ -62,6 +62,8 @@ flutter:
   - assets/audiofile2.jpg
   - assets/phone1.jpg
   - assets/phone2.jpg
+  - assets/location_map.jpg
+  - assets/location_code.jpg
 
   fonts:
   - family: Modak-Regular

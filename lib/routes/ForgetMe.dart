@@ -64,7 +64,6 @@ class _ForgetMeState extends State<ForgetMe> {
         shrinkWrap: true,
         children: <Widget>[
           new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
                 child: Form(
@@ -73,12 +72,12 @@ class _ForgetMeState extends State<ForgetMe> {
                       context,
                       forgetpic,
                       "FANTASTIC!",
-                      60,
+                      MediaQuery.of(context).size.height * 0.08,
                       'We really encourage our users to delete their accounts to protect their data.'
                       '\nRemember that you have the right to delete your data on other apps and plattforms as well. '
-                      '\n\nTake back controll of your data! ',
+                      '\n\nTake back control of your data! ',
                       null,
-                      130,
+                      MediaQuery.of(context).size.height * 0.22,
                       Colors.indigo[900]),
                 ),
               ),
@@ -108,11 +107,12 @@ class _ForgetMeState extends State<ForgetMe> {
                             Expanded(
                               child: RaisedButton(
                                 padding: EdgeInsets.all(5.0),
-                                child: Text('Forget me',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
+                                child: Text(
+                                  'Forget me',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () {
                                   deleteFromDB();
@@ -125,15 +125,19 @@ class _ForgetMeState extends State<ForgetMe> {
                             Expanded(
                               child: RaisedButton(
                                 padding: EdgeInsets.all(5.0),
-                                child: Text('Cancel',
+                                child: Text(
+                                  'Cancel',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
-                                      fontWeight: FontWeight.bold),),
-                                onPressed: () {Navigator.popAndPushNamed(context, "homepage");} ,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  Navigator.popAndPushNamed(
+                                      context, "homepage");
+                                },
                                 splashColor: Colors.amber,
                                 color: Colors.red[900],
-                                
                               ),
                             )
                           ],

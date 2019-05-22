@@ -4,8 +4,8 @@ import '../PermissionTemplate.dart';
 
 class Phone extends StatefulWidget {
 
-  Phone({Key key, this.whoHasPhone}) : super(key:key);
-  final Map<String, dynamic> whoHasPhone;
+  Phone(this.whoHasPhone);
+  final List <String> whoHasPhone;
 
   @override
   _PhoneState createState() => _PhoneState();
@@ -36,11 +36,9 @@ class _PhoneState extends State<Phone> {
             //Put in functions from the template below!!!
             child: template.textBoxWithPic(null, myImage, myHeader , null, myText, null, 100),
           ),
-
-          //TAKE AWAY COMMENTS
-          //new Container(
-          //child: template.otherPermissionBox(null, null, widget.whoHasPhone['whoHasPhone']),
-          // ),
+          new Container(
+          child: template.otherPermissionBox(null, null, widget.whoHasPhone),
+           ),
         ],
       ),
     );

@@ -6,7 +6,7 @@ import '../PermissionTemplate.dart';
 
 class Mic extends StatefulWidget {
   Mic(this.whoHasMic);
-  List<String> whoHasMic;
+  final List<String> whoHasMic;
   @override
   _MicState createState() => _MicState();
 }

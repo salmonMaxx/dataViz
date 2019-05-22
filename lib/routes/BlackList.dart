@@ -4,7 +4,7 @@ import 'PermissionTemplate.dart';
 
 class BlackList extends StatefulWidget {
   BlackList(this.installed);
-  List<String> installed;
+  final List<String> installed;
 
   @override
   _BlackListState createState() => _BlackListState();

@@ -3,8 +3,11 @@ import './BlackList.dart';
 import './permissions/Contacts.dart';
 import './permissions/Location.dart';
 import './permissions/Mic.dart';
-import './permissions/Sms.dart';
 import './permissions/VideoPics.dart';
+import './permissions/Calendar.dart';
+import './permissions/Sms.dart';
+import './permissions/Phone.dart';
+import './permissions/CallLog.dart';
 
 Future<void> _ackAlert(BuildContext context) {
   return showDialog<void>(
@@ -34,7 +37,7 @@ Future<void> _ackAlert(BuildContext context) {
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key, this.appInfo}) : super(key: key);
-  Map<String, List<String>> appInfo;
+  final Map<String, List<String>> appInfo;
 
   @override
   _MenuPageState createState() => _MenuPageState();
@@ -43,13 +46,6 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
-    Widget image = new DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/logo_dataviz_1.png'),
-        ),
-      ),
-    );
     Widget bigCircle = new Container(
       width: 310.0,
       height: 310.0,
@@ -130,7 +126,7 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new Contacts(widget.appInfo["contacts"]));
+                            new Calendar(widget.appInfo["calendar"]));
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.calendar_today),
@@ -139,14 +135,24 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('phone'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Phone(widget.appInfo["phone"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.phone_forwarded),
               top: 17.42,
               left: 195.0,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('sms'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new Sms(widget.appInfo["sms"]));
+                    Navigator.of(context).push(route);
+                  },
                   iconData: Icons.email),
               top: 65.0,
               left: 242.58,
@@ -184,8 +190,12 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('call_log'),
-                  iconData: Icons.group_add),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                      new CallLog(widget.appInfo["callLog"]));
+                      Navigator.of(context).push(route);},
+                      iconData: Icons.group_add),
               top: 195.0,
               left: 242.58,
             ),
