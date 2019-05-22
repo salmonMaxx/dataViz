@@ -26,9 +26,9 @@ final smsController = TextEditingController();
 class _SMSState extends State<SMS> {
   // BOX 1
   String myImage = "assets/sensors1.jpg";
-  String myHeader = "SMS";
-  String myText = "By allowing the SMS permission an app can find out a lot about you. Look for yourself by pushing the grey button.";
-  String leftText = 'Test';
+  String myHeader = "The SMS Permission";
+  String myText = "By allowing the SMS permission an app can read text messages stored on your device and SIM card. Before 2019, all apps with this permission were also allowed to send text messages but Google updated it to only allow your device’s default app to send SMS. However, if you have sent any private or confidential information through SMS we advise you to really think an extra time before allowing an app to read your SMS.";
+
 
   Future<void> _querySMS() async {
     SmsQuery query = new SmsQuery();
