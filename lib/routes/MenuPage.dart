@@ -36,7 +36,7 @@ Future<void> _ackAlert(BuildContext context) {
 }
 
 class MenuPage extends StatefulWidget {
-  MenuPage({Key key, this.appInfo}) : super(key: key);
+  MenuPage(this.appInfo);
   final Map<String, List<String>> appInfo;
 
   @override
