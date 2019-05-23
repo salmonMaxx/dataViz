@@ -61,7 +61,7 @@ class _LocationState extends State<Location> {
                         "Big Brother follows you?",
                         null,
                         "The location permission grants an app to see the exact location of your device in real time. Wherever you go.",
-                        null,
+                        15,
                         EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     Center(
                       child: loc?.longitude == null
@@ -94,7 +94,7 @@ class _LocationState extends State<Location> {
                         "Here you are!",
                         null,
                         "Try walking around in the room to see how accurate this data actually is.",
-                        null,
+                        18,
                         EdgeInsets.only(left: 10, right: 10, bottom: 5)),
                     temp.boxRight(
                       null,

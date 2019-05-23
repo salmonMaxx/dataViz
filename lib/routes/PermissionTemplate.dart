@@ -47,7 +47,7 @@ class PermissionTemplate extends StatefulWidget {
                           myHeader,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold),
                         )
                       : null,
@@ -95,7 +95,7 @@ class PermissionTemplate extends StatefulWidget {
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   )
                       : null,
@@ -157,7 +157,7 @@ class PermissionTemplate extends StatefulWidget {
                           myHeader,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold),
                         )
                       : null,
@@ -166,7 +166,7 @@ class PermissionTemplate extends StatefulWidget {
                   margin: const EdgeInsets.only(left: 10),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
               ],
@@ -1163,7 +1163,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -1171,7 +1171,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: const EdgeInsets.only(left: 5),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
               ],
@@ -1202,7 +1202,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -1210,7 +1210,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: const EdgeInsets.only(left: 10),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ],
