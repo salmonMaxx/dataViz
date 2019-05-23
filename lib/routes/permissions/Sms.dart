@@ -101,7 +101,7 @@ class _SmsState extends State<Sms> {
       body: ListView(children: <Widget>[
         new Container(
           //Put in functions from the template below!!!
-          child: template.textBoxWithPic(null, myImage, myHeader, null, myText, null, null),
+          child: template.textBoxWithPic(null, myImage, myHeader, null, myText, 16, null),
         ),
         new Container(
             child: new Row(
@@ -123,7 +123,7 @@ class _SmsState extends State<Sms> {
           children: <Widget>[
             Expanded(
                 child: template.textBox(
-                    null, 'Favourite contact', null, smsInfo, null, null)),
+                    null, 'Favourite contact', null, smsInfo, 16, null)),
           ],
         )),
         new Container(
@@ -134,7 +134,7 @@ class _SmsState extends State<Sms> {
                 child: template.textBoxInteract(
                     null,
                     'Do you remember this intense conversation?',
-                    18,
+                    15,
                     smsList.toString(),
                     15,
                     null))
