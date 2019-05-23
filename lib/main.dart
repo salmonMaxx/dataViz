@@ -77,12 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
   var installedAppIcons;
   List<String> installedAppLabels;
   static const platform =
-  const MethodChannel("dataViz/permissions");
+  const MethodChannel("dataViz/permissions"); //change channel string
 
-  Map<String, List<String>> whoHasWhat; //change channel string
+  Map<String, List<String>> whoHasWhat;
 
   Map<String, List<String>> _getPermissionLists(){
     Map<String, List<String>> permissionMap = new Map();
+    permissionMap['installedLabels']  = installedAppLabels;
     permissionMap['contacts']   =          _getPermissionToAppList("android.permission.READ_CONTACTS");
     permissionMap['microphone'] =           _getPermissionToAppList("android.permission.RECORD_AUDIO");
     permissionMap['sms']        =               _getPermissionToAppList("android.permission.READ_SMS");
@@ -169,7 +170,6 @@ class _MyHomePageState extends State<MyHomePage> {
         })
     );
     print('loaded permissions. . . \n');
-    whoHasWhat = _getPermissionLists();
   }
 
   _waitForPermissions() async {
@@ -207,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       var route = new MaterialPageRoute(
-                          builder: (BuildContext context) => new MenuPage(whoHasWhat));
+                          builder: (BuildContext context) => new MenuPage(_getPermissionLists()));
                       Navigator.of(context).push(route);
                     },
                     tooltip: 'location',

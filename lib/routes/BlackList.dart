@@ -123,7 +123,7 @@ class _BlackListState extends State<BlackList> {
         centerTitle: true,
         backgroundColor: Colors.indigo[900],
         title: Text(
-          'Blacklist: ${widget.installed.length} apps installed',
+          'Blacklist: ${widget.installed?.length} apps installed',
         ),
       ),
       body: ListView(
