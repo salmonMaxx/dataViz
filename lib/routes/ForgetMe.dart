@@ -73,13 +73,19 @@ class _ForgetMeState extends State<ForgetMe> {
                       forgetpic,
                       "FANTASTIC!",
                       MediaQuery.of(context).size.height * 0.08,
-                      'We really encourage our users to delete their accounts to protect their data.'
-                      '\nRemember that you have the right to delete your data on other apps and plattforms as well. '
-                      '\n\nTake back control of your data! ',
+                      "",
                       null,
                       MediaQuery.of(context).size.height * 0.22,
                       Colors.indigo[900]),
                 ),
+              ),
+              template.boxRight(
+                null,
+                'assets/logo_dataviz_1.png',
+                '',
+                'We really encourage our users to delete their accounts to protect their data.'
+                    '\nRemember that you have the right to delete your data on other apps and platforms as well. '
+                    '\n\nTake back control of your data! ',
               ),
               _input(
                   "required email",

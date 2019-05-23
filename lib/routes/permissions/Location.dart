@@ -70,8 +70,7 @@ class _LocationState extends State<Location> {
                           : temp.textBox(
                               BoxDecoration(
                                   gradient: temp.colorGradient(
-                                      Alignment.centerRight,
-                                      Alignment.centerLeft),
+                                      Alignment.topCenter, Alignment.bottomCenter),
                                   borderRadius: new BorderRadius.only(
                                       topLeft: Radius.circular(10.0),
                                       topRight: Radius.circular(10.0))),
@@ -88,7 +87,7 @@ class _LocationState extends State<Location> {
                     temp.textBox(
                         BoxDecoration(
                             gradient: temp.colorGradient(
-                                Alignment.centerRight, Alignment.centerLeft),
+                                Alignment.bottomCenter, Alignment.topCenter),
                             borderRadius: new BorderRadius.only(
                                 bottomLeft: Radius.circular(10.0),
                                 bottomRight: Radius.circular(10.0))),
@@ -101,13 +100,13 @@ class _LocationState extends State<Location> {
                       null,
                       'assets/location_map.jpg',
                       '',
-                      "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time. The device location can also be used for not-so-obvious reasons such as geotagging photos taken.",
+                      "A users personal location might be useful to have. A map application might use this to show you the fastest path to your destination and might also train its algorithms with that same data at the same time.\n\nThe device location can also be used for not-so-obvious reasons such as geotagging photos taken.",
                     ),
                     temp.boxxLeft(
                         null,
                         'assets/location_code.jpg',
                         '',
-                      "Though, there are drawbacks. Some apps will use the permission to use a devices location to sell to marketers for profit or other malicious use cases. A devices location is easily connected to a persons home, workplace or school or other frequently visited locations. Perhaps this is not something that everybody is comfortable with sharing and thus need to be mindful of which apps are granted this permission.",),
+                      "Though, there are drawbacks. Some apps will use the permission to use a devices location to sell to marketers for profit or other malicious use cases.\n\nA devices location is easily connected to a persons home, workplace or school or other frequently visited locations. Perhaps this is not something that everybody is comfortable with sharing and thus need to be mindful of which apps are granted this permission.",),
                     temp.otherPermissionBox(null, null, widget.whoHasLocation),
                   ],
                 ),
