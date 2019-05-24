@@ -66,6 +66,10 @@ class _MenuPageState extends State<MenuPage> {
           border: new Border.all(color: Colors.indigo[300], width: 20.0)),
     );
 
+    void _openSetting() {
+      PhotoManager.openSetting();
+    }
+
     return Scaffold(
       backgroundColor: Colors.indigo[900],
       appBar: AppBar(
@@ -286,12 +290,11 @@ class _MenuPageState extends State<MenuPage> {
               },
             ),
             ListTile(
-              title: Text('SETTINGS',
+              title: Text('MANAGE PERMISSIONS',
                   style:
                       new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).pushNamed('settings');
+                _openSetting();
               },
             ),
             ListTile(
