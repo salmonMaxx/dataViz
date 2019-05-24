@@ -67,6 +67,7 @@ flutter:
   - assets/protest.jpg
   - assets/socialmedia.jpg
   - assets/cash.jpg
+  - assets/surveillence.jpg
 
   fonts:
   - family: Modak-Regular
