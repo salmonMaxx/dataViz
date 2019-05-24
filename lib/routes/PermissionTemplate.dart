@@ -11,7 +11,7 @@ class PermissionTemplate extends StatefulWidget {
     Radius borderRadius = const Radius.circular(10.0);
     if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
-          gradient: colorGradient(Alignment.topLeft, Alignment.bottomRight),
+          gradient: colorGradient(Alignment.topCenter, Alignment.bottomCenter),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(
@@ -47,7 +47,7 @@ class PermissionTemplate extends StatefulWidget {
                           myHeader,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold),
                         )
                       : null,
@@ -57,7 +57,7 @@ class PermissionTemplate extends StatefulWidget {
                   child: new SingleChildScrollView(
                     child: new Text(
                       myText,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ),
@@ -74,7 +74,7 @@ class PermissionTemplate extends StatefulWidget {
     Radius borderRadius = const Radius.circular(10.0);
     if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
-          gradient: colorGradient(Alignment.centerRight, Alignment.centerLeft),
+          gradient: colorGradient(Alignment.topCenter, Alignment.bottomCenter),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(
@@ -83,6 +83,7 @@ class PermissionTemplate extends StatefulWidget {
       margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Row(
         children: <Widget>[
+          SizedBox(width: 10),
           Flexible(
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -94,7 +95,7 @@ class PermissionTemplate extends StatefulWidget {
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   )
                       : null,
@@ -104,7 +105,7 @@ class PermissionTemplate extends StatefulWidget {
                   child: new SingleChildScrollView(
                     child: new Text(
                       myText,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ),
@@ -113,7 +114,7 @@ class PermissionTemplate extends StatefulWidget {
           ),
           Flexible(
             child: Container(
-              margin: const EdgeInsets.only(left: 30, right: 10),
+              margin: const EdgeInsets.only(left: 10, right: 10),
               width: 130,
               height: 130,
               decoration: new BoxDecoration(
@@ -136,7 +137,7 @@ class PermissionTemplate extends StatefulWidget {
     Radius borderRadius = const Radius.circular(10.0);
     if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
-          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          gradient: colorGradient(Alignment.topCenter, Alignment.bottomCenter),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     return new Container(
@@ -156,7 +157,7 @@ class PermissionTemplate extends StatefulWidget {
                           myHeader,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold),
                         )
                       : null,
@@ -165,7 +166,7 @@ class PermissionTemplate extends StatefulWidget {
                   margin: const EdgeInsets.only(left: 10),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
               ],
@@ -336,7 +337,7 @@ class PermissionTemplate extends StatefulWidget {
     }
     if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
-          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          gradient: colorGradient(Alignment.topCenter, Alignment.bottomCenter),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     if (myMargin == null) {
@@ -989,7 +990,7 @@ class PermissionTemplate extends StatefulWidget {
     Color myTextColor = Colors.white;
     if (myBoxDeco == null) {
       myBoxDeco = BoxDecoration(
-          gradient: colorGradient(Alignment.topRight, Alignment.bottomLeft),
+          gradient: colorGradient(Alignment.topCenter, Alignment.bottomCenter),
           borderRadius: new BorderRadius.all(borderRadius));
     }
     if (myMargin == null) {
@@ -1095,11 +1096,16 @@ class PermissionTemplate extends StatefulWidget {
                           color: Colors.white,
                         ),
                     padding: EdgeInsets.all(15.0),
-                    itemCount: theList.length,
+                    itemCount: theList?.length ?? 1,
                     itemBuilder: (context, i) {
                       return new ListTile(
-                        title: Text(
+                        title: theList != null ? Text(
                           _capitalizeString(theList[i]),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                        :
+                        Text(
+                          "getting info. . .",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onTap: null,
@@ -1157,7 +1163,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -1165,7 +1171,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: const EdgeInsets.only(left: 5),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
               ],
@@ -1196,7 +1202,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                     myHeader,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -1204,7 +1210,7 @@ class _PermissionTemplateState extends State<PermissionTemplate> {
                   margin: const EdgeInsets.only(left: 10),
                   child: new Text(
                     myText,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ],

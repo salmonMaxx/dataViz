@@ -96,6 +96,7 @@ class _MenuPageState extends State<MenuPage> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/light.png'),
+
                     ),
                   ),
                 ),
