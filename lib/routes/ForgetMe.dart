@@ -11,7 +11,7 @@ class ForgetMe extends StatefulWidget {
 class _ForgetMeState extends State<ForgetMe> {
   String _email;
   String _password;
-  String url = 'http://34.74.219.4:80/delete'; //server url
+  String url = 'https://34.74.219.4:443/delete'; //server url
   //String url = 'http://192.168.43.25:3000/delete'; //local url
   final focusUser = FocusNode();
   final focusPass = FocusNode();
@@ -28,6 +28,7 @@ class _ForgetMeState extends State<ForgetMe> {
 
   Future<String> deleteFromDB() async {
     checkFields();
+    print('dont work');
     var response = await http.post(url,
         body: json.encode({
           'username': _email,
@@ -122,6 +123,7 @@ class _ForgetMeState extends State<ForgetMe> {
                                 ),
                                 onPressed: () {
                                   deleteFromDB();
+                                  print('hej');
                                 },
                                 splashColor: Colors.amber,
                                 color: Colors.green,

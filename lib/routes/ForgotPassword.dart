@@ -13,7 +13,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   final focusUser = FocusNode();
   final focusPass = FocusNode();
-  String url = 'http://34.74.219.4:80/forgot'; //server url
+  String url = 'https://34.74.219.4:443/forgot'; //server url
   //String url = 'http://192.168.43.25:3000/forgot'; //local url
   final formkey = new GlobalKey<FormState>();
 

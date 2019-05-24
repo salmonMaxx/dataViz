@@ -49,7 +49,7 @@ class _VideoPicsState extends State<VideoPics> {
       appBar: new AppBar(
         centerTitle: true,
         backgroundColor: Colors.indigo[900],
-        title: const Text('VIDEO & IMAGE'),
+        title: const Text('STORAGE: VIDEOS & IMAGES'),
       ),
       body: ListView(
         children: <Widget>[
@@ -61,8 +61,7 @@ class _VideoPicsState extends State<VideoPics> {
                   "assets/camera3.jpg",
                   "Selfies for everyone?",
                   null,
-                  "Pictures and videos on your mobile can be highly private. When you answer YES to the request for permission,"
-                  " an app can easily see all the pictures and videos on your mobile. Remember what you accept!",
+                  "Pictures and videos on your phone can be very sensitive. WHen you answer YES to the request for storage permission, an app can easily see everything you have stored on your phone. Remember what you accept!",
                   null,
                   100)),
           new Container(
