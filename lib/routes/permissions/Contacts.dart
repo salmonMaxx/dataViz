@@ -47,8 +47,8 @@ class _ContactsState extends State<Contacts> {
       if (contact.givenName != null) {
         givenName = contact?.givenName ?? "";
         firstName = contact?.familyName ?? "";
-        email = contact?.emails ?? "";
-        contactInfo.add('$givenName $firstName\n$email');
+        //email = contact?.emails ?? "";
+        contactInfo.add('$givenName $firstName');
       }
     }
     return contactInfo;

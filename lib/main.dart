@@ -78,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> installedAppLabels;
   static const platform =
   const MethodChannel("dataViz/permissions"); //change channel string
-
   Map<String, List<String>> whoHasWhat;
 
   Map<String, List<String>> _getPermissionLists(){
