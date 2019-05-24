@@ -9,6 +9,8 @@ import './permissions/Sms.dart';
 import './permissions/Phone.dart';
 import './permissions/CallLog.dart';
 
+import 'package:photo_manager/photo_manager.dart';
+
 Future<void> _ackAlert(BuildContext context) {
   return showDialog<void>(
     context: context,
@@ -45,6 +47,15 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   @override
+
+  void getImages() async {
+    var result = await PhotoManager.requestPermission();
+    if (!(result == true)) {
+      print("You have to grant album privileges");
+      return;
+    }
+  }
+
   Widget build(BuildContext context) {
     Widget bigCircle = new Container(
       width: 310.0,
@@ -176,6 +187,7 @@ class _MenuPageState extends State<MenuPage> {
                         builder: (BuildContext context) =>
                         new VideoPics(widget.appInfo["videoPics"]));
                     Navigator.of(context).push(route);
+                    getImages();
                   },
                   iconData: Icons.personal_video),
               top: 130.0,
