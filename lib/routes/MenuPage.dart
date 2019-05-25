@@ -146,8 +146,8 @@ class _MenuPageState extends State<MenuPage> {
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.calendar_today),
-              top: 17.42,
-              left: 65.0,
+              top: 53.59,
+              left: 235.18,
             ),
             new Positioned(
               child: new CircleButton(
@@ -158,8 +158,8 @@ class _MenuPageState extends State<MenuPage> {
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.phone_forwarded),
-              top: 17.42,
-              left: 195.0,
+              top: 206.41,
+              left: 235.18,
             ),
             new Positioned(
               child: new CircleButton(
@@ -170,8 +170,8 @@ class _MenuPageState extends State<MenuPage> {
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.email),
-              top: 65.0,
-              left: 242.58,
+              top: 206.41,
+              left: 24.82,
             ),
             new Positioned(
               child: new CircleButton(
@@ -182,10 +182,10 @@ class _MenuPageState extends State<MenuPage> {
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.contacts),
-              top: 65.0,
-              left: 17.42,
+              top: 53.59,
+              left: 24.82,
             ),
-            new Positioned(
+           /* new Positioned(
               child: new CircleButton(
                   onTap: () {
                     var route = new MaterialPageRoute(
@@ -253,7 +253,7 @@ class _MenuPageState extends State<MenuPage> {
                   iconData: Icons.location_on),
               top: 260.0,
               left: 130.0,
-            ),
+            ),*/
           ],
         ),
       ),
@@ -357,7 +357,8 @@ class CircleButton extends StatelessWidget {
         ),
         child: new Icon(
           iconData,
-          color: Colors.black,
+          color: Colors.black
+          ,
         ),
       ),
     );

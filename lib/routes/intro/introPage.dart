@@ -146,7 +146,7 @@ class _IntroPageState extends State<IntroPage> {
             Container(
               margin: EdgeInsets.all(30),
               child: Text(
-                  "This app helps you get control of your phone and apps. \n\n"
+                  "This app helps you take control of your phone and apps. \n\n"
                   "There are lots of apps that collect information about you in order to sell it in marketing purpose "
                   "or that eradicate your information incorrectly."
                   "\n\n Think before allowing permission requests!",
@@ -181,11 +181,4 @@ class _IntroPageState extends State<IntroPage> {
   }
 }
 
-/*        new DotsIndicator(
-          dotsCount: pageLength,
-          position: currentIndexPage,
-          decorator: DotsDecorator(
-            color: Colors.black87,
-            activeColor: Colors.redAccent,
-          ),
-        )*/
+

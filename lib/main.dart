@@ -17,7 +17,7 @@ import './routes/MenuPage.dart';
 import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
-import './routes/drawer/Settings.dart';
+
 
 //intro
 import './routes/intro/introPage.dart';
@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
 
         //drawer
         'big_picture': (context) => BigPicture(),
-        'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
       },
@@ -173,8 +172,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       var list = _getPermissionToAppList("android.permission.READ_SMS");
                       var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                          new Sms(list));
-                          Navigator.of(context).push(route);
+                          new IntroPage(list));
+                      Navigator.of(context).push(route);
                     },
                   ),
                 ],
