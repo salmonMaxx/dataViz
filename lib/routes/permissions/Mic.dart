@@ -18,6 +18,8 @@ class _MicState extends State<Mic> {
   PermissionTemplate temp = new PermissionTemplate();
 
   String resultText = "";
+  String infoHeader = 'How does it work?';
+  String infoText = 'We are using a free and easily accessible, yet very powerful, voice recognition algorithm that makes it very easy for app companies to record whatever you say. Most apps use this only when you actively demand it by pushing a button but some, like Google’s Home, Amazon’s Alexa or Apple’s Siri, are listening on standby for a voice command to activate them. They all deny that they save any data but several experts still describe them as potential privacy nightmares.';
 
   @override
   void initState() {
@@ -83,7 +85,7 @@ class _MicState extends State<Mic> {
                   "assets/audiofile2.jpg",
                   'Do you have a beautiful voice?',
                   20,
-                  'Try talking (or singing!) to the microphone and see if what the phone can hear.',
+                  'Try talking (or singing!) to the microphone and see what the phone can hear.',
                   16,
                   null,
                 ),
@@ -138,6 +140,9 @@ class _MicState extends State<Mic> {
                 ),
               ],
             ),
+          ),
+          Container(
+            child: temp.textBoxWithPic(null, "assets/surveillence.jpg", infoHeader, 24, infoText, 16, null)
           ),
           temp.otherPermissionBox(null, null, widget.whoHasMic),
         ],

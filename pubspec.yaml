@@ -64,6 +64,11 @@ flutter:
   - assets/phone2.jpg
   - assets/location_map.jpg
   - assets/location_code.jpg
+  - assets/protest.jpg
+  - assets/socialmedia.jpg
+  - assets/cash.jpg
+  - assets/surveillence.jpg
+  - assets/people.jpg
 
   fonts:
   - family: Modak-Regular

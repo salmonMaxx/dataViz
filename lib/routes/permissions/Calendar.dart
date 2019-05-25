@@ -16,7 +16,7 @@ var template = new PermissionTemplate();
 class _CalendarState extends State<Calendar> {
 
   String myHeader = "The Calendar Permission";
-  String myText = "When you allow an app to read and write in your calendar you may give away lots of personal data. It is common to save personal data like phone numbers and adresses in the calendar which whould easily be accesiable for the app. If you are an active user of your calendar it would also allow for a hostile app to track your behaviour in a highly unpleasant way.";
+  String myText = "When you allow an app to read and write in your calendar you may give away lots of personal data. It is common to save personal data like phone numbers and addresses in the calendar which would easily be accessible for the app. If you are an active user of your calendar it would also allow for a hostile app to track your behavior in a highly unpleasant way.";
   String  myImage1 =  "assets/calender1.jpg";
   String  myImage2 =  "assets/calender2.jpg";
   String  myImage3 =  "assets/calender3.jpeg";
