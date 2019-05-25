@@ -115,7 +115,7 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new BlackList(widget.appInfo["installedLabels"]));
+                            new BlackList(widget.appInfo["camera"]));
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.list),
@@ -184,7 +184,11 @@ class _MenuPageState extends State<MenuPage> {
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('activity_log'),
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new CallLog(widget.appInfo["sensors"]));
+                    Navigator.of(context).push(route);},
                   iconData: Icons.directions_bike),
               top: 130.0,
               left: 0.0,
@@ -200,13 +204,14 @@ class _MenuPageState extends State<MenuPage> {
               top: 195.0,
               left: 242.58,
             ),
-            new Positioned(
+            //NOT USED ANYMORE
+            /*new Positioned(
               child: new CircleButton(
                   onTap: () => Navigator.of(context).pushNamed('audio_files'),
                   iconData: Icons.insert_emoticon),
               top: 195.0,
               left: 17.42,
-            ),
+            ),*/
             new Positioned(
               child: new CircleButton(
                   onTap: () {
@@ -219,13 +224,14 @@ class _MenuPageState extends State<MenuPage> {
               top: 242.58,
               left: 65.0,
             ),
-            new Positioned(
+            //NOT USED ANYMORE
+            /*new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('sensors'),
+                  onTap: () => Navigator.of(context).pushNamed('activity_log'),
                   iconData: Icons.local_florist),
               top: 242.58,
               left: 195.0,
-            ),
+            ),*/
             new Positioned(
               child: new CircleButton(
                   onTap: () {

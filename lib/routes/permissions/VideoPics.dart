@@ -61,7 +61,7 @@ class _VideoPicsState extends State<VideoPics> {
                   "assets/camera3.jpg",
                   "Selfies for everyone?",
                   null,
-                  "Pictures and videos on your phone can be very sensitive. WHen you answer YES to the request for storage permission, an app can easily see everything you have stored on your phone. Remember what you accept!",
+                  "Pictures and videos on your phone can be very sensitive. When you answer YES to the request for storage permission, an app can easily see everything you have stored on your phone. Remember what you accept!",
                   null,
                   100)),
           new Container(
@@ -120,6 +120,9 @@ class _VideoPicsState extends State<VideoPics> {
           new Container(
             child: template.otherPermissionBox(null, null, widget.whoHasVideoPics),
             ),
+          new Container(
+            child: template.textBoxWithPic(null, "assets/audio.jpg", "What have you recorded?", 20, "\nAn app that acceses the storage can freely use all photos, videos and audio files on your phone. This grants the app enormous priveligies to understand and track their users. However, an app cannot access exactly all stored information on your phone. Metadata about your location is for example only permitted for the app that created the data in the first place to acess, even with the storage permission.", 14, null)
+          )
           ],
       ),
     );
