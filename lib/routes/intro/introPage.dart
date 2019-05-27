@@ -89,7 +89,17 @@ class _IntroPageState extends State<IntroPage> {
                 color: Colors.white,
                 fontSize: 30,
               ),
-            )
+            ),
+            Container(
+              margin: EdgeInsets.only(left:30, right:30, top: 40),
+              child: Text(
+                  "Swipe to the right -->",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  )),
+            ),
           ],
         ),
       );
@@ -144,18 +154,103 @@ class _IntroPageState extends State<IntroPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(30),
+              margin: EdgeInsets.only(left:30, right:30, top:10),
               child: Text(
-                  "This app helps you take control of your phone and apps. \n\n"
-                  "There are lots of apps that collect information about you in order to sell it in marketing purpose "
-                  "or that eradicate your information incorrectly."
-                  "\n\n Think before allowing permission requests!",
+                  "In this app you will:",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
+          Container(
+            margin: EdgeInsets.only(left:30, right:30, top:10),
+      child: Text(
+      "- See what permissions your apps have access to\n"
+      "- See if any of your phones apps are BLACKLISTED\n"
+      "- Get guidance how to handle your permissions\n\n",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+      color: Colors.white,
+      fontSize: 20,
+      )),
+      ),
+            Container(
+              margin: EdgeInsets.only(left:30, right:30),
+              child: Text(
+                      "Lets take control over your phone!!!\n",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
+            Container(
+            margin: EdgeInsets.only(left:30, right:30),
+              child: Text(
+                      "Swipe to the right -->",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  )),
+            ),
+
+          ],
+        ),
+      );
+    }
+
+    page31() {
+      currentIndexPage = 2;
+      return Scaffold(
+        backgroundColor: Colors.indigo[500],
+        body: Column(
+          children: <Widget>[
+            new SizedBox(
+              height: 200,
+            ),
+
+            Container(
+              margin: EdgeInsets.only(left:20, right:20, bottom: 20),
+              child: Text(
+                  "LETS CHECKOUT HOW TO DO THIS!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(left:25, right:25, top:10),
+              child: Text(
+                  "I belive you accept different permissions for all kinds of apps. \n"
+                      "But have you ever asked your self why this app need this information "
+                      "and what kind of information they really can collect about you!\n\n"
+
+                      "For example, SMS, kind of private, huh?!\n"
+                      "Lets see what we can reach and what other apps on your phone that have this permission!!"
+                  ,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                   )),
-            )
+            ),
+            Container(
+              margin: EdgeInsets.only(left:30, right:30, top: 20),
+              child: Text(
+                  "Swipe to the right -->",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  )),
+            ),
+
           ],
         ),
       );
@@ -163,7 +258,7 @@ class _IntroPageState extends State<IntroPage> {
 
     page3() {
       currentIndexPage = 3;
-      return Sms(widget.whoHasThis);
+      return Sms(widget.whoHasThis, false);
     }
 
     page4() {
@@ -174,6 +269,7 @@ class _IntroPageState extends State<IntroPage> {
       body: PageView(children: <Widget>[
         page1(),
         page2(),
+        page31(),
         page3(),
         page4(),
       ]),

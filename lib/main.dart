@@ -11,6 +11,8 @@ import './routes/ForgotPassword.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
+import './routes/MenuForOtherPerm.dart';
+import './routes/permissions/Sensors.dart';
 
 //drawer --> sidebar menu
 
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'menu': (context) => MenuPage(),
+        'sensors': (context) => Sensors(),
+        //'menuOther': (context) => MenuForOtherPerm(),
 
         //drawer
         'big_picture': (context) => BigPicture(),
@@ -196,6 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               'calendar' : _getPermissionToAppList("android.permission.READ_CALENDAR"),
                               'phone' : _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE"),
                               'callLog' : _getPermissionToAppList("android.permission.READ_CALL_LOG"),
+                              'camera' : _getPermissionToAppList("android.permission.CAMERA"),
 
                               //keep adding here to get more into the menu page
                               //TODO Contacts, microphone, sms, video and images, location

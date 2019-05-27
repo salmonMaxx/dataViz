@@ -8,30 +8,78 @@ import './permissions/Calendar.dart';
 import './permissions/Sms.dart';
 import './permissions/Phone.dart';
 import './permissions/CallLog.dart';
+import './MenuForOtherPerm.dart';
 
 import 'package:photo_manager/photo_manager.dart';
 
 Future<void> _ackAlert(BuildContext context) {
+  List <String> theList = ["Video and Image","SMS","Mic", "Contact", "Location"];
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Discover all Permissions!',
+        content:
+        new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Flexible(
+              child: Text('Discover all Permissions!\n',
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.indigo[900], fontSize: 25)),
-        content: Text(
-            'Go through the icons in the menu to see the importance of different permissions and how your apps uses them.',
-            style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+            style: TextStyle(color: Colors.indigo[900], fontSize: 25, fontWeight: FontWeight.bold)),),
+
+            new Flexible(
+              child:
+              Text(
+                  'Go through the icons in the menu to see the importance of different permissions and how your apps uses them.\n',
+                  style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+            ),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new CircleButton(iconData: Icons.email),
+                new Text ("SMS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+              ],),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new CircleButton(iconData: Icons.contacts),
+                new Text ("CONTACTS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+              ],),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new CircleButton(iconData: Icons.camera_roll),
+                new Text ("VIDEO & IMAGES", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+              ],),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new CircleButton(iconData: Icons.mic),
+                new Text ("MIC", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+              ],),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new CircleButton(iconData: Icons.location_on),
+                new Text ("LOCATION",textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+              ],),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new CircleButton(iconData: Icons.apps),
+                new Text ("OTHER PERMISSIONS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+              ],),],),
         actions: <Widget>[
+
           FlatButton(
             child: Text('OK!',
                 textAlign: TextAlign.center,
                 style: new TextStyle(color: Colors.indigo[900], fontSize: 25)),
             onPressed: () {
               Navigator.of(context).pop();
-            },
-          ),
-        ],
+            },),
+
+          ],
       );
     },
   );
@@ -47,7 +95,6 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   @override
-
   void getImages() async {
     var result = await PhotoManager.requestPermission();
     if (!(result == true)) {
@@ -100,7 +147,6 @@ class _MenuPageState extends State<MenuPage> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/light.png'),
-
                     ),
                   ),
                 ),
@@ -109,17 +155,21 @@ class _MenuPageState extends State<MenuPage> {
               left: -150.0,
             ),
             new Positioned(
-              child: new Center(
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      //image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
-                      image: AssetImage('assets/lamp1.png'),
+              child: new Column(
+                children: <Widget>[
+                  new GestureDetector(
+                    onTap: () {_ackAlert(context);},
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/lamp1.png'),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
               top: 80.0,
               left: 80.0,
@@ -130,10 +180,10 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new BlackList(widget.appInfo["installedLabels"]));
+                            new Sms(widget.appInfo["sms"], true));
                     Navigator.of(context).push(route);
                   },
-                  iconData: Icons.list),
+                  iconData: Icons.email),
               top: 0.0,
               left: 130.0,
             ),
@@ -142,70 +192,63 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new Calendar(widget.appInfo["calendar"]));
-                    Navigator.of(context).push(route);
-                  },
-                  iconData: Icons.calendar_today),
-              top: 53.59,
-              left: 235.18,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new Phone(widget.appInfo["phone"]));
-                    Navigator.of(context).push(route);
-                  },
-                  iconData: Icons.phone_forwarded),
-              top: 206.41,
-              left: 235.18,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new Sms(widget.appInfo["sms"]));
-                    Navigator.of(context).push(route);
-                  },
-                  iconData: Icons.email),
-              top: 206.41,
-              left: 24.82,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new Contacts(widget.appInfo["contacts"]));
-                    Navigator.of(context).push(route);
-                  },
-                  iconData: Icons.contacts),
-              top: 53.59,
-              left: 24.82,
-            ),
-           /* new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new VideoPics(widget.appInfo["videoPics"]));
+                            new VideoPics(widget.appInfo["videoPics"]));
                     Navigator.of(context).push(route);
                     getImages();
                   },
-                  iconData: Icons.personal_video),
-              top: 130.0,
-              left: 260.0,
+                  iconData: Icons.camera_roll),
+              left: 17.42,
+              top: 195,
             ),
             new Positioned(
               child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('activity_log'),
-                  iconData: Icons.directions_bike),
-              top: 130.0,
-              left: 0.0,
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new Location(widget.appInfo["location"]));
+                    Navigator.of(context).push(route);
+                  },
+                  iconData: Icons.location_on),
+              left: 17.42,
+              top: 65.0,
             ),
             new Positioned(
+              child: new CircleButton(
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new Contacts(widget.appInfo["contacts"]));
+                    Navigator.of(context).push(route);
+                  },
+                  iconData: Icons.contacts),
+              left: 242.58,
+              top: 65,
+            ),
+            new Positioned(
+              child: new CircleButton(
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new Mic(widget.appInfo["mic"]));
+                    Navigator.of(context).push(route);
+                  },
+                  iconData: Icons.mic),
+              left: 242.58,
+              top: 195,
+            ),
+            new Positioned(
+              child: new CircleButton(
+                  onTap: () {
+                    var route = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new MenuForOtherPerm(widget.appInfo));
+                    Navigator.of(context).push(route);
+                  },
+                  iconData: Icons.apps),
+              top: 260.0,
+              left: 130.0,
+            ),
+            /*new Positioned(
               child: new CircleButton(
                   onTap: () {
                     var route = new MaterialPageRoute(
@@ -285,7 +328,7 @@ class _MenuPageState extends State<MenuPage> {
               onTap: () {
                 var route = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                    new BlackList(widget.appInfo["installedLabels"]));
+                        new BlackList(widget.appInfo["installedLabels"]));
                 Navigator.of(context).push(route);
               },
             ),
@@ -357,8 +400,7 @@ class CircleButton extends StatelessWidget {
         ),
         child: new Icon(
           iconData,
-          color: Colors.black
-          ,
+          color: Colors.black,
         ),
       ),
     );
