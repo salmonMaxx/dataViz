@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       permissionMap = await platform.invokeMapMethod('getPermissions');
     } catch (e) {
-      print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
+      print({e.toString()});
     }
     return permissionMap;
   }
