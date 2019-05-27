@@ -12,7 +12,7 @@ class SignupPageState extends State<SignupPage> {
   String _password;
   final focusEmail = FocusNode();
   final focusPass = FocusNode();
-  String url = 'https://34.74.219.4:443/register'; //server url
+  String url = 'http://34.74.219.4:443/register'; //server url
   //String url = 'http://192.168.43.25:3000/register'; //local url
 
   final formkey = new GlobalKey<FormState>();

@@ -45,17 +45,13 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
       routes: {
-        'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
         'forgetMe': (context) => ForgetMe(),
         'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
-        'menu': (context) => MenuPage(),
         'sensors': (context) => Sensors(),
         //'menuOther': (context) => MenuForOtherPerm(),
-
-
         //drawer
         'big_picture': (context) => BigPicture(),
         'about_us': (context) => AboutUs(),
@@ -200,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       var list = _getPermissionToAppList("android.permission.READ_SMS");
                       var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                          new IntroPage(list));
+                          new IntroPage(_getPermissionLists()));
                       Navigator.of(context).push(route);
                     },
                   ),

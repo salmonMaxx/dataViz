@@ -1030,7 +1030,7 @@ class PermissionTemplate extends StatefulWidget {
                           color: Colors.white,
                         ),
                     padding: EdgeInsets.all(15.0),
-                    itemCount: theList.length,
+                    itemCount: (theList != null ? theList.length : 1),
                     itemBuilder: (context, i) {
                       return new ListTile(
                         title: Text(

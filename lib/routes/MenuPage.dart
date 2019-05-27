@@ -226,7 +226,7 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new Mic(widget.appInfo["mic"]));
+                            new Mic(widget.appInfo["microphone"]));
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.mic),
