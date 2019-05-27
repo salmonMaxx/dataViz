@@ -3,8 +3,9 @@ import 'package:sms/sms.dart';
 import '../PermissionTemplate.dart';
 
 class Sms extends StatefulWidget {
-  Sms(this.whoHasSMS);
+  Sms(this.whoHasSMS, this.isAppBar);
   final List<String> whoHasSMS;
+  final bool isAppBar;
 
   @override
   _SmsState createState() => _SmsState();
@@ -93,11 +94,13 @@ class _SmsState extends State<Sms> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo[200],
-      appBar: new AppBar(
+      appBar: widget.isAppBar ? new AppBar(
         centerTitle: true,
         backgroundColor: Colors.indigo[900],
         title: const Text('SMS'),
-      ),
+      )
+      :
+      null,
       body: ListView(children: <Widget>[
         new Container(
           //Put in functions from the template below!!!

@@ -4,8 +4,8 @@ import '../PermissionTemplate.dart';
 
 class Camera extends StatefulWidget {
 
-  Camera({Key key, this.whoHasCamera}) : super(key:key);
-  final Map<String, dynamic> whoHasCamera;
+  Camera(this.whoHasCamera);
+  final List<String> whoHasCamera;
 
   @override
   _CameraState createState() => _CameraState();

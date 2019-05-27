@@ -11,13 +11,15 @@ import './routes/ForgotPassword.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
+import './routes/MenuForOtherPerm.dart';
+import './routes/permissions/Sensors.dart';
 
 //drawer --> sidebar menu
 
 import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
 import './routes/drawer/FeedBack.dart';
-import './routes/drawer/Settings.dart';
+
 
 //intro
 import './routes/intro/introPage.dart';
@@ -48,11 +50,14 @@ class MyApp extends StatelessWidget {
         'forgetMe': (context) => ForgetMe(),
         'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
+        'microphone': (context) => PermissionMicrophoneScreen(),
+        'menu': (context) => MenuPage(),
+        'sensors': (context) => Sensors(),
+        //'menuOther': (context) => MenuForOtherPerm(),
 
 
         //drawer
         'big_picture': (context) => BigPicture(),
-        'settings': (context) => Settings(),
         'about_us': (context) => AboutUs(),
         'feedback': (context) => FeedBack(),
       },
@@ -92,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     permissionMap['calendar']   =          _getPermissionToAppList("android.permission.READ_CALENDAR");
     permissionMap['phone']      = _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE");
     permissionMap['callLog']    =          _getPermissionToAppList("android.permission.READ_CALL_LOG");
+    permissionMap['camera']     =                 _getPermissionToAppList("android.permission.CAMERA");
     return permissionMap;
   }
 
@@ -193,8 +199,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: (){
                       var list = _getPermissionToAppList("android.permission.READ_SMS");
                       var route = new MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                          new Sms(list));
+                        builder: (BuildContext context) =>
+                          new IntroPage(list));
                       Navigator.of(context).push(route);
                     },
                   ),
