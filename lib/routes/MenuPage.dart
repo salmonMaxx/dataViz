@@ -4,16 +4,12 @@ import './permissions/Contacts.dart';
 import './permissions/Location.dart';
 import './permissions/Mic.dart';
 import './permissions/VideoPics.dart';
-import './permissions/Calendar.dart';
 import './permissions/Sms.dart';
-import './permissions/Phone.dart';
-import './permissions/CallLog.dart';
 import './MenuForOtherPerm.dart';
 
 import 'package:photo_manager/photo_manager.dart';
 
 Future<void> _ackAlert(BuildContext context) {
-  List <String> theList = ["Video and Image","SMS","Mic", "Contact", "Location"];
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -147,6 +143,7 @@ class _MenuPageState extends State<MenuPage> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/light.png'),
+
                     ),
                   ),
                 ),
@@ -248,55 +245,6 @@ class _MenuPageState extends State<MenuPage> {
               top: 260.0,
               left: 130.0,
             ),
-            /*new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      new CallLog(widget.appInfo["callLog"]));
-                      Navigator.of(context).push(route);},
-                      iconData: Icons.group_add),
-              top: 195.0,
-              left: 242.58,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('audio_files'),
-                  iconData: Icons.insert_emoticon),
-              top: 195.0,
-              left: 17.42,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new Mic(widget.appInfo["microphone"]));
-                    Navigator.of(context).push(route);
-                  },
-                  iconData: Icons.keyboard_voice),
-              top: 242.58,
-              left: 65.0,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () => Navigator.of(context).pushNamed('sensors'),
-                  iconData: Icons.local_florist),
-              top: 242.58,
-              left: 195.0,
-            ),
-            new Positioned(
-              child: new CircleButton(
-                  onTap: () {
-                    var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new Location(widget.appInfo["location"]));
-                    Navigator.of(context).push(route);
-                  },
-                  iconData: Icons.location_on),
-              top: 260.0,
-              left: 130.0,
-            ),*/
           ],
         ),
       ),

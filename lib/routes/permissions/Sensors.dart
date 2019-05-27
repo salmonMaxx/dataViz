@@ -4,8 +4,8 @@ import '../PermissionTemplate.dart';
 
 class Sensors extends StatefulWidget {
 
-  Sensors({Key key, this.whoHasSensors}) : super(key:key);
-  final Map<String, dynamic> whoHasSensors;
+  /*Sensors({Key key, this.whoHasSensors}) : super(key:key);
+  final Map<String, dynamic> whoHasSensors;*/
 
 
   @override
@@ -17,8 +17,8 @@ var template = new PermissionTemplate();
 class _SensorsState extends State<Sensors> {
   // BOX 1
   String myImage = "assets/sensors1.jpg";
-  String myHeader = "INFORMATION BOX";
-  String myText = "Movement!";
+  String myHeader = "Your phone follows your every move";
+  String myText = "A normal modern smartphone is equipped with numerous sensors that you may never have heard of. There are motion sensors feeling movements and rotations, environmental sensors measuring air temperature, air pressure, and humidity and position sensors that automatically register magnetic fields near the phone. To mention some. Most of these sensors are available for all apps and impossible to deny, the only exception is sensors that measure the body, for example, heart rate measurements.";
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _SensorsState extends State<Sensors> {
         children: <Widget>[
           new Container(
             //Put in functions from the template below!!!
-            child: template.textBoxWithPic(null, myImage , myHeader , null, myText, null, 200),
+            child: template.textBoxWithPic(null, myImage , myHeader , 20, myText, 14, 200),
           ),
 
           //TAKE AWAY COMMENTS

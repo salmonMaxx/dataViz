@@ -12,7 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   String _password;
   final focusPass = FocusNode();
   final focusUser = FocusNode();
-  String url = 'http://34.74.219.4:443/login'; //server url
+  String url = 'https://34.74.219.4:443/login'; //server url
   //String url = 'http://192.168.43.25:3000/login'; //local url
   final formkey = new GlobalKey<FormState>();
 

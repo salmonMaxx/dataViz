@@ -55,6 +55,7 @@ class MyApp extends StatelessWidget {
         'sensors': (context) => Sensors(),
         //'menuOther': (context) => MenuForOtherPerm(),
 
+
         //drawer
         'big_picture': (context) => BigPicture(),
         'about_us': (context) => AboutUs(),
