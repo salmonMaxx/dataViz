@@ -18,8 +18,6 @@ import './routes/permissions/Sensors.dart';
 
 import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
-import './routes/drawer/FeedBack.dart';
-
 
 //intro
 import './routes/intro/introPage.dart';
@@ -59,7 +57,6 @@ class MyApp extends StatelessWidget {
         //drawer
         'big_picture': (context) => BigPicture(),
         'about_us': (context) => AboutUs(),
-        'feedback': (context) => FeedBack(),
       },
     );
   }

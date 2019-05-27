@@ -107,6 +107,10 @@ class _SmsState extends State<Sms> {
           child: template.textBoxWithPic(null, myImage, myHeader, null, myText, 16, null),
         ),
         new Container(
+          //Put in functions from the template below!!!
+          child: template.otherPermissionBox(null, null, widget.whoHasSMS),
+        ),
+        new Container(
             child: new Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

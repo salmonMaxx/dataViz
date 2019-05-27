@@ -79,9 +79,6 @@ class _IntroPageState extends State<IntroPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
             Text(
               "READY TO BE ENLIGHTED?!",
               textAlign: TextAlign.center,
@@ -112,7 +109,7 @@ class _IntroPageState extends State<IntroPage> {
         body: Column(
           children: <Widget>[
             new SizedBox(
-              height: 50,
+              height: 20,
             ),
             Center(
               child: new Stack(
@@ -164,7 +161,7 @@ class _IntroPageState extends State<IntroPage> {
                     fontWeight: FontWeight.bold,
                   )),
             ),
-          Container(
+            Container(
             margin: EdgeInsets.only(left:30, right:30, top:10),
       child: Text(
       "- See what permissions your apps have access to\n"

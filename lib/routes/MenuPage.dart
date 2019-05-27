@@ -33,37 +33,37 @@ Future<void> _ackAlert(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CircleButton(iconData: Icons.email),
-                new Text ("SMS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+                new Text ("SMS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 15)),
               ],),
             new Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CircleButton(iconData: Icons.contacts),
-                new Text ("CONTACTS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+                new Text ("CONTACTS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 15)),
               ],),
             new Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CircleButton(iconData: Icons.camera_roll),
-                new Text ("VIDEO & IMAGES", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+                new Text ("VIDEO & IMAGES", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 15)),
               ],),
             new Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CircleButton(iconData: Icons.mic),
-                new Text ("MIC", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+                new Text ("MIC", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 15)),
               ],),
             new Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CircleButton(iconData: Icons.location_on),
-                new Text ("LOCATION",textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+                new Text ("LOCATION",textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 15)),
               ],),
             new Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CircleButton(iconData: Icons.apps),
-                new Text ("OTHER PERMISSIONS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 20)),
+                new Text ("OTHER PERMISSIONS", textAlign: TextAlign.start, style: TextStyle(color: Colors.indigo[900], fontSize: 15)),
               ],),],),
         actions: <Widget>[
 
@@ -295,15 +295,6 @@ class _MenuPageState extends State<MenuPage> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).pushNamed('about_us');
-              },
-            ),
-            ListTile(
-              title: Text('FEEDBACK',
-                  style:
-                      new TextStyle(fontSize: 30.0, color: Colors.indigo[900])),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).pushNamed('feedback');
               },
             ),
             ListTile(title: Text('')),
