@@ -17,8 +17,8 @@ class _CameraState extends State<Camera> {
 
   // BOX 1
   String myImage = "assets/camera1.jpg";
-  String myHeader = "1 PIC = 1000 WORDS";
-  String myText = "What if someone can see you trough your phones camera?! scarey right?? ";
+  String myHeader = "Would you like to get recognised - always?";
+  String myText = "An app that has the camera permission can, of course, take photos. Taking photos is not very dangerous by itself but often photos are uploaded to cloud servers where they are anonymously aggregated and used to develop face recognition algorithms. Thus, uploaded photos can help increasing surveillance in society.";
 
   @override
   Widget build(BuildContext context) {

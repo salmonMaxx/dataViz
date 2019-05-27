@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
 
+
         //drawer
         'big_picture': (context) => BigPicture(),
         'settings': (context) => Settings(),
