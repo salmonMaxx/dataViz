@@ -9,7 +9,7 @@ import '../LoginPage.dart';
 class IntroPage extends StatefulWidget {
 
   IntroPage(this.whoHasThis);
-  List<String> whoHasThis;
+  Map<String, List<String>> whoHasThis;
 
   @override
   _IntroPageState createState() => _IntroPageState();
@@ -255,11 +255,11 @@ class _IntroPageState extends State<IntroPage> {
 
     page3() {
       currentIndexPage = 3;
-      return Sms(widget.whoHasThis, false);
+      return Sms(widget.whoHasThis['sms'], false);
     }
 
     page4() {
-      return LoginPage();
+      return LoginPage(widget.whoHasThis);
     }
 
     return Scaffold(

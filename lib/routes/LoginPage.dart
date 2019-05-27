@@ -1,8 +1,12 @@
+import 'package:dataViz/routes/MenuPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
+
+  LoginPage(this.appInfo);
+  Map<String, List<String>> appInfo;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -12,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   String _password;
   final focusPass = FocusNode();
   final focusUser = FocusNode();
-  String url = 'https://34.74.219.4:443/login'; //server url
+  String url = 'http://34.74.219.4:443/login'; //server url
   //String url = 'http://192.168.43.25:3000/login'; //local url
   final formkey = new GlobalKey<FormState>();
 
@@ -37,7 +41,11 @@ class _LoginPageState extends State<LoginPage> {
           "Accept": "application/json",
         });
     if (response.statusCode == 200) {
-      Navigator.of(context).pushReplacementNamed('menu');
+      var route = new MaterialPageRoute(
+          builder: (BuildContext context) =>
+          new MenuPage(widget.appInfo)
+      );
+      Navigator.of(context).push(route);
     } else {
       _showDialog(context, 'Failed to log in',
           'The combination of email and password is not valid');
@@ -161,7 +169,10 @@ class _LoginPageState extends State<LoginPage> {
                                                   fontSize: 30.0,
                                                   color: Colors.white)),
                                       /*child: Text("OK! "),*/
-                                      onPressed: logIn),
+                                        onPressed: () {
+                                          logIn();
+                                        }
+                                      ),
                                   ),),
                               ],
                             ),

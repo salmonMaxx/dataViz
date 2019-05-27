@@ -82,7 +82,7 @@ Future<void> _ackAlert(BuildContext context) {
 }
 
 class MenuPage extends StatefulWidget {
-  MenuPage({Key key, this.appInfo}) : super(key: key);
+  MenuPage(this.appInfo);
   final Map<String, List<String>> appInfo;
 
   @override
@@ -226,7 +226,7 @@ class _MenuPageState extends State<MenuPage> {
                   onTap: () {
                     var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new Mic(widget.appInfo["mic"]));
+                            new Mic(widget.appInfo["microphone"]));
                     Navigator.of(context).push(route);
                   },
                   iconData: Icons.mic),

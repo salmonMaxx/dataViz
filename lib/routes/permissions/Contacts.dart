@@ -25,9 +25,13 @@ class _ContactsState extends State<Contacts> {
   void initState(){
     super.initState();
     _getContacts().then((list) => setState(() {
-      contactInfo = list;
+      if(mounted) {
+        contactInfo = list;
+      }
     }));
   }
+
+  @override
 
   Future<List<String>> _getContacts() async {
     PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.contacts);
@@ -49,7 +53,8 @@ class _ContactsState extends State<Contacts> {
       if (contact.givenName != null) {
         givenName = contact?.givenName ?? "";
         firstName = contact?.familyName ?? "";
-        contactInfo.add(givenName + " " + firstName);
+        //email = contact?.emails ?? "";
+        contactInfo.add('$givenName $firstName');
       }
     }
     return contactInfo;

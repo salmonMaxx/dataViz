@@ -43,17 +43,13 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
       routes: {
-        'login': (context) => LoginPage(),
         'signup': (context) => SignupPage(),
         'forgetMe': (context) => ForgetMe(),
         'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
-        'menu': (context) => MenuPage(),
         'sensors': (context) => Sensors(),
         //'menuOther': (context) => MenuForOtherPerm(),
-
-
         //drawer
         'big_picture': (context) => BigPicture(),
         'about_us': (context) => AboutUs(),
@@ -81,14 +77,29 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> installedAppLabels;
   static const platform =
   const MethodChannel("dataViz/permissions"); //change channel string
-  List<String> whoHasLocationPermission;
+  Map<String, List<String>> whoHasWhat;
+
+  Map<String, List<String>> _getPermissionLists(){
+    Map<String, List<String>> permissionMap = new Map();
+    permissionMap['installedLabels']  = installedAppLabels;
+    permissionMap['contacts']   =          _getPermissionToAppList("android.permission.READ_CONTACTS");
+    permissionMap['microphone'] =           _getPermissionToAppList("android.permission.RECORD_AUDIO");
+    permissionMap['sms']        =               _getPermissionToAppList("android.permission.READ_SMS");
+    permissionMap['videoPics']  =  _getPermissionToAppList("android.permission.READ_EXTERNAL_STORAGE");
+    permissionMap['location']   =   _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION");
+    permissionMap['calendar']   =          _getPermissionToAppList("android.permission.READ_CALENDAR");
+    permissionMap['phone']      = _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE");
+    permissionMap['callLog']    =          _getPermissionToAppList("android.permission.READ_CALL_LOG");
+    permissionMap['camera']     =                 _getPermissionToAppList("android.permission.CAMERA");
+    return permissionMap;
+  }
 
   Future<Map<String, String>> _getPermissions() async {
     Map<String, String> permissionMap;
     try {
       permissionMap = await platform.invokeMapMethod('getPermissions');
     } catch (e) {
-      print("in blacklist: _getPermissions catch clause: \n${e.toString()}");
+      print({e.toString()});
     }
     return permissionMap;
   }
@@ -108,14 +119,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _resolveTheListPackages(List<dynamic> theList) {
     List<String> packageList = [];
-    theList.forEach((element) => packageList.add(element["package"]));
+    theList?.forEach((element) => packageList.add(element["package"]));
     //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
     return packageList;
   }
 
   _resolveTheListLabels(List<dynamic> theList) {
     List<String> labelList = []; //make me the length of the list!!
-    theList.forEach((element) => labelList.add(element["label"]));
+    theList?.forEach((element) => labelList.add(element["label"]));
     //.toLowerCase().replaceAll(new RegExp(r"\s+\b|\b\s|\s|\b"), "") to remove spaces and make lowercase
     return labelList;
   }
@@ -133,10 +144,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> _getPermissionToAppList(String permission) {
     List<String> appsWithPermission = [];
-    permissionMap.forEach((package, permissionListString) {
+    permissionMap?.forEach((package, permissionListString) {
       if (permissionListString.split(",").contains(permission)) {
         //translate package into label with the installedApps variable
-        installedApps.forEach((index) {
+        installedApps?.forEach((index) {
           if (index["package"] == package) {
             appsWithPermission.add(index["label"]);
           }
@@ -152,11 +163,19 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _loadApps();
     print('loaded apps. . . \n');
-    _getPermissions().then((permissions) => permissionMap = permissions);
+    _waitForPermissions().then((permissions) =>
+        setState(() {
+          permissionMap = permissions;
+        })
+    );
     print('loaded permissions. . . \n');
   }
 
-   @override
+  _waitForPermissions() async {
+    return await _getPermissions();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
@@ -174,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       var list = _getPermissionToAppList("android.permission.READ_SMS");
                       var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                          new IntroPage(list));
+                          new IntroPage(_getPermissionLists()));
                       Navigator.of(context).push(route);
                     },
                   ),
@@ -187,23 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 48.0,
                     onPressed: () {
                       var route = new MaterialPageRoute(
-                          builder: (BuildContext context) => new MenuPage(
-                            appInfo: {
-                              'installedLabels': installedAppLabels,
-                              'contacts' : _getPermissionToAppList("android.permission.READ_CONTACTS"),
-                              'microphone' : _getPermissionToAppList("android.permission.RECORD_AUDIO"),
-                              'sms' : _getPermissionToAppList("android.permission.READ_SMS"),
-                              'videoPics' : _getPermissionToAppList("android.permission.READ_EXTERNAL_STORAGE"),
-                              'location' : _getPermissionToAppList("android.permission.ACCESS_FINE_LOCATION"),
-                              'calendar' : _getPermissionToAppList("android.permission.READ_CALENDAR"),
-                              'phone' : _getPermissionToAppList("android.permission.WRITE_EXTERNAL_STORAGE"),
-                              'callLog' : _getPermissionToAppList("android.permission.READ_CALL_LOG"),
-                              'camera' : _getPermissionToAppList("android.permission.CAMERA"),
-
-                              //keep adding here to get more into the menu page
-                              //TODO Contacts, microphone, sms, video and images, location
-                            },
-                          ));
+                          builder: (BuildContext context) => new MenuPage(_getPermissionLists()));
                       Navigator.of(context).push(route);
                     },
                     tooltip: 'location',

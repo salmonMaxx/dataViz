@@ -110,15 +110,6 @@ class _LocationState extends State<Location> {
                     temp.otherPermissionBox(null, null, widget.whoHasLocation),
                   ],
                 ),
-                /*Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                RaisedButton(
-                  child: Icon(Icons.my_location),
-                  onPressed: _getLocation,
-                ),
-              ],
-            ),*/
               ],
             ),
           ),
