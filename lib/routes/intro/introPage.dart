@@ -87,6 +87,7 @@ class _IntroPageState extends State<IntroPage> {
                 fontSize: 30,
               ),
             ),
+
             Container(
               margin: EdgeInsets.only(left:30, right:30, top: 40),
               child: Text(
@@ -138,8 +139,7 @@ class _IntroPageState extends State<IntroPage> {
                         height: 150,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            //image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
-                            image: AssetImage('assets/lamp1.png'),
+                            image: AssetImage('assets/dataViz_logo2.png'),
                           ),
                         ),
                       ),

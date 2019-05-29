@@ -161,7 +161,7 @@ class _MenuPageState extends State<MenuPage> {
                       height: 150,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/lamp1.png'),
+                          image: AssetImage('assets/dataViz_logo2.png'),
                         ),
                       ),
                     ),
