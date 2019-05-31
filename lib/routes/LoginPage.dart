@@ -54,7 +54,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       backgroundColor: Colors.indigo[500],
       appBar: AppBar(
