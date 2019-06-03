@@ -147,6 +147,11 @@ class _SmsState extends State<Sms> {
                     null))
           ],
         )),
+        //MAKE THIS WORK
+        /*new Container(
+          child:  template.otherPermissionBox(null, null, widget.whoHasVideoPics),
+          ),*/
+
       ]),
     );
   }

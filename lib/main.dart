@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'sensors': (context) => Sensors(),
+        //'menu': (context) => MenuPage(_getPermissionLists()),
         //'menuOther': (context) => MenuForOtherPerm(),
         //drawer
         'big_picture': (context) => BigPicture(),
