@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'dataViz',
       theme: ThemeData(
-          primarySwatch: Colors.indigo[900],
+          primarySwatch: Colors.blue,
           fontFamily: 'Abel-bold',
           backgroundColor: Colors.white70),
       home: MyHomePage(title: 'Location Page'),
