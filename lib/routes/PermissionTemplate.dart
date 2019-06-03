@@ -192,42 +192,6 @@ class PermissionTemplate extends StatefulWidget {
     );
   }
 
-  boxLeft1(String myImage, String myHeader, String myText) {
-    return new Container(
-      height: 150,
-      decoration: BoxDecoration(color: Colors.indigo[100]),
-      margin: EdgeInsets.all(10),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 10),
-              child: myHeader.isNotEmpty
-                  ? Text(myHeader,
-                      style: TextStyle(color: Colors.indigo[900], fontSize: 25))
-                  : null,
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(0),
-              margin: EdgeInsets.only(
-                  left: 50.0, top: 7.5, bottom: 7.5, right: 10.0),
-              decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.indigo[900], width: 2),
-                image: new DecorationImage(
-                  image: new AssetImage(myImage),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
 //INFORMATION BOX
 // Boxes with pictures are bigger and better for longer information,
 //Parameters are first the pic then your header + text:)))

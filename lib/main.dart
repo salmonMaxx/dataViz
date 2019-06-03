@@ -18,8 +18,6 @@ import './routes/permissions/Sensors.dart';
 
 import './routes/drawer/AboutUs.dart';
 import './routes/drawer/BigPicture.dart';
-import './routes/drawer/FeedBack.dart';
-
 
 //intro
 import './routes/intro/introPage.dart';
@@ -37,9 +35,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'dataViz',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.indigo[900],
           fontFamily: 'Abel-bold',
           backgroundColor: Colors.white70),
       home: MyHomePage(title: 'Location Page'),
@@ -55,7 +53,6 @@ class MyApp extends StatelessWidget {
         //drawer
         'big_picture': (context) => BigPicture(),
         'about_us': (context) => AboutUs(),
-        'feedback': (context) => FeedBack(),
       },
     );
   }
