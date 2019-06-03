@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'dataViz',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.indigo[900],
           fontFamily: 'Abel-bold',
           backgroundColor: Colors.white70),
       home: MyHomePage(title: 'Location Page'),
