@@ -31,86 +31,15 @@ class _IntroPageState extends State<IntroPage> {
           ));
     }
 
-    page1() {
-      currentIndexPage = 1;
-      return Scaffold(
-        backgroundColor: Colors.indigo[900],
-        body: Column(
-          children: <Widget>[
-            new SizedBox(
-              height: 100,
-            ),
-            Center(
-              child: new Stack(
-                children: <Widget>[
-                  bigCircle(),
-                  new Positioned(
-                    //LIGHT
-                    child: new Center(
-                      child: Container(
-                        width: 600,
-                        height: 600,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/light.png'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    top: -150.0,
-                    left: -150.0,
-                  ),
-                  new Positioned(
-                    child: new Center(
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            //image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
-                            image: AssetImage('assets/lamp1.png'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    top: 80.0,
-                    left: 80.0,
-                  ),
-                ],
-              ),
-            ),
-            Text(
-              "READY TO BE ENLIGHTED?!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-              ),
-            ),
-
-            Container(
-              margin: EdgeInsets.only(left:30, right:30, top: 40),
-              child: Text(
-                  "Swipe to the right -->",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  )),
-            ),
-          ],
-        ),
-      );
-    }
 
     page2() {
       currentIndexPage = 2;
       return Scaffold(
         backgroundColor: Colors.indigo[700],
-        body: Column(
+        body: ListView(
           children: <Widget>[
             new SizedBox(
-              height: 20,
+              height: 10,
             ),
             Center(
               child: new Stack(
@@ -264,7 +193,6 @@ class _IntroPageState extends State<IntroPage> {
 
     return Scaffold(
       body: PageView(children: <Widget>[
-        page1(),
         page2(),
         page31(),
         page3(),

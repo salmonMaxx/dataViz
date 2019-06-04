@@ -27,8 +27,9 @@ class _ForgetMeState extends State<ForgetMe> {
   }
 
   Future<String> deleteFromDB() async {
+    print(_email);
     checkFields();
-    print('dont work');
+    print(_email);
     var response = await http.post(url,
         body: json.encode({
           'username': _email,
@@ -123,7 +124,6 @@ class _ForgetMeState extends State<ForgetMe> {
                                 ),
                                 onPressed: () {
                                   deleteFromDB();
-                                  print('hej');
                                 },
                                 splashColor: Colors.amber,
                                 color: Colors.green,

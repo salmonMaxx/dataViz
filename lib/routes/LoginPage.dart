@@ -1,10 +1,11 @@
+import 'package:dataViz/routes/ForgotPassword.dart';
 import 'package:dataViz/routes/MenuPage.dart';
+import 'package:dataViz/routes/SignupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
-
   LoginPage(this.appInfo);
   Map<String, List<String>> appInfo;
   @override
@@ -42,9 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         });
     if (response.statusCode == 200) {
       var route = new MaterialPageRoute(
-          builder: (BuildContext context) =>
-          new MenuPage(widget.appInfo)
-      );
+          builder: (BuildContext context) => new MenuPage(widget.appInfo));
       Navigator.of(context).push(route);
     } else {
       _showDialog(context, 'Failed to log in',
@@ -98,7 +97,10 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.transparent,
                       borderSide: const BorderSide(style: BorderStyle.none),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('signup');
+                        var route = new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                new SignupPage(widget.appInfo));
+                        Navigator.of(context).push(route);
                       },
                       child: new Text("SIGN UP",
                           style: new TextStyle(
@@ -146,33 +148,33 @@ class _LoginPageState extends State<LoginPage> {
                                 Flexible(
                                   child: new Container(
                                     margin: EdgeInsets.only(top: 50.0),
-                                      height: 60.0,
-                                      width: 100,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xFF2E7D32),
-                                        borderRadius:
-                                        new BorderRadius.circular(25.0),
-                                        boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                            color: Colors.indigo[300],
-                                            offset: Offset(1.0, 1.0),
-                                            blurRadius: 10.0,
-                                          ),
-                                        ],
-                                      ),
-                                  child: OutlineButton(
-                                      borderSide: const BorderSide(
-                                          style: BorderStyle.none),
-                                          child: new Text("OK!",
-                                              style: new TextStyle(
-                                                  fontSize: 30.0,
-                                                  color: Colors.white)),
-                                      /*child: Text("OK! "),*/
+                                    height: 60.0,
+                                    width: 100,
+                                    decoration: new BoxDecoration(
+                                      color: Color(0xFF2E7D32),
+                                      borderRadius:
+                                          new BorderRadius.circular(25.0),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.indigo[300],
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 10.0,
+                                        ),
+                                      ],
+                                    ),
+                                    child: OutlineButton(
+                                        borderSide: const BorderSide(
+                                            style: BorderStyle.none),
+                                        child: new Text("OK!",
+                                            style: new TextStyle(
+                                                fontSize: 30.0,
+                                                color: Colors.white)),
+                                        /*child: Text("OK! "),*/
                                         onPressed: () {
                                           logIn();
-                                        }
-                                      ),
-                                  ),),
+                                        }),
+                                  ),
+                                ),
                               ],
                             ),
                             SizedBox(height: 15.0),
@@ -190,9 +192,10 @@ class _LoginPageState extends State<LoginPage> {
                                                 fontSize: 15.0,
                                                 color: Colors.white))),
                                     onPressed: () {
-                                      Navigator.of(context)
-                                          .pushReplacementNamed(
-                                              'forgotPassword');
+                                      var route = new MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                          new ForgotPassword(widget.appInfo));
+                                      Navigator.of(context).push(route);
                                     },
                                   ),
                                 ),

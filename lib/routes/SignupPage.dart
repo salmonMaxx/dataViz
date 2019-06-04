@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:dataViz/routes/MenuPage.dart';
 
 class SignupPage extends StatefulWidget {
+
+  SignupPage(this.appInfo);
+  Map<String,List<String>> appInfo;
+
   @override
   SignupPageState createState() => SignupPageState();
 }
@@ -50,6 +55,40 @@ class SignupPageState extends State<SignupPage> {
           "You have to fill in all fields.");
     }
   }
+
+  void _showDialog(BuildContext context, String title, String body) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(body),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                if (title == "Registration succesfull")
+                {
+                  var route = new MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                      new MenuPage(widget.appInfo)
+                  );
+                  Navigator.of(context).push(route);
+                }
+                else {
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +207,8 @@ class SignupPageState extends State<SignupPage> {
                                                 fontSize: 20.0,
                                                 color: Colors.white)),
                                         /*child: Text("OK! "),*/
-                                        onPressed: signUp),
+                                        onPressed: signUp
+                                    ),
                                   ),
                                 ),
                               ],
@@ -225,31 +265,6 @@ class SignupPageState extends State<SignupPage> {
       );
     }
   }
+
 }
 
-void _showDialog(BuildContext context, String title, String body) {
-  // flutter defined function
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      // return object of type Dialog
-      return AlertDialog(
-        title: new Text(title),
-        content: new Text(body),
-        actions: <Widget>[
-          // usually buttons at the bottom of the dialog
-          new FlatButton(
-            child: new Text("Close"),
-            onPressed: () {
-              if (title == "Registration succesfull")
-                Navigator.of(context).pushReplacementNamed('menu');
-              else {
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-        ],
-      );
-    },
-  );
-}

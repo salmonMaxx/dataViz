@@ -4,14 +4,12 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:launcher_assist/launcher_assist.dart';
 
-import './routes/LoginPage.dart';
 import './routes/SignupPage.dart';
 import './routes/ForgetMe.dart';
 import './routes/ForgotPassword.dart';
 import './routes/PermissionTemplate.dart';
 import './routes/PermissionMicrophoneScreen.dart';
 import './routes/MenuPage.dart';
-import './routes/MenuForOtherPerm.dart';
 import './routes/permissions/Sensors.dart';
 
 //drawer --> sidebar menu
@@ -43,9 +41,8 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Location Page'),
       initialRoute: '/',
       routes: {
-        'signup': (context) => SignupPage(),
+
         'forgetMe': (context) => ForgetMe(),
-        'forgotPassword': (context) => ForgotPassword(),
         'permissions': (context) => PermissionTemplate(),
         'microphone': (context) => PermissionMicrophoneScreen(),
         'sensors': (context) => Sensors(),
@@ -176,49 +173,92 @@ class _MyHomePageState extends State<MyHomePage> {
     return await _getPermissions();
   }
 
+  bigCircle() {
+    return Container(
+        width: 310.0,
+        height: 310.0,
+        decoration: new BoxDecoration(
+          color: Colors.transparent,
+          shape: BoxShape.circle,
+        ));
+  }
+
+  buildPage() {
+    return Scaffold(
+      backgroundColor: Colors.indigo[900],
+      body: Column(
+        children: <Widget>[
+          new SizedBox(
+            height: 100,
+          ),
+          Center(
+            child: new Stack(
+              children: <Widget>[
+                bigCircle(),
+                new Positioned(
+                  //LIGHT
+                  child: new Center(
+                    child: Container(
+                      width: 600,
+                      height: 600,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/light.png'),
+                        ),
+                      ),
+                    ),
+                  ),
+                  top: -150.0,
+                  left: -150.0,
+                ),
+                new Positioned(
+                  child: new Center(
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          //image: AssetImage('assets/mabu-lightbulb.png'), //HAVE TO CHANGE PIC
+                          image: AssetImage('assets/lamp1.png'),
+                        ),
+                      ),
+                    ),
+                  ),
+                  top: 80.0,
+                  left: 80.0,
+                ),
+              ],
+            ),
+          ),
+          Text(
+            "READY TO BE ENLIGHTED?!",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left:30, right:30, top: 40),
+            child: RaisedButton(
+              child: Text("Begin!"),
+              onPressed: () {
+                  var route = new MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                      new IntroPage(_getPermissionLists()));
+                    Navigator.of(context).push(route);
+            },
+            ),
+      ),
+      ],
+    ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.local_florist, color: Colors.pink),
-                    iconSize: 48.0,
-                    onPressed: (){
-                      var list = _getPermissionToAppList("android.permission.READ_SMS");
-                      var route = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                          new IntroPage(_getPermissionLists()));
-                      Navigator.of(context).push(route);
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.home, color: Colors.blueGrey),
-                    iconSize: 48.0,
-                    onPressed: () {
-                      var route = new MaterialPageRoute(
-                          builder: (BuildContext context) => new MenuPage(_getPermissionLists()));
-                      Navigator.of(context).push(route);
-                    },
-                    tooltip: 'location',
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+    return buildPage();
   }
 }
 

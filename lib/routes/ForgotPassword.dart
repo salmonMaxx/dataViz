@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ForgotPassword extends StatefulWidget {
+
+  ForgotPassword(this.appInfo);
+  Map<String, List<String>> appInfo;
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();
 }
@@ -172,6 +175,37 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
 
+  void _showDialog(BuildContext context, String title, String body) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(body),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                if (title == "Password reset sent"){
+                  var route = new MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                      new ForgotPassword(widget.appInfo));
+                  Navigator.of(context).push(route);
+                }
+                else {
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _input(String validation, bool, String label, String hint, save,
       FocusNode currentFocus, FocusNode nextFocus) {
     if (nextFocus != currentFocus) {
@@ -210,29 +244,4 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   }
 }
 
-void _showDialog(BuildContext context, String title, String body) {
-  // flutter defined function
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      // return object of type Dialog
-      return AlertDialog(
-        title: new Text(title),
-        content: new Text(body),
-        actions: <Widget>[
-          // usually buttons at the bottom of the dialog
-          new FlatButton(
-            child: new Text("Close"),
-            onPressed: () {
-              if (title == "Password reset sent")
-                Navigator.of(context).pushReplacementNamed('login');
-              else {
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+
